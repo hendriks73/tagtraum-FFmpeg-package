@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="FFmpeg">
+    <version position="right"/>
+    <bannerLeft>
+        <name>tagtraum FFmpeg package</name>
+        <href>http://www.tagtraum.com/ffmpeg</href>
+        <src>../images/ffmpeg-banner.png</src>
+    </bannerLeft>
+    <bannerRight>
+        <href>http://www.tagtraum.com/</href>
+        <src>../images/tagtraum-banner.png</src>
+    </bannerRight>
+    <body>
+        <links>
+            <item name="tagtraum" href="http://www.tagtraum.com/"/>
+            <item name="FFmpeg" href="http://www.ffmpeg.org/"/>
+        </links>
+        <menu name="tagtraum FFmpeg package">
+            <item name="Release" href="http://www.beatunes.com/repo/maven2/com/tagtraum/ffmpeg/"/>
+            <item name="zlib" href="http://www.zlib.net"/>
+        </menu>
+
+        <menu ref="modules" />
+        <menu ref="reports"/>
+        <menu ref="parent"/>
+    </body>
+</project>

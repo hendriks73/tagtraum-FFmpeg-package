@@ -1,0 +1,144 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.tagtraum.ffmpeg</groupId>
+        <artifactId>ffmpeg-package</artifactId>
+        <version>1.2.1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>libavcodec</artifactId>
+    <version>54.92.100</version>
+    <packaging>pom</packaging>
+    <name>libavcodec</name>
+    <description>
+        The libavcodec library provides a generic encoding/decoding framework and contains multiple decoders
+        and encoders for audio, video and subtitle streams, and several bitstream filters.
+        The shared architecture provides various services ranging from bit stream I/O to DSP optimizations, and makes
+        it suitable for implementing robust and fast codecs as well as for experimentation.
+    </description>
+
+    <url>http://ffmpeg.org/</url>
+    <organization>
+        <name>FFmpeg.org</name>
+        <url>http://ffmpeg.org/</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>ffmpeg</id>
+            <name>FFmpeg Team</name>
+            <email>ffmpeg-devel@ffmpeg.org</email>
+            <url>https://ffmpeg.org/mailman/listinfo/ffmpeg-devel/</url>
+            <organization>FFmpeg.org</organization>
+            <organizationUrl>http://ffmpeg.org/</organizationUrl>
+        </developer>
+    </developers>
+    <issueManagement>
+        <system>trac</system>
+        <url>http://ffmpeg.org/trac/ffmpeg</url>
+    </issueManagement>
+    <mailingLists>
+        <mailingList>
+            <name>Libav User</name>
+            <subscribe>libav-user-join@ffmpeg.org</subscribe>
+            <unsubscribe>libav-user-leave@ffmpeg.org</unsubscribe>
+            <post>libav-user@ffmpeg.org</post>
+            <archive>http://ffmpeg.org/pipermail/libav-user/</archive>
+            <otherArchives>
+                <otherArchive>http://libav-users.943685.n4.nabble.com</otherArchive>
+            </otherArchives>
+        </mailingList>
+        <mailingList>
+            <name>FFmpeg Devel</name>
+            <subscribe>ffmpeg-devel-join@ffmpeg.org</subscribe>
+            <unsubscribe>ffmpeg-devel-leave@ffmpeg.org</unsubscribe>
+            <post>ffmpeg-devel@ffmpeg.org</post>
+            <archive>http://ffmpeg.org/pipermail/ffmpeg-devel/</archive>
+        </mailingList>
+    </mailingLists>
+    <scm>
+        <connection>scm:git:git://source.ffmpeg.org/ffmpeg.git</connection>
+        <developerConnection>scm:git:git://source.ffmpeg.org/ffmpeg.git</developerConnection>
+        <url>http://git.videolan.org/?p=ffmpeg.git</url>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.tagtraum.ffmpeg</groupId>
+            <artifactId>ffmpeg</artifactId>
+            <version>${project.parent.version}</version>
+            <type>jar</type>
+            <classifier>sources</classifier>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+
+                                <!-- darwin -->
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-i386-darwin/${project.artifactId}.a</file>
+                                    <type>a</type>
+                                    <classifier>i386-darwin</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-i386-darwin/${project.artifactId}.dylib</file>
+                                    <type>dylib</type>
+                                    <classifier>i386-darwin</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-darwin/${project.artifactId}.a</file>
+                                    <type>a</type>
+                                    <classifier>x86_64-darwin</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-darwin/${project.artifactId}.dylib</file>
+                                    <type>dylib</type>
+                                    <classifier>x86_64-darwin</classifier>
+                                </artifact>
+
+                                <!-- mingw32 -->
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-i386-mingw32/${project.artifactId}.a</file>
+                                    <type>a</type>
+                                    <classifier>i386-mingw32</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-i386-mingw32/${project.artifactId}.dll</file>
+                                    <type>dll</type>
+                                    <classifier>i386-mingw32</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-mingw32/${project.artifactId}.a</file>
+                                    <type>a</type>
+                                    <classifier>x86_64-mingw32</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-mingw32/${project.artifactId}.dll</file>
+                                    <type>dll</type>
+                                    <classifier>x86_64-mingw32</classifier>
+                                </artifact>
+
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+</project>

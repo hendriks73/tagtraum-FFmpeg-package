@@ -1,0 +1,162 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <prerequisites>
+        <maven>3.0.5</maven>
+    </prerequisites>
+    <groupId>com.tagtraum.ffmpeg</groupId>
+    <version>1.2.1</version>
+    <artifactId>ffmpeg-package</artifactId>
+    <packaging>pom</packaging>
+    <name>tagtraum FFmpeg package</name>
+    <description>
+        FFmpeg built with support for javax.sound.sampled in mind, i.e. mostly decoders, demuxers etc.
+        Codecs to have known patent problems are disabled (no guarantee).
+        tagtraum industries is not the developer of FFmpeg or any of its libraries.
+        It only assembled this particular package.
+        For more information on FFmpeg, please visit http://www.ffmpeg.org/
+    </description>
+    <url>http://www.tagtraum.com/ffmpeg</url>
+    <inceptionYear>2013</inceptionYear>
+    <licenses>
+        <license>
+            <name>LGPL 2.1</name>
+            <url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</url>
+            <comments>LGPL 2.1</comments>
+        </license>
+    </licenses>
+    <organization>
+        <name>tagtraum industries incorporated</name>
+        <url>http://www.tagtraum.com/</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>hendrik</id>
+            <name>Hendrik Schreiber</name>
+            <email>hs@tagtraum.com</email>
+            <url>http://www.tagtraum.com/</url>
+            <organization>tagtraum industries incorporated</organization>
+            <organizationUrl>http://www.tagtraum.com/</organizationUrl>
+            <roles>
+                <role>assembler</role>
+            </roles>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+    <modules>
+        <module>ffmpeg</module>
+        <module>libavutil</module>
+        <module>libavcodec</module>
+        <module>libavformat</module>
+        <module>libswresample</module>
+        <module>libz</module>
+        <module>libbz2</module>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.8.4</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.7</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>index</report>
+                            <report>mailing-list</report>
+                            <report>project-team</report>
+                            <report>dependencies</report>
+                            <report>issue-tracking</report>
+                            <report>license</report>
+                            <report>scm</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>1.7</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.7</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>2.7</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+            </extension>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+            </extension>
+        </extensions>
+    </build>
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>beatunes-repository</id>
+            <name>beaTunes Repository</name>
+            <url>sftp://www.beatunes.com/var/www/vhosts/beatunes.com/httpdocs/repo/maven2</url>
+        </repository>
+        <downloadUrl>http://www.beatunes.com/repo/maven2</downloadUrl>
+        <site>
+            <id>tagtraum-site</id>
+            <url>ftp://www.tagtraum-industries.de/ffmpeg/</url>
+        </site>
+    </distributionManagement>
+    <properties>
+        <ffmpeg.configure>--enable-small --enable-shared --enable-static --disable-programs --disable-doc --disable-avfilter --disable-postproc --disable-swscale --disable-avdevice --disable-decoder=h261 --disable-decoder=h263 --disable-decoder=h263i --disable-decoder=h263p --disable-decoder=h264 --disable-decoder=h264_crystalhd --disable-decoder=h264_vda --disable-decoder=h264_vdpau --disable-decoder=msmpeg4_crystalhd --disable-decoder=msmpeg4v1 --disable-decoder=msmpeg4v2 --disable-decoder=msmpeg4v3 --disable-decoder=mpeg2_crystalhd --disable-decoder=mpeg2video --disable-decoder=mpeg4_crystalhd --disable-decoder=mpeg4_vdpau --disable-decoder=mpeg_vdpau --disable-decoder=mpeg_xvmc --disable-decoder=mpegvideo --disable-decoder=mp1 --disable-decoder=mp1float --disable-decoder=mp2 --disable-decoder=mp2float --disable-decoder=mp3 --disable-decoder=mp3adu --disable-decoder=mp3adufloat --disable-decoder=mp3float --disable-decoder=mp3on4 --disable-decoder=mp3on4float --disable-encoders --enable-encoder=pcm_f32be --enable-encoder=pcm_f32le --enable-encoder=pcm_f64be --enable-encoder=pcm_f64le --enable-encoder=pcm_s16be --enable-encoder=pcm_s16le --enable-encoder=pcm_s24be --enable-encoder=pcm_s24le --enable-encoder=pcm_s32be --enable-encoder=pcm_s32le --enable-encoder=pcm_s8 --enable-encoder=pcm_u8 --enable-encoder=pcm_u16be --enable-encoder=pcm_u16le --enable-encoder=pcm_u24be --enable-encoder=pcm_u24le --enable-encoder=pcm_u32be --enable-encoder=pcm_u32le --disable-muxers --disable-indevs --disable-outdevs --disable-iconv</ffmpeg.configure>
+        <mingw.i386.path>/Users/hendrik/mingw/mingw-w32-i686/bin</mingw.i386.path>
+        <mingw.i386.crossprefix>i686-w64-mingw32-</mingw.i386.crossprefix>
+        <mingw.x86_64.path>/Users/hendrik/mingw/mingw-w64-i686/bin</mingw.x86_64.path>
+        <mingw.x86_64.crossprefix>x86_64-w64-mingw32-</mingw.x86_64.crossprefix>
+        <make>/usr/bin/make</make>
+        <sh>/bin/sh</sh>
+        <ccompiler>gcc</ccompiler>
+        <bzip2.version>1.0.6</bzip2.version>
+        <zlib.version>1.2.8</zlib.version>
+
+        <!-- aliases, because of http://maven.apache.org/plugins/maven-site-plugin/examples/creating-content.html#Filtering -->
+        <projectversion>${project.version}</projectversion>
+        <bzip2version>${bzip2.version}</bzip2version>
+        <zlibversion>${zlib.version}</zlibversion>
+        <ffmpegconfigure>${ffmpeg.configure}</ffmpegconfigure>
+    </properties>
+
+</project>

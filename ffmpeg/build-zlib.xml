@@ -1,0 +1,44 @@
+<project default="zlib">
+
+
+    <target name="unpack">
+        <!-- unpack -->
+        <untar src="${project.build.directory}/zlib.tar" dest="${project.build.directory}/zlib-${arch}-${host}"/>
+        <!-- fix permissions messed up by untar -->
+        <chmod perm="ugo+rx" dir="${project.build.directory}/zlib-${arch}-${host}" includes="**/*.sh"/>
+        <jar destfile="${project.build.directory}/zlib-sources-${arch}-${host}.jar" basedir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"/>
+    </target>
+
+    <target name="configure" if="configure" depends="unpack">
+        <!-- configure -->
+        <exec dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"
+              executable="${sh}"
+              failonerror="true">
+            <env key="PATH" path="${path}"/>
+            <arg line="configure --archs=&quot;-arch ${arch}&quot;"/>
+        </exec>
+    </target>
+
+    <target name="zlib" depends="unpack,configure">
+
+        <!-- make -->
+        <exec dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"
+              executable="${make}"
+              failonerror="true">
+            <env key="PATH" path="${path}"/>
+            <arg line="-f${makefile} PREFIX=${mingw.crossprefix} ${target}"/>
+        </exec>
+
+        <!-- copy results -->
+        <mkdir dir="${project.build.directory}/lib-${arch}-${host}"/>
+        <copy todir="${project.build.directory}/lib-${arch}-${host}" flatten="true">
+            <fileset dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}">
+                <include name="**/lib*.a"/>
+                <include name="**/lib*.dylib"/>
+                <include name="**/*.dll"/>
+            </fileset>
+        </copy>
+    </target>
+
+</project>
+

@@ -1,0 +1,121 @@
+    ------
+    Introduction
+    ------
+    Hendrik Schreiber
+    ------
+    ------
+
+Introduction
+
+    The <tagtraum FFmpeg package> is a binary release of some of the libraries released by
+    the {{{http://www.ffmpeg.org/}FFmpeg\u2122}} project. Its purpose is to provide easy access
+    to Windows and OS X binaries and sources for decoding audio via a
+    {{{http://maven.apache.org/}Maven}} repository.
+    Thus it serves as an upstream project for Java
+    {{{http://en.wikipedia.org/wiki/Java_Native_Interface}JNI}} projects wishing to interface
+    with the native libraries. Codecs with known patent problems are {{{#Configuration}disabled}}.
+    However, this obviously is no guarantee.
+    Also, as the focus lies on decoding audio, most encoders are {{{#Configuration}disabled}}.
+
+How to use
+
+    To access the native libraries and sources, add something like this to the dependencies
+    section of your {{{http://maven.apache.org/pom.html#What_is_the_POM}pom}}:
+
+---
+<dependency>
+    <groupId>com.tagtraum.ffmpeg</groupId>
+    <artifactId>libavformat</artifactId>
+    <version>54.63.104</version>
+    <type>a</type>
+    <classifier>i386-darwin</classifier>
+    <!-- <classifier>x86_64-mingw</classifier> -->
+</dependency>
+
+<dependency>
+    <groupId>com.tagtraum.ffmpeg</groupId>
+    <artifactId>libavcodec</artifactId>
+    <version>54.92.100</version>
+    <type>a</type>
+    <classifier>i386-darwin</classifier>
+    <!-- <classifier>x86_64-mingw</classifier> -->
+</dependency>
+
+<dependency>
+    <groupId>com.tagtraum.ffmpeg</groupId>
+    <artifactId>libavutil</artifactId>
+    <version>52.18.100</version>
+    <type>a</type>
+    <classifier>i386-darwin</classifier>
+    <!-- <classifier>x86_64-mingw</classifier> -->
+</dependency>
+
+<dependency>
+    <groupId>com.tagtraum.ffmpeg</groupId>
+    <artifactId>libswresample</artifactId>
+    <version>0.17.102</version>
+    <type>a</type>
+    <classifier>i386-darwin</classifier>
+    <!-- <classifier>x86_64-mingw</classifier> -->
+</dependency>
+
+<dependency>
+    <groupId>com.tagtraum.ffmpeg</groupId>
+    <artifactId>libz</artifactId>
+    <version>${zlibversion}</version>
+    <type>a</type>
+    <classifier>i386-darwin</classifier>
+    <!-- <classifier>x86_64-mingw</classifier> -->
+</dependency>
+
+<dependency>
+    <groupId>com.tagtraum.ffmpeg</groupId>
+    <artifactId>libbz2</artifactId>
+    <version>${bzip2version}</version>
+    <type>a</type>
+    <classifier>i386-darwin</classifier>
+    <!-- <classifier>x86_64-mingw</classifier> -->
+</dependency>
+
+<!-- To access the FFmpeg sources/headers the binaries were built from... -->
+<dependency>
+    <groupId>com.tagtraum.ffmpeg</groupId>
+    <artifactId>ffmpeg</artifactId>
+    <version>${projectversion}</version>
+    <classifier>sources-i386-darwin</classifier>
+    <!-- <classifier>x86_64-mingw</classifier> -->
+    <type>jar</type>
+</dependency>
+---
+
+   Note that the <<<classifier>>> always consists of the architecture (<<<i386>>>/<<<x86_64>>>) and the host
+   platform (<<<mingw>>>/<<<darwin>>>). MinGW stands for Windows, because it is built using
+   the crosscompiler {{{http://mingw-w64.sourceforge.net}MinWG-w64}}.
+
+   As <<<type>>> you may choose <<<a>>> for static libraries, and <<<dylib>>> or <<<dll>>> for dynamic
+   libraries. For <bzip2> dynamic libraries are not built.
+
+   If Maven can't resolve this dependency, you might also want to add the following
+   repository to the repositories section of your pom:
+
+---
+<repository>
+    <id>beatunes</id>
+    <name>beaTunes Repository</name>
+    <url>http://www.beatunes.com/repo/maven2</url>
+</repository>
+---
+
+Requirements
+
+    Both 32 bit and 64 bit are supported on Windows and OS X.
+
+License
+
+    {{{http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt}LGPL 2.1}}
+
+Configuration
+
+    FFmpeg was built with the following configuration:
+
+    <<<./configure ${ffmpegconfigure}>>>

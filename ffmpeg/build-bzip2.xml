@@ -1,0 +1,36 @@
+<project default="bzip2">
+
+    <target name="bzip2">
+
+        <!-- unpack -->
+        <untar src="${project.build.directory}/bzip2.tar" dest="${project.build.directory}/bzip2-${arch}-${host}"/>
+
+        <!-- fix permissions messed up by untar -->
+        <chmod perm="ugo+rx" dir="${project.build.directory}/bzip2-${arch}-${host}" includes="**/*.sh"/>
+        <!-- fix slash for crosscompilation-->
+        <replace file="${project.build.directory}/bzip2-${arch}-${host}/bzip2-${bzip2.version}/bzip2.c" token="sys\stat.h" value="sys/stat.h"/>
+        <jar destfile="${project.build.directory}/bzip2-sources-${arch}-${host}.jar" basedir="${project.build.directory}/bzip2-${arch}-${host}/bzip2-${bzip2.version}"/>
+
+        <!-- make static -->
+        <exec dir="${project.build.directory}/bzip2-${arch}-${host}/bzip2-${bzip2.version}"
+              executable="${make}"
+              failonerror="true">
+            <env key="PATH" path="${path}"/>
+            <arg line="CC=&quot;${mingw.crossprefix}${cc}&quot; AR=${mingw.crossprefix}ar RANLIB=${mingw.crossprefix}ranlib bzip2"/>
+        </exec>
+
+        <!-- copy results -->
+        <mkdir dir="${project.build.directory}/lib-${arch}-${host}"/>
+        <copy todir="${project.build.directory}/lib-${arch}-${host}" flatten="true">
+            <fileset dir="${project.build.directory}/bzip2-${arch}-${host}/bzip2-${bzip2.version}">
+                <include name="**/lib*.a"/>
+                <include name="**/lib*.dylib"/>
+                <include name="**/*.dll"/>
+            </fileset>
+        </copy>
+
+        <!-- make dynamic is missing -->
+    </target>
+
+</project>
+

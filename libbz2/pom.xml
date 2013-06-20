@@ -1,0 +1,162 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.tagtraum.ffmpeg</groupId>
+        <artifactId>ffmpeg-package</artifactId>
+        <version>1.2.1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>libbz2</artifactId>
+    <version>${bzip2.version}</version>
+    <packaging>pom</packaging>
+    <name>bzip2</name>
+    <description>
+        bzip2 is a freely available, patent free, high-quality data compressor. It typically
+        compresses files to within 10% to 15% of the best available techniques (the PPM family of statistical
+        compressors), whilst being around twice as fast at compression and six times faster at decompression.
+    </description>
+
+    <organization>
+        <name>Julian Seward</name>
+        <url>ttp://www.bzip.org/</url>
+    </organization>
+    <url>http://www.bzip.org/</url>
+    <inceptionYear>1996</inceptionYear>
+    <developers>
+        <developer>
+            <id>julian</id>
+            <name>Julian Seward</name>
+            <email>jseward@bzip.org</email>
+            <url>http://www.bzip.org/</url>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>libbzip2 license</name>
+            <comments>BSD-style license:
+
+This program, "bzip2", the associated library "libbzip2", and all
+documentation, are copyright (C) 1996-2010 Julian R Seward.  All
+rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+
+1. Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+
+2. The origin of this software must not be misrepresented; you must
+not claim that you wrote the original software.  If you use this
+software in a product, an acknowledgment in the product
+documentation would be appreciated but is not required.
+
+3. Altered source versions must be plainly marked as such, and must
+not be misrepresented as being the original software.
+
+4. The name of the author may not be used to endorse or promote
+products derived from this software without specific prior written
+permission.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
+OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Julian Seward, jseward@bzip.org
+bzip2/libbzip2 version 1.0.6 of 6 September 2010</comments>
+        </license>
+    </licenses>
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+
+                                <!-- darwin -->
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-i386-darwin/${project.artifactId}.a</file>
+                                    <type>a</type>
+                                    <classifier>i386-darwin</classifier>
+                                </artifact>
+<!--
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-i386-darwin/${project.artifactId}.dylib</file>
+                                    <type>dylib</type>
+                                    <classifier>i386-darwin</classifier>
+                                </artifact>
+-->
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-darwin/${project.artifactId}.a</file>
+                                    <type>a</type>
+                                    <classifier>x86_64-darwin</classifier>
+                                </artifact>
+<!--
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-darwin/${project.artifactId}.dylib</file>
+                                    <type>dylib</type>
+                                    <classifier>x86_64-darwin</classifier>
+                                </artifact>
+-->
+
+                                <!-- mingw32 -->
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-i386-mingw32/${project.artifactId}.a</file>
+                                    <type>a</type>
+                                    <classifier>i386-mingw32</classifier>
+                                </artifact>
+<!--
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-i386-mingw32/${project.artifactId}.dll</file>
+                                    <type>dll</type>
+                                    <classifier>i386-mingw32</classifier>
+                                </artifact>
+-->
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-mingw32/${project.artifactId}.a</file>
+                                    <type>a</type>
+                                    <classifier>x86_64-mingw32</classifier>
+                                </artifact>
+<!--
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-mingw32/${project.artifactId}.dll</file>
+                                    <type>dll</type>
+                                    <classifier>x86_64-mingw32</classifier>
+                                </artifact>
+-->
+
+                                <!-- sources -->
+                                <artifact>
+                                    <file>${basedir}/../ffmpeg/target/${project.artifactId}-sources.jar</file>
+                                    <type>jar</type>
+                                    <classifier>sources</classifier>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+</project>
