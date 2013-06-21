@@ -1,0 +1,66 @@
+    ------
+    Developer
+    ------
+    Hendrik Schreiber
+    ------
+    ------
+
+Developer
+
+    In essence, the <tagtraum FFmpeg package> is a glorified build script that
+    makes it easier for Java JNI projects using Maven to link against {{{http://www.ffmpeg.org}FFmpeg}}
+    libraries.
+
+    To build the <tagtraum FFmpeg package>, you need:
+
+        * git
+
+        * Maven 3.0.5, {{http://maven.apache.org/}}
+
+        * a MinGW-w64 crosscompiler, {{http://mingw-w64.sourceforge.net/}}
+
+        * Apple Command Line Tools, available via {{https://developer.apple.com/}}, or XCode, {{https://developer.apple.com/xcode/}}
+
+        * a JDK (to run Maven)
+
+    Once you have all this set up, clone the repository like this:
+
++-------------------------------+
+git clone git@github.com:hendriks73/tagtraum-FFmpeg-package.git tagtraum-ffmpeg-package
++-------------------------------+
+
+    Then you still need to adjust some properties in the parent <<<pom.xml>>>.
+    Or.. simply override them using <<<-Dname=value>>> notation.
+
+    If you didn't add the <<<bin>>> folder of your crosscompilers to the <<<PATH>>>, you need
+    to set <<<-Dmingw.i386.path=...>>> and <<<-Dmingw.x86_64.path=...>>>
+
+    So all in all, something like the following might work for you, depending on where
+    you installed MinGW-w64:
+
++-------------------------------+
+mvn -Dmingw.i386.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
+    -Dmingw.x86_64.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
+    clean install
++-------------------------------+
+
+
+    In order to configure FFmpeg differently, simply specify the <<<ffmpeg.configure>>> property.
+    For example, to configure with all standard options, run:
+
++-------------------------------+
+mvn -Dmingw.i386.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
+    -Dmingw.x86_64.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
+    -Dffmpeg.configure=--enable-static \
+    clean install
++-------------------------------+
+
+    Note that in order to specify multiple configuration options for <<<ffmpeg.configure>>>
+    you have to quote the <whole> parameter. E.g.:
+
++-------------------------------+
+mvn -Dmingw.i386.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
+    -Dmingw.x86_64.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
+    "-Dffmpeg.configure=--enable-static --disable-programs --disable-doc" \
+    clean install
++-------------------------------+

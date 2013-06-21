@@ -8,12 +8,9 @@ Maven (http://maven.apache.org/) repository.
 
 Thus it serves as an upstream project for Java JNI projects wishing to interface
 with the native libraries. Codecs with known patent problems are disabled.
-
 However, this obviously is no guarantee.
 
-Also, as the focus lies on decoding audio, most encoders are disabled
-
-Its main purpose is to decode audio files or streams to signed linear pcm.
+Also, as the focus lies on decoding audio, most encoders are disabled.
 
 This distribution comes with absolutely no support, warranty etc. you name it.
 
