@@ -145,7 +145,7 @@
     <scm>
         <connection>scm:git:git://github.com/hendriks73/tagtraum-FFmpeg-package.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/hendriks73/tagtraum-FFmpeg-package.git</developerConnection>
-        <url>https://github.com/hendriks73/tagtraum-FFmpeg-package</url>
+        <url>https://github.com/hendriks73/tagtraum-FFmpeg-package/tree/master</url>
     </scm>
 
     <issueManagement>
