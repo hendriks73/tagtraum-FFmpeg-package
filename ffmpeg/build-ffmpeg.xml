@@ -31,8 +31,14 @@
             <fileset dir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${project.version}">
                 <include name="**/lib*.a"/>
                 <include name="**/lib*.dylib"/>
+            </fileset>
+        </copy>
+        <!-- typically dlls don't have a leading "lib", but to make our life a little easier, we add it here -->
+        <copy todir="${project.build.directory}/lib-${arch}-${host}" flatten="true">
+            <fileset dir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${project.version}">
                 <include name="**/*.dll"/>
             </fileset>
+            <regexpmapper from="^(.*)/([^/]*)$$" to="lib\2"/>
         </copy>
     </target>
 

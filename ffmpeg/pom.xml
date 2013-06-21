@@ -88,7 +88,7 @@
 
                                 <gunzip src="${project.build.directory}/zlib.tar.gz"/>
                                 <untar src="${project.build.directory}/zlib.tar" dest="${project.build.directory}/zlib"/>
-                                <jar destfile="${project.build.directory}/zlib-sources.jar" basedir="${project.build.directory}/zlib/zlib-${zlib.version}"/>
+                                <jar destfile="${project.build.directory}/libz-sources.jar" basedir="${project.build.directory}/zlib/zlib-${zlib.version}"/>
 
                                 <!-- 32bit windows -->
                                 <ant antfile="${project.basedir}/build-zlib.xml" inheritRefs="true">
@@ -144,7 +144,7 @@
 
                                 <gunzip src="${project.build.directory}/bzip2.tar.gz"/>
                                 <untar src="${project.build.directory}/bzip2.tar" dest="${project.build.directory}/bzip2"/>
-                                <jar destfile="${project.build.directory}/bzip2-sources.jar" basedir="${project.build.directory}/bzip2/bzip2-${bzip2.version}"/>
+                                <jar destfile="${project.build.directory}/libbz2-sources.jar" basedir="${project.build.directory}/bzip2/bzip2-${bzip2.version}"/>
 
                                 <!-- 32bit windows -->
                                 <ant antfile="${project.basedir}/build-bzip2.xml" inheritRefs="true">

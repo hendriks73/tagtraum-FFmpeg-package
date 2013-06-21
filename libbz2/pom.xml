@@ -34,7 +34,7 @@
 
     <licenses>
         <license>
-            <name>libbzip2 license</name>
+            <name>bzip2 license</name>
             <comments>BSD-style license:
 
 This program, "bzip2", the associated library "libbzip2", and all

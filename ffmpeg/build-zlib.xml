@@ -6,7 +6,7 @@
         <untar src="${project.build.directory}/zlib.tar" dest="${project.build.directory}/zlib-${arch}-${host}"/>
         <!-- fix permissions messed up by untar -->
         <chmod perm="ugo+rx" dir="${project.build.directory}/zlib-${arch}-${host}" includes="**/*.sh"/>
-        <jar destfile="${project.build.directory}/zlib-sources-${arch}-${host}.jar" basedir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"/>
+        <jar destfile="${project.build.directory}/libz-sources-${arch}-${host}.jar" basedir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"/>
     </target>
 
     <target name="configure" if="configure" depends="unpack">
@@ -35,9 +35,16 @@
             <fileset dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}">
                 <include name="**/lib*.a"/>
                 <include name="**/lib*.dylib"/>
-                <include name="**/*.dll"/>
             </fileset>
         </copy>
+        <!-- typically dlls don't have a leading "lib", but to make our life a little easier, we add it here -->
+        <copy todir="${project.build.directory}/lib-${arch}-${host}" flatten="true">
+            <fileset dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}">
+                <include name="**/*.dll"/>
+            </fileset>
+            <globmapper from="*" to="libz.dll"/>
+        </copy>
+
     </target>
 
 </project>

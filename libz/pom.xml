@@ -112,7 +112,7 @@ jloup@gzip.org          madler@alumni.caltech.edu</comments>
                                     <classifier>i386-mingw32</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${basedir}/../ffmpeg/target/lib-i386-mingw32/${project.artifactId}lib1.dll</file>
+                                    <file>${basedir}/../ffmpeg/target/lib-i386-mingw32/${project.artifactId}.dll</file>
                                     <type>dll</type>
                                     <classifier>i386-mingw32</classifier>
                                 </artifact>
@@ -122,7 +122,7 @@ jloup@gzip.org          madler@alumni.caltech.edu</comments>
                                     <classifier>x86_64-mingw32</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-mingw32/${project.artifactId}lib1.dll</file>
+                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-mingw32/${project.artifactId}.dll</file>
                                     <type>dll</type>
                                     <classifier>x86_64-mingw32</classifier>
                                 </artifact>

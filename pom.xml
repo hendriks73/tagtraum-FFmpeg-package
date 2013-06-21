@@ -127,6 +127,7 @@
             </extension>
         </extensions>
     </build>
+
     <distributionManagement>
         <repository>
             <uniqueVersion>false</uniqueVersion>
@@ -140,6 +141,13 @@
             <url>ftp://www.tagtraum-industries.de/ffmpeg/</url>
         </site>
     </distributionManagement>
+
+    <scm>
+        <connection>scm:git:git://github.com/hendriks73/tagtraum-FFmpeg-package.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:hendriks73/tagtraum-FFmpeg-package.git</developerConnection>
+        <url>https://github.com/hendriks73/tagtraum-FFmpeg-package</url>
+    </scm>
+
     <properties>
         <ffmpeg.configure>--enable-small --enable-shared --enable-static --disable-programs --disable-doc --disable-avfilter --disable-postproc --disable-swscale --disable-avdevice --disable-decoder=h261 --disable-decoder=h263 --disable-decoder=h263i --disable-decoder=h263p --disable-decoder=h264 --disable-decoder=h264_crystalhd --disable-decoder=h264_vda --disable-decoder=h264_vdpau --disable-decoder=msmpeg4_crystalhd --disable-decoder=msmpeg4v1 --disable-decoder=msmpeg4v2 --disable-decoder=msmpeg4v3 --disable-decoder=mpeg2_crystalhd --disable-decoder=mpeg2video --disable-decoder=mpeg4_crystalhd --disable-decoder=mpeg4_vdpau --disable-decoder=mpeg_vdpau --disable-decoder=mpeg_xvmc --disable-decoder=mpegvideo --disable-decoder=mp1 --disable-decoder=mp1float --disable-decoder=mp2 --disable-decoder=mp2float --disable-decoder=mp3 --disable-decoder=mp3adu --disable-decoder=mp3adufloat --disable-decoder=mp3float --disable-decoder=mp3on4 --disable-decoder=mp3on4float --disable-encoders --enable-encoder=pcm_f32be --enable-encoder=pcm_f32le --enable-encoder=pcm_f64be --enable-encoder=pcm_f64le --enable-encoder=pcm_s16be --enable-encoder=pcm_s16le --enable-encoder=pcm_s24be --enable-encoder=pcm_s24le --enable-encoder=pcm_s32be --enable-encoder=pcm_s32le --enable-encoder=pcm_s8 --enable-encoder=pcm_u8 --enable-encoder=pcm_u16be --enable-encoder=pcm_u16le --enable-encoder=pcm_u24be --enable-encoder=pcm_u24le --enable-encoder=pcm_u32be --enable-encoder=pcm_u32le --disable-muxers --disable-indevs --disable-outdevs --disable-iconv</ffmpeg.configure>
         <mingw.i386.path>/Users/hendrik/mingw/mingw-w32-i686/bin</mingw.i386.path>
