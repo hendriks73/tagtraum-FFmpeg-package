@@ -14,7 +14,8 @@ Introduction
     Thus it serves as an upstream project for Java
     {{{http://en.wikipedia.org/wiki/Java_Native_Interface}JNI}} projects wishing to interface
     with the native libraries (e.g. {{{http://www.tagtraum.com/ffsampledsp/}FFSampledSP}}).
-    Codecs with known patent problems are {{{#Configuration}disabled}}.
+    Codecs with known patent problems are {{{#Configuration}disabled}}
+    (but can be {{{developer.html}enabled}}).
     However, this obviously is no guarantee.
     Also, as the focus lies on decoding audio, most encoders are {{{#Configuration}disabled}}.
 

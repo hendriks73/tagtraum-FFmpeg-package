@@ -18,6 +18,7 @@
 
         <menu name="tagtraum FFmpeg package">
             <item name="Introduction" href="index.html"/>
+            <item name="Developer" href="devloper.html"/>
             <item name="Release" href="http://www.beatunes.com/repo/maven2/com/tagtraum/ffmpeg/"/>
             <item name="FFmpeg" href="http://www.ffmpeg.org/"/>
         </menu>
