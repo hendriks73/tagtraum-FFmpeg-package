@@ -10,16 +10,16 @@
 
         <!-- configure -->
         <echo>./configure ${ffmpeg.configure} --target-os=${host} --arch=${arch} --cc=&quot;${cc}&quot; ${configure.options.additional}</echo>
-        <exec dir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${project.version}"
+        <exec dir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${ffmpeg.version}"
               executable="${sh}"
               failonerror="true">
             <env key="PATH" path="${path}"/>
             <arg line="configure ${ffmpeg.configure} --target-os=${host} --arch=${arch} --cc=&quot;${cc}&quot; ${configure.options.additional}"/>
         </exec>
-        <jar destfile="${project.build.directory}/ffmpeg-sources-${arch}-${host}.jar" basedir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${project.version}"/>
+        <jar destfile="${project.build.directory}/ffmpeg-sources-${arch}-${host}.jar" basedir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${ffmpeg.version}"/>
 
         <!-- make -->
-        <exec dir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${project.version}"
+        <exec dir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${ffmpeg.version}"
               executable="${make}"
               failonerror="true">
             <env key="PATH" path="${path}"/>
@@ -28,14 +28,14 @@
         <!-- copy results -->
         <mkdir dir="${project.build.directory}/lib-${arch}-${host}"/>
         <copy todir="${project.build.directory}/lib-${arch}-${host}" flatten="true">
-            <fileset dir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${project.version}">
+            <fileset dir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${ffmpeg.version}">
                 <include name="**/lib*.a"/>
                 <include name="**/lib*.dylib"/>
             </fileset>
         </copy>
         <!-- typically dlls don't have a leading "lib", but to make our life a little easier, we add it here -->
         <copy todir="${project.build.directory}/lib-${arch}-${host}" flatten="true">
-            <fileset dir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${project.version}">
+            <fileset dir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${ffmpeg.version}">
                 <include name="**/*.dll"/>
             </fileset>
             <regexpmapper from="^(.*)/([^/]*)$$" to="lib\2"/>

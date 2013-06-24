@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.tagtraum.ffmpeg</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>1.2.1</version>
+        <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>ffmpeg</artifactId>
@@ -71,6 +71,7 @@
                                 <property environment="env"/>
                                 <property name="project.build.directory" value="${project.build.directory}"/>
                                 <property name="project.version" value="${project.version}"/>
+                                <property name="ffmpeg.version" value="${ffmpeg.version}"/>
                                 <property name="bzip2.version" value="${bzip2.version}"/>
                                 <property name="zlib.version" value="${zlib.version}"/>
 
@@ -186,7 +187,7 @@
                                 <!-- FFmpeg -->
 
                                 <!-- download fresh tar ball from ffmpeg.org -->
-                                <get src="http://www.ffmpeg.org/releases/ffmpeg-${project.version}.tar.gz"
+                                <get src="http://www.ffmpeg.org/releases/ffmpeg-${ffmpeg.version}.tar.gz"
                                      dest="${project.build.directory}/ffmpeg.tar.gz"
                                      usetimestamp="true"
                                      verbose="true"
@@ -194,7 +195,7 @@
 
                                 <gunzip src="${project.build.directory}/ffmpeg.tar.gz"/>
                                 <untar src="${project.build.directory}/ffmpeg.tar" dest="${project.build.directory}/ffmpeg"/>
-                                <jar destfile="${project.build.directory}/ffmpeg-sources.jar" basedir="${project.build.directory}/ffmpeg/ffmpeg-${project.version}"/>
+                                <jar destfile="${project.build.directory}/ffmpeg-sources.jar" basedir="${project.build.directory}/ffmpeg/ffmpeg-${ffmpeg.version}"/>
 
                                 <!-- 32bit windows -->
                                 <ant antfile="${project.basedir}/build-ffmpeg.xml" inheritRefs="true">
