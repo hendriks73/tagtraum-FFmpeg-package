@@ -15,7 +15,7 @@ Introduction
     {{{http://en.wikipedia.org/wiki/Java_Native_Interface}JNI}} projects wishing to interface
     with the native libraries (e.g. {{{http://www.tagtraum.com/ffsampledsp/}FFSampledSP}}).
     Codecs with known patent problems are {{{#Configuration}disabled}}
-    (but can be {{{developer.html}enabled}}).
+    (but can be {{{./developer.html}enabled}}).
     However, this obviously is no guarantee.
     Also, as the focus lies on decoding audio, most encoders are {{{#Configuration}disabled}}.
 
@@ -83,7 +83,7 @@ How to use
 <dependency>
     <groupId>com.tagtraum.ffmpeg</groupId>
     <artifactId>ffmpeg</artifactId>
-    <version>${projectversion}</version>
+    <version>${ffmpegversion}</version>
     <classifier>sources-i386-darwin</classifier>
     <!-- <classifier>x86_64-mingw</classifier> -->
     <type>jar</type>
@@ -121,3 +121,6 @@ Configuration
     FFmpeg was built with the following configuration:
 
     <<<./configure ${ffmpegconfigure}>>>
+
+    To build with a different configuration, please take a look at the
+    {{{./developer.html}developer page}}.
