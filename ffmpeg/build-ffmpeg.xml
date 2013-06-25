@@ -2,9 +2,10 @@
 
     <target name="ffmpeg">
 
+        <!-- clean -->
+        <delete dir="${project.build.directory}/ffmpeg-${arch}-${host}"/>
         <!-- unpack -->
         <untar src="${project.build.directory}/ffmpeg.tar" dest="${project.build.directory}/ffmpeg-${arch}-${host}"/>
-
         <!-- fix permissions messed up by untar -->
         <chmod perm="ugo+rx" dir="${project.build.directory}/ffmpeg-${arch}-${host}" includes="**/*.sh"/>
 
@@ -16,6 +17,7 @@
             <env key="PATH" path="${path}"/>
             <arg line="configure ${ffmpeg.configure} --target-os=${host} --arch=${arch} --cc=&quot;${cc}&quot; ${configure.options.additional}"/>
         </exec>
+        <!-- build source jar to attach as artifact later on -->
         <jar destfile="${project.build.directory}/ffmpeg-sources-${arch}-${host}.jar" basedir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${ffmpeg.version}"/>
 
         <!-- make -->

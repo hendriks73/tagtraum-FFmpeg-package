@@ -2,10 +2,13 @@
 
 
     <target name="unpack">
+        <!-- clean -->
+        <delete dir="${project.build.directory}/zlib-${arch}-${host}"/>
         <!-- unpack -->
         <untar src="${project.build.directory}/zlib.tar" dest="${project.build.directory}/zlib-${arch}-${host}"/>
         <!-- fix permissions messed up by untar -->
         <chmod perm="ugo+rx" dir="${project.build.directory}/zlib-${arch}-${host}" includes="**/*.sh"/>
+        <!-- build source jar to attach as artifact later on -->
         <jar destfile="${project.build.directory}/libz-sources-${arch}-${host}.jar" basedir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"/>
     </target>
 
@@ -20,7 +23,6 @@
     </target>
 
     <target name="zlib" depends="unpack,configure">
-
         <!-- make -->
         <exec dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"
               executable="${make}"

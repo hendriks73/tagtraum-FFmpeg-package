@@ -2,13 +2,15 @@
 
     <target name="bzip2">
 
+        <!-- clean -->
+        <delete dir="${project.build.directory}/bzip2-${arch}-${host}"/>
         <!-- unpack -->
         <untar src="${project.build.directory}/bzip2.tar" dest="${project.build.directory}/bzip2-${arch}-${host}"/>
-
         <!-- fix permissions messed up by untar -->
         <chmod perm="ugo+rx" dir="${project.build.directory}/bzip2-${arch}-${host}" includes="**/*.sh"/>
         <!-- fix slash for crosscompilation-->
         <replace file="${project.build.directory}/bzip2-${arch}-${host}/bzip2-${bzip2.version}/bzip2.c" token="sys\stat.h" value="sys/stat.h"/>
+        <!-- build source jar to attach as artifact later on -->
         <jar destfile="${project.build.directory}/bzip2-sources-${arch}-${host}.jar" basedir="${project.build.directory}/bzip2-${arch}-${host}/bzip2-${bzip2.version}"/>
 
         <!-- make static -->
