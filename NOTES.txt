@@ -1,4 +1,12 @@
 NOTES.txt
 =========
 
-1.2.1: Initial release.
+
+1.1.0:
+
+- Initial release for FFmpeg 2.0
+
+
+1.0.0:
+
+- Initial release for FFmpeg 1.2.1

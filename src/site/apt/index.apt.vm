@@ -28,7 +28,7 @@ How to use
 <dependency>
     <groupId>com.tagtraum.ffmpeg</groupId>
     <artifactId>libavformat</artifactId>
-    <version>54.63.104</version>
+    <version>55.12.100</version>
     <type>a</type>
     <classifier>i386-darwin</classifier>
     <!-- <classifier>x86_64-mingw</classifier> -->
@@ -37,7 +37,7 @@ How to use
 <dependency>
     <groupId>com.tagtraum.ffmpeg</groupId>
     <artifactId>libavcodec</artifactId>
-    <version>54.92.100</version>
+    <version>55.18.102</version>
     <type>a</type>
     <classifier>i386-darwin</classifier>
     <!-- <classifier>x86_64-mingw</classifier> -->
@@ -46,7 +46,7 @@ How to use
 <dependency>
     <groupId>com.tagtraum.ffmpeg</groupId>
     <artifactId>libavutil</artifactId>
-    <version>52.18.100</version>
+    <version>52.38.100</version>
     <type>a</type>
     <classifier>i386-darwin</classifier>
     <!-- <classifier>x86_64-mingw</classifier> -->
