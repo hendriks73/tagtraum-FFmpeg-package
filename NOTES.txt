@@ -5,6 +5,8 @@ NOTES.txt
 1.1.0:
 
 - Initial release for FFmpeg 2.0
+- Shortened configuration line
+- Removed unused filters from configuration
 
 
 1.0.0:
