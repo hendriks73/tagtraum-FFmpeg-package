@@ -3,11 +3,11 @@
     <parent>
         <groupId>com.tagtraum.ffmpeg</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>libswresample</artifactId>
-    <version>0.17.102</version>
+    <version>0.17.103-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>libswresample</name>
     <description>
@@ -74,7 +74,7 @@
         <connection>scm:git:git://source.ffmpeg.org/ffmpeg.git</connection>
         <developerConnection>scm:git:git://source.ffmpeg.org/ffmpeg.git</developerConnection>
         <url>http://git.videolan.org/?p=ffmpeg.git</url>
-      <tag>ffmpeg-package-1.1.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <dependencies>

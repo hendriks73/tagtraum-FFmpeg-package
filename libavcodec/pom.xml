@@ -3,11 +3,11 @@
     <parent>
         <groupId>com.tagtraum.ffmpeg</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>libavcodec</artifactId>
-    <version>55.18.102</version>
+    <version>55.18.103-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>libavcodec</name>
     <description>
@@ -59,7 +59,7 @@
         <connection>scm:git:git://source.ffmpeg.org/ffmpeg.git</connection>
         <developerConnection>scm:git:git://source.ffmpeg.org/ffmpeg.git</developerConnection>
         <url>http://git.videolan.org/?p=ffmpeg.git</url>
-      <tag>ffmpeg-package-1.1.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <dependencies>

@@ -3,10 +3,10 @@
     <parent>
         <groupId>com.tagtraum.ffmpeg</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <version>2.0</version>
+    <version>2.1-SNAPSHOT</version>
     <artifactId>ffmpeg</artifactId>
     <packaging>pom</packaging>
     <name>FFmpeg</name>
@@ -58,7 +58,7 @@
         <connection>scm:git:git://source.ffmpeg.org/ffmpeg.git</connection>
         <developerConnection>scm:git:git://source.ffmpeg.org/ffmpeg.git</developerConnection>
         <url>http://git.videolan.org/?p=ffmpeg.git</url>
-      <tag>ffmpeg-package-1.1.0</tag>
+      <tag>HEAD</tag>
   </scm>
     <build>
         <plugins>
