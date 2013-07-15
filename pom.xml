@@ -1,11 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <prerequisites>
         <maven>3.0.5</maven>
     </prerequisites>
     <groupId>com.tagtraum.ffmpeg</groupId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.1.0</version>
     <artifactId>ffmpeg-package</artifactId>
     <packaging>pom</packaging>
     <name>tagtraum FFmpeg package</name>
@@ -157,7 +156,8 @@
         <connection>scm:git:git://github.com/hendriks73/tagtraum-FFmpeg-package.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/hendriks73/tagtraum-FFmpeg-package.git</developerConnection>
         <url>https://github.com/hendriks73/tagtraum-FFmpeg-package/tree/master</url>
-    </scm>
+      <tag>ffmpeg-package-1.1.0</tag>
+  </scm>
 
     <issueManagement>
         <system>GitHub Issues</system>
