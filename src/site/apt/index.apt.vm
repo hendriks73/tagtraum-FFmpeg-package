@@ -9,7 +9,9 @@ Introduction
 
     The <tagtraum FFmpeg package> is a binary release of some of the libraries released by
     the {{{http://www.ffmpeg.org/}FFmpeg\u2122}} project. Its purpose is to provide easy access
-    to Windows and OS X binaries and sources for decoding audio via a
+    to Windows and OS X binaries and
+    {{{http://www.beatunes.com/repo/maven2/com/tagtraum/ffmpeg/ffmpeg/${ffmpegversion}/}sources}}
+    for decoding audio via a
     {{{http://maven.apache.org/}Maven}} repository.
     Thus it serves as an upstream project for Java
     {{{http://en.wikipedia.org/wiki/Java_Native_Interface}JNI}} projects wishing to interface
@@ -115,6 +117,12 @@ Requirements
 License
 
     {{{http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt}LGPL 2.1}}
+
+FFmpeg Sources
+
+    You can find the FFmpeg sources used for this package
+    {{{http://www.beatunes.com/repo/maven2/com/tagtraum/ffmpeg/ffmpeg/${ffmpegversion}/}here}}.
+
 
 Configuration
 
