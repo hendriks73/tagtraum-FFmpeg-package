@@ -3,11 +3,11 @@
     <parent>
         <groupId>com.tagtraum.ffmpeg</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>1.2.1-SNAPSHOT</version>
+        <version>1.2.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>libavcodec</artifactId>
-    <version>55.39.101-SNAPSHOT</version>
+    <version>55.39.100-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>libavcodec</name>
     <description>
