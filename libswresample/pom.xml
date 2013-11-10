@@ -7,7 +7,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>libswresample</artifactId>
-    <version>0.17.103-SNAPSHOT</version>
+    <version>0.17.104-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>libswresample</name>
     <description>
