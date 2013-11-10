@@ -4,7 +4,7 @@
         <maven>3.0.5</maven>
     </prerequisites>
     <groupId>com.tagtraum.ffmpeg</groupId>
-    <version>1.2.0</version>
+    <version>1.2.1-SNAPSHOT</version>
     <artifactId>ffmpeg-package</artifactId>
     <packaging>pom</packaging>
     <name>tagtraum FFmpeg package</name>
@@ -156,7 +156,7 @@
         <connection>scm:git:git://github.com/hendriks73/tagtraum-FFmpeg-package.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/hendriks73/tagtraum-FFmpeg-package.git</developerConnection>
         <url>https://github.com/hendriks73/tagtraum-FFmpeg-package/tree/master</url>
-      <tag>ffmpeg-package-1.2.0a</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <issueManagement>
