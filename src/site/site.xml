@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="FFmpeg">
+<project name="FFmpeg" xmlns="http://maven.apache.org/DECORATION/1.4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.4.0 http://maven.apache.org/xsd/decoration-1.4.0.xsd">
     <version position="right"/>
+    <googleAnalyticsAccountId>UA-7561371-2</googleAnalyticsAccountId>
     <bannerLeft>
         <name>tagtraum FFmpeg package</name>
         <href>http://www.tagtraum.com/ffmpeg</href>
@@ -11,6 +13,10 @@
         <src>./images/tagtraum-banner.png</src>
     </bannerRight>
     <body>
+        <head>
+            <meta name="keyword" content="ffmpeg, audio, FFSampledSP, Maven" />
+            <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+        </head>
         <links>
             <item name="tagtraum" href="http://www.tagtraum.com/"/>
             <item name="FFmpeg" href="http://www.ffmpeg.org/"/>
