@@ -3,11 +3,11 @@
     <parent>
         <groupId>com.tagtraum.ffmpeg</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>1.2.1-SNAPSHOT</version>
+        <version>1.3.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>libswresample</artifactId>
-    <version>0.17.105-SNAPSHOT</version>
+    <version>0.18.100</version>
     <packaging>pom</packaging>
     <name>libswresample</name>
     <description>
