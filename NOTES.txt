@@ -1,6 +1,12 @@
 NOTES.txt
 =========
 
+1.4.0:
+
+- Initial release for FFmpeg 2.2.4
+- Fixed ___sincos_stret problem on OS X < 10.9
+
+
 1.3.0:
 
 - Initial release for FFmpeg 2.2.1
