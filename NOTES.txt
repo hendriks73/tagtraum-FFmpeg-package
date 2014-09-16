@@ -4,7 +4,8 @@ NOTES.txt
 1.6.0:
 
 - Initial release for FFmpeg 2.4
-
+- Changed Maven skin to Fluido
+- Added GitHub ribbon
 
 
 1.5.0:
