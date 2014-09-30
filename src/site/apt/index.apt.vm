@@ -10,7 +10,7 @@ Introduction
     The <tagtraum FFmpeg package> is a binary release of some of the libraries released by
     the {{{http://www.ffmpeg.org/}FFmpeg\u2122}} project. Its purpose is to provide easy access
     to Windows and OS X binaries and
-    {{{http://www.beatunes.com/repo/maven2/com/tagtraum/ffmpeg/ffmpeg/${ffmpegversion}/}sources}}
+    {{{https://www.beatunes.com/repo/maven2/com/tagtraum/ffmpeg/ffmpeg/${ffmpegversion}/}sources}}
     for decoding audio via a
     {{{http://maven.apache.org/}Maven}} repository.
     Thus it serves as an upstream project for Java
@@ -106,7 +106,7 @@ How to use
 <repository>
     <id>beatunes</id>
     <name>beaTunes Repository</name>
-    <url>http://www.beatunes.com/repo/maven2</url>
+    <url>https://www.beatunes.com/repo/maven2</url>
 </repository>
 ---
 
@@ -121,7 +121,7 @@ License
 FFmpeg Sources
 
     You can find the FFmpeg sources used for this package
-    {{{http://www.beatunes.com/repo/maven2/com/tagtraum/ffmpeg/ffmpeg/${ffmpegversion}/}here}}.
+    {{{https://www.beatunes.com/repo/maven2/com/tagtraum/ffmpeg/ffmpeg/${ffmpegversion}/}here}}.
 
 
 Configuration
