@@ -1,6 +1,11 @@
 NOTES.txt
 =========
 
+1.6.1:
+
+- Release for FFmpeg 2.4.2
+
+
 1.6.0:
 
 - Initial release for FFmpeg 2.4
