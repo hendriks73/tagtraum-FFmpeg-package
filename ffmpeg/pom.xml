@@ -3,10 +3,10 @@
     <parent>
         <groupId>com.tagtraum.ffmpeg</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>1.6.1</version>
+        <version>1.7.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <version>2.4.2</version>
+    <version>2.6.1</version>
     <artifactId>ffmpeg</artifactId>
     <packaging>pom</packaging>
     <name>FFmpeg</name>
@@ -82,9 +82,10 @@
                                 <!-- zlib -->
 
                                 <!-- download fresh tar ball  -->
-                                <get src="http://zlib.net/zlib-${zlib.version}.tar.gz" dest="${project.build.directory}/zlib.tar.gz" usetimestamp="true" verbose="true" ignoreerrors="true" />
+                                <get src="http://zlib.net/zlib-${zlib.version}.tar.gz" dest="${project.build.directory}/zlib.tar" usetimestamp="true" verbose="true" ignoreerrors="true" />
 
-                                <gunzip src="${project.build.directory}/zlib.tar.gz" />
+                                <!-- For reasons that are beyond me, this is already gunzipped -->
+                                <!-- <gunzip src="${project.build.directory}/zlib.tar.gz" /> -->
                                 <untar src="${project.build.directory}/zlib.tar" dest="${project.build.directory}/zlib" />
                                 <jar destfile="${project.build.directory}/libz-sources.jar" basedir="${project.build.directory}/zlib/zlib-${zlib.version}" />
 
