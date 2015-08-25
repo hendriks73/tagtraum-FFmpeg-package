@@ -3,11 +3,11 @@
     <parent>
         <groupId>com.tagtraum.ffmpeg</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>1.7.0</version>
+        <version>1.8.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>libavutil</artifactId>
-    <version>54.20.100</version>
+    <version>54.27.100</version>
     <packaging>pom</packaging>
     <name>libavutil</name>
     <description>
