@@ -6,7 +6,7 @@
         <version>1.10.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <version>3.1.5</version>
+    <version>3.2</version>
     <artifactId>ffmpeg</artifactId>
     <packaging>pom</packaging>
     <name>FFmpeg</name>
