@@ -1,6 +1,11 @@
 NOTES.txt
 =========
 
+1.10.0:
+
+- Release for FFmpeg 3.2
+
+
 1.9.0:
 
 - Release for FFmpeg 2.8.1

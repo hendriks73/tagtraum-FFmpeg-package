@@ -3,10 +3,10 @@
     <parent>
         <groupId>com.tagtraum.ffmpeg</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>1.9.0</version>
+        <version>1.10.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <version>2.8.1</version>
+    <version>3.1.5</version>
     <artifactId>ffmpeg</artifactId>
     <packaging>pom</packaging>
     <name>FFmpeg</name>
