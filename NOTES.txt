@@ -1,6 +1,12 @@
 NOTES.txt
 =========
 
+1.11.0:
+
+- Release for FFmpeg 3.3.1
+- Updated libz to version 1.2.11
+
+
 1.10.0:
 
 - Release for FFmpeg 3.2

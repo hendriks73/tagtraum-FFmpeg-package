@@ -5,7 +5,16 @@
         <!-- clean -->
         <delete dir="${project.build.directory}/zlib-${arch}-${host}"/>
         <!-- unpack -->
-        <untar src="${project.build.directory}/zlib.tar" dest="${project.build.directory}/zlib-${arch}-${host}"/>
+        <mkdir dir="${project.build.directory}/zlib-${arch}-${host}"/>
+        <!-- the following line does not work with v1.2.11 -->
+        <!-- <untar src="${project.build.directory}/zlib.tar" dest="${project.build.directory}/zlib" /> -->
+        <exec executable="tar" failonerror="true">
+            <arg value="-xf"/>
+            <arg file="${project.build.directory}/zlib.tar"/>
+            <arg value="-C"/>
+            <arg file="${project.build.directory}/zlib-${arch}-${host}"/>
+        </exec>
+
         <!-- fix permissions messed up by untar -->
         <chmod perm="ugo+rx" dir="${project.build.directory}/zlib-${arch}-${host}" includes="**/*.sh"/>
         <!-- build source jar to attach as artifact later on -->
@@ -18,6 +27,7 @@
               executable="${sh}"
               failonerror="true">
             <env key="PATH" path="${path}"/>
+            <env key="CC" value="${cc}"/>
             <arg line="configure --archs=&quot;-arch ${arch}&quot;"/>
         </exec>
     </target>

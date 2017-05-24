@@ -3,10 +3,10 @@
     <parent>
         <groupId>com.tagtraum.ffmpeg</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>1.10.0</version>
+        <version>1.11.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <version>3.2</version>
+    <version>3.3.1</version>
     <artifactId>ffmpeg</artifactId>
     <packaging>pom</packaging>
     <name>FFmpeg</name>
@@ -86,7 +86,16 @@
 
                                 <!-- For reasons that are beyond me, this is already gunzipped -->
                                 <!-- <gunzip src="${project.build.directory}/zlib.tar.gz" /> -->
-                                <untar src="${project.build.directory}/zlib.tar" dest="${project.build.directory}/zlib" />
+                                <mkdir dir="${project.build.directory}/zlib"/>
+                                <!-- the following line does not work with v1.2.11 -->
+                                <!-- <untar src="${project.build.directory}/zlib.tar" dest="${project.build.directory}/zlib" /> -->
+                                <exec executable="tar" failonerror="true">
+                                    <arg value="-xf"/>
+                                    <arg file="${project.build.directory}/zlib.tar"/>
+                                    <arg value="-C"/>
+                                    <arg file="${project.build.directory}/zlib"/>
+                                </exec>
+
                                 <jar destfile="${project.build.directory}/libz-sources.jar" basedir="${project.build.directory}/zlib/zlib-${zlib.version}" />
 
                                 <!-- 32bit windows -->
@@ -118,6 +127,7 @@
                                     <property name="target" value="" />
                                     <property name="path" value="${env.PATH}" />
                                     <property name="configure" value="true" />
+                                    <property name="cc" value="${ccompiler} -m32" />
                                 </ant>
 
                                 <!-- 64bit darwin -->
@@ -129,6 +139,7 @@
                                     <property name="target" value="" />
                                     <property name="path" value="${env.PATH}" />
                                     <property name="configure" value="true" />
+                                    <property name="cc" value="${ccompiler}" />
                                 </ant>
 
 
