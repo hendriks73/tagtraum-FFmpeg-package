@@ -9,7 +9,7 @@ Introduction
 
     The <tagtraum FFmpeg package> is a binary release of some of the libraries released by
     the {{{http://www.ffmpeg.org/}FFmpeg\u2122}} project. Its purpose is to provide easy access
-    to Windows and OS X binaries and
+    to Windows and macOS binaries and
     {{{https://www.beatunes.com/repo/maven2/com/tagtraum/ffmpeg/ffmpeg/${ffmpegversion}/}sources}}
     for decoding audio via a
     {{{http://maven.apache.org/}Maven}} repository.
@@ -20,6 +20,7 @@ Introduction
     (but can be {{{./developer.html}enabled}}).
     However, this obviously is no guarantee.
     Also, as the focus lies on decoding audio, most encoders are {{{#Configuration}disabled}}.
+    Note that as of version 1.12.0, mp3 has been enabled as decoder by default.
 
 How to use
 

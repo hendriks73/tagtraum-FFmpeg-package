@@ -1,6 +1,12 @@
 NOTES.txt
 =========
 
+1.12.0:
+
+- Release for FFmpeg 3.4.1
+- Enabled the mp3 decoder by default
+
+
 1.11.0:
 
 - Release for FFmpeg 3.3.1
