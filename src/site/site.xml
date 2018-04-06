@@ -21,7 +21,7 @@
         <name>tagtraum FFmpeg package</name>
         <href>http://www.tagtraum.com/ffmpeg</href>
         <src>./images/ffmpeg-banner.png</src>
-        <width>200</width>
+        <width>400</width>
         <height>120</height>
     </bannerLeft>
     <bannerRight>
