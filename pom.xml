@@ -182,7 +182,7 @@
         <libavformat.version>57.83.100</libavformat.version>
         <libavcodec.version>57.107.100</libavcodec.version>
         <libavutil.version>55.78.100</libavutil.version>
-        <libswresample.version>2.9.100-PATCH</libswresample.version>
+        <libswresample.version>2.9.100-PATCHED</libswresample.version>
 
         <!-- aliases, because of http://maven.apache.org/plugins/maven-site-plugin/examples/creating-content.html#Filtering -->
         <ffmpegversion>${ffmpeg.version}</ffmpegversion>
