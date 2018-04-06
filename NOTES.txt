@@ -4,6 +4,7 @@ NOTES.txt
 1.13.1:
 
 - Added workaround for http://ffmpeg.org/pipermail/ffmpeg-devel/2018-April/227869.html
+- Updated website banner
 
 
 1.13.1:
