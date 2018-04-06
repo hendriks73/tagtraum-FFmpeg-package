@@ -7,7 +7,7 @@ NOTES.txt
 - Updated website banner
 
 
-1.13.1:
+1.13.0:
 
 - Release for FFmpeg 3.4.2
 
