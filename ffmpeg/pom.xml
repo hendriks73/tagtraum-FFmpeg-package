@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.tagtraum.ffmpeg</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>1.13.0</version>
+        <version>1.13.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <version>3.4.2</version>
@@ -196,6 +196,17 @@
 
                                 <gunzip src="${project.build.directory}/ffmpeg.tar.gz" />
                                 <untar src="${project.build.directory}/ffmpeg.tar" dest="${project.build.directory}/ffmpeg" />
+
+                                <!-- === hack to work around http://ffmpeg.org/pipermail/ffmpeg-devel/2018-April/227869.html === -->
+                                <delete file="${project.build.directory}/ffmpeg.tar"/>
+                                <replace file="${project.build.directory}/ffmpeg/ffmpeg-${ffmpeg.version}/libswresample/swresample.c">
+                                    <replacetoken><![CDATA[, s->dither.noise.ch[ch] + s->dither.noise.bps * s->dither.noise_pos + off + len1,]]></replacetoken>
+                                    <replacevalue><![CDATA[, s->dither.noise.ch[ch] + s->dither.noise.bps * s->dither.noise_pos + off,]]></replacevalue>
+                                </replace>
+
+                                <tar destfile="${project.build.directory}/ffmpeg.tar" basedir="${project.build.directory}/ffmpeg" />
+                                <!-- === end hack ============================================================================== -->
+
                                 <jar destfile="${project.build.directory}/ffmpeg-sources.jar" basedir="${project.build.directory}/ffmpeg/ffmpeg-${ffmpeg.version}" />
 
                                 <!-- 32bit windows -->

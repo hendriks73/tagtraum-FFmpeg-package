@@ -4,7 +4,7 @@
         <maven>3.0.5</maven>
     </prerequisites>
     <groupId>com.tagtraum.ffmpeg</groupId>
-    <version>1.13.0</version>
+    <version>1.13.1</version>
     <artifactId>ffmpeg-package</artifactId>
     <packaging>pom</packaging>
     <name>tagtraum FFmpeg package</name>
