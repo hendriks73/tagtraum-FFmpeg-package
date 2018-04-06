@@ -173,9 +173,16 @@
         <make>/usr/bin/make</make>
         <sh>/bin/sh</sh>
         <ccompiler>gcc</ccompiler>
+        
         <bzip2.version>1.0.6</bzip2.version>
         <zlib.version>1.2.11</zlib.version>
         <ffmpeg.version>3.4.2</ffmpeg.version>
+
+        <!-- used for *.apt.vm docs -->
+        <libavformat.version>57.83.100</libavformat.version>
+        <libavcodec.version>57.107.100</libavcodec.version>
+        <libavutil.version>55.78.100</libavutil.version>
+        <libswresample.version>2.9.100-PATCH</libswresample.version>
 
         <!-- aliases, because of http://maven.apache.org/plugins/maven-site-plugin/examples/creating-content.html#Filtering -->
         <ffmpegversion>${ffmpeg.version}</ffmpegversion>
@@ -183,6 +190,13 @@
         <bzip2version>${bzip2.version}</bzip2version>
         <zlibversion>${zlib.version}</zlibversion>
         <ffmpegconfigure>${ffmpeg.configure}</ffmpegconfigure>
+
+        <!-- used for *.apt.vm docs -->
+        <libavformatversion>${libavformat.version}</libavformatversion>
+        <libavcodecversion>${libavcodec.version}</libavcodecversion>
+        <libavutilversion>${libavutil.version}</libavutilversion>
+        <libswresampleversion>${libswresample.version}</libswresampleversion>
+
     </properties>
 
 </project>

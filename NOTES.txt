@@ -5,6 +5,7 @@ NOTES.txt
 
 - Added workaround for http://ffmpeg.org/pipermail/ffmpeg-devel/2018-April/227869.html
 - Updated website banner
+- Updated version numbers in docs
 
 
 1.13.0:
