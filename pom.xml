@@ -165,7 +165,7 @@
     </issueManagement>
 
     <properties>
-        <ffmpeg.configure>--enable-small --enable-shared --enable-static --disable-programs --disable-doc --disable-avfilter --disable-postproc --disable-swscale --disable-avdevice --disable-filters --disable-decoder=h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo --disable-demuxer=h26* --disable-encoders --enable-encoder=pcm* --disable-muxers --disable-indevs --disable-outdevs --disable-iconv</ffmpeg.configure>
+        <ffmpeg.configure>--enable-small --enable-shared --enable-static --disable-programs --disable-doc --disable-avfilter --disable-postproc --disable-swscale --disable-avdevice --disable-filters --disable-decoder=flash*,truemotion*,tmv,eacmv,eamad,eatgq,eatgv,eatqi,flic,h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo,msvideo*,vp*,aic,amv,asv*,aura,aura2,avr*,c93,clearvideo,cinepak,cljr,cllc,cpia,dirac,hevc,rtp*,srtp,vc1,swf,indeo*,v2*,v3*,v4* --disable-demuxer=h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo,vp*,aic,amv,asv*,aura,aura2,avr*,c93,clearvideo,cinepak,cljr,cllc,cpia,dirac,hevc,rtp*,srtp,vc1,swf,flic,flv,segafilm,v2*,v3*,v4*,tmv,filmstrip --disable-encoders --enable-encoder=pcm* --disable-parser=h2*,vc1,vp*,dirac,hevc,rv* --disable-protocol=rt*,srt*,gopher,ftp --disable-muxers --disable-indevs --disable-outdevs --disable-iconv</ffmpeg.configure>
         <mingw.i386.path>/Users/hendrik/mingw/mingw-w32-i686/bin</mingw.i386.path>
         <mingw.i386.crossprefix>i686-w64-mingw32-</mingw.i386.crossprefix>
         <mingw.x86_64.path>/Users/hendrik/mingw/mingw-w64-i686/bin</mingw.x86_64.path>
