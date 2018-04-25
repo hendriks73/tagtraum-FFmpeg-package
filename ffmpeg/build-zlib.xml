@@ -45,7 +45,7 @@
         <mkdir dir="${project.build.directory}/lib-${arch}-${host}"/>
         <copy todir="${project.build.directory}/lib-${arch}-${host}" flatten="true">
             <fileset dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}">
-                <include name="**/lib*.a"/>
+                <include name="**/libz.a"/>
                 <include name="**/lib*.dylib"/>
             </fileset>
         </copy>

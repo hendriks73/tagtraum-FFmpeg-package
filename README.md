@@ -1,5 +1,7 @@
 # tagtraum FFmpeg package
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.tagtraum/ffmpeg-package/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.tagtraum/ffmpeg-package)
+
 The *tagtraum FFmpeg package* is a binary release of some of the libraries released by
 the [FFmpeg](http://www.ffmpeg.org) project. Its purpose is to provide easy access
 to Windows and OS X binaries and sources for decoding audio via a
@@ -24,7 +26,7 @@ Currently you can only build this library on OS X.
 To do so, you also need:
 
 - Maven 3.0.5, http://maven.apache.org/
-- a MinGW-w64 crosscompiler, http://mingw-w64.sourceforge.net/
+- a MinGW-w64 crosscompiler, http://mingw-w64.sourceforge.net/, e.g. via [MacPorts](http://mingw-w64.org/doku.php/download/macports)
 - Apple Command Line Tools, available via https://developer.apple.com/, or XCode, https://developer.apple.com/xcode/
 - a JDK (to run Maven)
 

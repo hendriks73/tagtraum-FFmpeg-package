@@ -3,8 +3,8 @@
     <prerequisites>
         <maven>3.0.5</maven>
     </prerequisites>
-    <groupId>com.tagtraum.ffmpeg</groupId>
-    <version>1.13.1</version>
+    <groupId>com.tagtraum</groupId>
+    <version>4.0.0-SNAPSHOT</version>
     <artifactId>ffmpeg-package</artifactId>
     <packaging>pom</packaging>
     <name>tagtraum FFmpeg package</name>
@@ -54,6 +54,11 @@
         <module>libswresample</module>
         <module>libz</module>
         <module>libbz2</module>
+
+        <module>ffmpeg-i386-macos</module>
+        <module>ffmpeg-x86_64-macos</module>
+        <module>ffmpeg-i386-win</module>
+        <module>ffmpeg-x86_64-win</module>
     </modules>
 
     <dependencies>
@@ -116,6 +121,16 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>2.5.2</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>1.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.6.8</version>
+                </plugin>
             </plugins>
         </pluginManagement>
 
@@ -123,6 +138,19 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
 
@@ -139,13 +167,14 @@
     </build>
 
     <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
         <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>beatunes-repository</id>
-            <name>beaTunes Repository</name>
-            <url>sftp://ssh.beatunes.com/var/www/html/repo/maven2</url>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
-        <downloadUrl>https://www.beatunes.com/repo/maven2</downloadUrl>
         <site>
             <id>tagtraum-site</id>
             <url>ftp://www.tagtraum-industries.de/ffmpeg/</url>
@@ -165,38 +194,67 @@
     </issueManagement>
 
     <properties>
-        <ffmpeg.configure>--enable-small --enable-shared --enable-static --disable-programs --disable-doc --disable-avfilter --disable-postproc --disable-swscale --disable-avdevice --disable-filters --disable-decoder=flash*,truemotion*,tmv,eacmv,eamad,eatgq,eatgv,eatqi,flic,h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo,msvideo*,vp*,aic,amv,asv*,aura,aura2,avr*,c93,clearvideo,cinepak,cljr,cllc,cpia,dirac,hevc,rtp*,srtp,vc1,swf,indeo*,v2*,v3*,v4* --disable-demuxer=h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo,vp*,aic,amv,asv*,aura,aura2,avr*,c93,clearvideo,cinepak,cljr,cllc,cpia,dirac,hevc,rtp*,srtp,vc1,swf,flic,flv,segafilm,v2*,v3*,v4*,tmv,filmstrip --disable-encoders --enable-encoder=pcm* --disable-parser=h2*,vc1,vp*,dirac,hevc,rv* --disable-protocol=rt*,srt*,gopher,ftp --disable-muxers --disable-indevs --disable-outdevs --disable-iconv</ffmpeg.configure>
-        <mingw.i386.path>/Users/hendrik/mingw/mingw-w32-i686/bin</mingw.i386.path>
+        <ffmpeg.configure>--enable-small --disable-programs --disable-doc --disable-avfilter --disable-postproc --disable-swscale --disable-avdevice --disable-filters --disable-decoder=flash*,truemotion*,tmv,eacmv,eamad,eatgq,eatgv,eatqi,flic,h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo,msvideo*,vp*,aic,amv,asv*,aura,aura2,avr*,c93,clearvideo,cinepak,cljr,cllc,cpia,dirac,hevc,rtp*,srtp,vc1,swf,indeo*,v2*,v3*,v4* --disable-demuxer=h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo,vp*,aic,amv,asv*,aura,aura2,avr*,c93,clearvideo,cinepak,cljr,cllc,cpia,dirac,hevc,rtp*,srtp,vc1,swf,flic,flv,segafilm,v2*,v3*,v4*,tmv,filmstrip --disable-encoders --enable-encoder=pcm* --disable-parser=h2*,vc1,vp*,dirac,hevc,rv* --disable-protocol=rt*,srt*,gopher,ftp --disable-muxers --disable-indevs --disable-outdevs --disable-iconv --disable-dxva2</ffmpeg.configure>
+        <mingw.i386.path>/opt/local/i686-w64-mingw32/bin</mingw.i386.path>
         <mingw.i386.crossprefix>i686-w64-mingw32-</mingw.i386.crossprefix>
-        <mingw.x86_64.path>/Users/hendrik/mingw/mingw-w64-i686/bin</mingw.x86_64.path>
+        <mingw.x86_64.path>/opt/local/x86_64-w64-mingw32/bin</mingw.x86_64.path>
         <mingw.x86_64.crossprefix>x86_64-w64-mingw32-</mingw.x86_64.crossprefix>
         <make>/usr/bin/make</make>
         <sh>/bin/sh</sh>
         <ccompiler>gcc</ccompiler>
+        <!-- thread count for parallel multi-platform builds -->
+        <threadcount>4</threadcount>
         
         <bzip2.version>1.0.6</bzip2.version>
         <zlib.version>1.2.11</zlib.version>
-        <ffmpeg.version>3.4.2</ffmpeg.version>
-
-        <!-- used for *.apt.vm docs -->
-        <libavformat.version>57.83.100</libavformat.version>
-        <libavcodec.version>57.107.100</libavcodec.version>
-        <libavutil.version>55.78.100</libavutil.version>
-        <libswresample.version>2.9.100-PATCHED</libswresample.version>
+        <ffmpeg.version>4.0</ffmpeg.version>
 
         <!-- aliases, because of http://maven.apache.org/plugins/maven-site-plugin/examples/creating-content.html#Filtering -->
+        <project.version>${project.version}</project.version>
         <ffmpegversion>${ffmpeg.version}</ffmpegversion>
         <projectversion>${project.version}</projectversion>
         <bzip2version>${bzip2.version}</bzip2version>
         <zlibversion>${zlib.version}</zlibversion>
         <ffmpegconfigure>${ffmpeg.configure}</ffmpegconfigure>
 
-        <!-- used for *.apt.vm docs -->
-        <libavformatversion>${libavformat.version}</libavformatversion>
-        <libavcodecversion>${libavcodec.version}</libavcodecversion>
-        <libavutilversion>${libavutil.version}</libavutilversion>
-        <libswresampleversion>${libswresample.version}</libswresampleversion>
-
     </properties>
 
+    <profiles>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

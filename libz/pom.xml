@@ -1,13 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.tagtraum.ffmpeg</groupId>
+        <groupId>com.tagtraum</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>1.13.1</version>
+        <version>4.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>libz</artifactId>
-    <version>1.2.11</version>
     <packaging>pom</packaging>
     <name>zlib</name>
     <description>
@@ -70,6 +69,31 @@ jloup@gzip.org          madler@alumni.caltech.edu</comments>
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <target>
+                                <property environment="env" />
+                                <property name="project.build.directory" value="${project.build.directory}" />
+                                <property name="project.basedir" value="${project.basedir}" />
+                                <property name="project.artifactId" value="${project.artifactId}" />
+
+                                <!-- copy libs -->
+                                <copy toDir="${project.build.directory}">
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="lib-*/${project.artifactId}*"/>
+                                </copy>
+                            </target>
+                        </configuration>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <executions>
@@ -82,53 +106,53 @@ jloup@gzip.org          madler@alumni.caltech.edu</comments>
                         <configuration>
                             <artifacts>
 
-                                <!-- darwin -->
+                                <!-- macos -->
                                 <artifact>
-                                    <file>${basedir}/../ffmpeg/target/lib-i386-darwin/${project.artifactId}.a</file>
+                                    <file>${project.build.directory}/lib-i386-macos/${project.artifactId}.a</file>
                                     <type>a</type>
-                                    <classifier>i386-darwin</classifier>
+                                    <classifier>i386-macos</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${basedir}/../ffmpeg/target/lib-i386-darwin/${project.artifactId}.dylib</file>
+                                    <file>${project.build.directory}/lib-i386-macos/${project.artifactId}.dylib</file>
                                     <type>dylib</type>
-                                    <classifier>i386-darwin</classifier>
+                                    <classifier>i386-macos</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-darwin/${project.artifactId}.a</file>
+                                    <file>${project.build.directory}/lib-x86_64-macos/${project.artifactId}.a</file>
                                     <type>a</type>
-                                    <classifier>x86_64-darwin</classifier>
+                                    <classifier>x86_64-macos</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-darwin/${project.artifactId}.dylib</file>
+                                    <file>${project.build.directory}/lib-x86_64-macos/${project.artifactId}.dylib</file>
                                     <type>dylib</type>
-                                    <classifier>x86_64-darwin</classifier>
+                                    <classifier>x86_64-macos</classifier>
                                 </artifact>
 
-                                <!-- mingw32 -->
+                                <!-- win -->
                                 <artifact>
-                                    <file>${basedir}/../ffmpeg/target/lib-i386-mingw32/${project.artifactId}.a</file>
+                                    <file>${project.build.directory}/lib-i386-win/${project.artifactId}.a</file>
                                     <type>a</type>
-                                    <classifier>i386-mingw32</classifier>
+                                    <classifier>i386-win</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${basedir}/../ffmpeg/target/lib-i386-mingw32/${project.artifactId}.dll</file>
+                                    <file>${project.build.directory}/lib-i386-win/${project.artifactId}.dll</file>
                                     <type>dll</type>
-                                    <classifier>i386-mingw32</classifier>
+                                    <classifier>i386-win</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-mingw32/${project.artifactId}.a</file>
+                                    <file>${project.build.directory}/lib-x86_64-win/${project.artifactId}.a</file>
                                     <type>a</type>
-                                    <classifier>x86_64-mingw32</classifier>
+                                    <classifier>x86_64-win</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${basedir}/../ffmpeg/target/lib-x86_64-mingw32/${project.artifactId}.dll</file>
+                                    <file>${project.build.directory}/lib-x86_64-win/${project.artifactId}.dll</file>
                                     <type>dll</type>
-                                    <classifier>x86_64-mingw32</classifier>
+                                    <classifier>x86_64-win</classifier>
                                 </artifact>
 
                                 <!-- sources -->
                                 <artifact>
-                                    <file>${basedir}/../ffmpeg/target/${project.artifactId}-sources.jar</file>
+                                    <file>${project.basedir}/../ffmpeg/target/${project.artifactId}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>

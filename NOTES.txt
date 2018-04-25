@@ -1,6 +1,13 @@
 NOTES.txt
 =========
 
+4.0.0:
+
+- Changed versioning and naming schemes.
+- Release for FFmpeg 4.0.0.
+- Enabled multi-core compilation.
+
+
 1.13.1:
 
 - Added workaround for http://ffmpeg.org/pipermail/ffmpeg-devel/2018-April/227869.html

@@ -17,7 +17,7 @@ Developer
 
         * Maven 3.0.5, {{http://maven.apache.org/}}
 
-        * a MinGW-w64 crosscompiler, {{http://mingw-w64.sourceforge.net/}}
+        * a MinGW-w64 crosscompiler, {{http://mingw-w64.sourceforge.net/}}, e.g. via {{{http://mingw-w64.org/doku.php/download/macports}MacPorts}}
 
         * Apple Command Line Tools, available via {{https://developer.apple.com/}}, or XCode, {{https://developer.apple.com/xcode/}}
 
@@ -43,7 +43,6 @@ mvn -Dmingw.i386.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
     -Dmingw.x86_64.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
     clean install
 +-------------------------------+
-
 
     In order to configure FFmpeg differently, simply specify the <<<ffmpeg.configure>>> property.
     For example, to configure with all standard options, run:
