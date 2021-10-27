@@ -1,14 +1,16 @@
+[![LGPL 2.1](https://img.shields.io/badge/License-LGPL_2.1-blue.svg)](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.tagtraum/ffmpeg-package/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.tagtraum/ffmpeg-package)
+[![Build and Test](https://github.com/hendriks73/tagtraum-FFmpeg-package/workflows/Build%20and%20Test/badge.svg)](https://github.com/hendriks73/tagtraum-FFmpeg-package/actions)
+
 # tagtraum FFmpeg package
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.tagtraum/ffmpeg-package/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.tagtraum/ffmpeg-package)
-
 The *tagtraum FFmpeg package* is a binary release of some of the libraries released by
-the [FFmpeg](http://www.ffmpeg.org) project. Its purpose is to provide easy access
-to Windows and OS X binaries and sources for decoding audio via a
-[Maven](http://maven.apache.org/) repository.
+the [FFmpeg](https://www.ffmpeg.org) project. Its purpose is to provide easy access
+to Windows and macOS binaries and sources for decoding audio via a
+[Maven](https://maven.apache.org/) repository.
 
 Thus it serves as an upstream project for [Java JNI projects wishing to interface
-with the native libraries](http://www.tagtraum.com/ffsampledsp/).
+with the native libraries](https://www.tagtraum.com/ffsampledsp/).
 Codecs with known patent problems are disabled (but can be enabled, see below).
 However, this obviously is no guarantee.
 
@@ -16,7 +18,7 @@ Also, as the focus lies on decoding audio, most encoders are disabled.
 
 This distribution comes with absolutely no support, warranty etc. you name it.
 
-*tagtraum FFmpeg package's* online home is at http://www.tagtraum.com/ffmpeg/
+*tagtraum FFmpeg package's* online home is at https://www.tagtraum.com/ffmpeg/
 
 
 ## Build
@@ -25,8 +27,8 @@ Currently you can only build this library on OS X.
 
 To do so, you also need:
 
-- Maven 3.0.5, http://maven.apache.org/
-- a MinGW-w64 crosscompiler, http://mingw-w64.sourceforge.net/, e.g. via [MacPorts](http://mingw-w64.org/doku.php/download/macports)
+- Maven 3.0.5, https://maven.apache.org/
+- a MinGW-w64 crosscompiler, https://mingw-w64.sourceforge.net/, e.g. via [MacPorts](https://mingw-w64.org/doku.php/download/macports)
 - Apple Command Line Tools, available via https://developer.apple.com/, or XCode, https://developer.apple.com/xcode/
 - a JDK (to run Maven)
 

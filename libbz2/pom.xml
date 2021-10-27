@@ -17,16 +17,16 @@
 
     <organization>
         <name>Julian Seward</name>
-        <url>ttp://www.bzip.org/</url>
+        <url>https://sourceware.org/bzip2/index.html</url>
     </organization>
-    <url>http://www.bzip.org/</url>
+    <url>https://sourceware.org/bzip2/index.html</url>
     <inceptionYear>1996</inceptionYear>
     <developers>
         <developer>
             <id>julian</id>
             <name>Julian Seward</name>
-            <email>jseward@bzip.org</email>
-            <url>http://www.bzip.org/</url>
+            <email>jseward@acm.org</email>
+            <url>https://sourceware.org/bzip2/index.html</url>
         </developer>
     </developers>
 
@@ -71,7 +71,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Julian Seward, jseward@bzip.org
-bzip2/libbzip2 version 1.0.6 of 6 September 2010</comments>
+bzip2/libbzip2 version 1.0.x of 6 September 2010</comments>
         </license>
     </licenses>
     <build>

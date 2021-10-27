@@ -8,16 +8,16 @@
 Developer
 
     In essence, the <tagtraum FFmpeg package> is a glorified build script that
-    makes it easier for Java JNI projects using Maven to link against {{{http://www.ffmpeg.org}FFmpeg}}
+    makes it easier for Java JNI projects using Maven to link against {{{https://www.ffmpeg.org}FFmpeg}}
     libraries.
 
     To build the <tagtraum FFmpeg package>, you need:
 
         * git
 
-        * Maven 3.0.5, {{http://maven.apache.org/}}
+        * Maven 3.0.5, {{https://maven.apache.org/}}
 
-        * a MinGW-w64 crosscompiler, {{http://mingw-w64.sourceforge.net/}}, e.g. via {{{http://mingw-w64.org/doku.php/download/macports}MacPorts}}
+        * a MinGW-w64 crosscompiler, {{https://mingw-w64.sourceforge.net/}}, e.g. via {{{https://mingw-w64.org/doku.php/download/macports}MacPorts}}
 
         * Apple Command Line Tools, available via {{https://developer.apple.com/}}, or XCode, {{https://developer.apple.com/xcode/}}
 

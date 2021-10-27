@@ -13,10 +13,10 @@
         Static libraries for 32 bit Windows.
     </description>
 
-    <url>http://ffmpeg.org/</url>
+    <url>https://ffmpeg.org/</url>
     <organization>
         <name>FFmpeg.org</name>
-        <url>http://ffmpeg.org/</url>
+        <url>https://ffmpeg.org/</url>
     </organization>
     <developers>
         <developer>
@@ -25,12 +25,12 @@
             <email>ffmpeg-devel@ffmpeg.org</email>
             <url>https://ffmpeg.org/mailman/listinfo/ffmpeg-devel/</url>
             <organization>FFmpeg.org</organization>
-            <organizationUrl>http://ffmpeg.org/</organizationUrl>
+            <organizationUrl>https://ffmpeg.org/</organizationUrl>
         </developer>
     </developers>
     <issueManagement>
         <system>trac</system>
-        <url>http://ffmpeg.org/trac/ffmpeg</url>
+        <url>https://ffmpeg.org/trac/ffmpeg</url>
     </issueManagement>
     <mailingLists>
         <mailingList>
@@ -38,7 +38,7 @@
             <subscribe>libav-user-join@ffmpeg.org</subscribe>
             <unsubscribe>libav-user-leave@ffmpeg.org</unsubscribe>
             <post>libav-user@ffmpeg.org</post>
-            <archive>http://ffmpeg.org/pipermail/libav-user/</archive>
+            <archive>https://ffmpeg.org/pipermail/libav-user/</archive>
             <otherArchives>
                 <otherArchive>http://libav-users.943685.n4.nabble.com</otherArchive>
             </otherArchives>
@@ -48,7 +48,7 @@
             <subscribe>ffmpeg-devel-join@ffmpeg.org</subscribe>
             <unsubscribe>ffmpeg-devel-leave@ffmpeg.org</unsubscribe>
             <post>ffmpeg-devel@ffmpeg.org</post>
-            <archive>http://ffmpeg.org/pipermail/ffmpeg-devel/</archive>
+            <archive>https://ffmpeg.org/pipermail/ffmpeg-devel/</archive>
         </mailingList>
     </mailingLists>
     <scm>

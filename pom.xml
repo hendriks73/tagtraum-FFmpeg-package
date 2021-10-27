@@ -15,7 +15,7 @@
         It only assembled this particular package.
         For more information on FFmpeg, please visit http://www.ffmpeg.org/
     </description>
-    <url>http://www.tagtraum.com/ffmpeg</url>
+    <url>https://www.tagtraum.com/ffmpeg</url>
     <inceptionYear>2013</inceptionYear>
 
     <licenses>
@@ -28,7 +28,7 @@
 
     <organization>
         <name>tagtraum industries incorporated</name>
-        <url>http://www.tagtraum.com/</url>
+        <url>https://www.tagtraum.com/</url>
     </organization>
 
     <developers>
@@ -36,9 +36,9 @@
             <id>hendrik</id>
             <name>Hendrik Schreiber</name>
             <email>hs@tagtraum.com</email>
-            <url>http://www.tagtraum.com/</url>
+            <url>https://www.tagtraum.com/</url>
             <organization>tagtraum industries incorporated</organization>
-            <organizationUrl>http://www.tagtraum.com/</organizationUrl>
+            <organizationUrl>https://www.tagtraum.com/</organizationUrl>
             <roles>
                 <role>assembler</role>
             </roles>

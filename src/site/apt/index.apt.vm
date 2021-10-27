@@ -8,14 +8,14 @@
 Introduction
 
     The <tagtraum FFmpeg package> is a binary release of some of the libraries released by
-    the {{{http://www.ffmpeg.org/}FFmpeg\u2122}} project. Its purpose is to provide easy access
+    the {{{https://www.ffmpeg.org/}FFmpeg\u2122}} project. Its purpose is to provide easy access
     to Windows and macOS binaries and
     {{{https://www.beatunes.com/repo/maven2/com/tagtraum/ffmpeg/ffmpeg/${ffmpegversion}/}sources}}
     for decoding audio via a
-    {{{http://maven.apache.org/}Maven}} repository.
+    {{{https://maven.apache.org/}Maven}} repository.
     Thus it serves as an upstream project for Java
-    {{{http://en.wikipedia.org/wiki/Java_Native_Interface}JNI}} projects wishing to interface
-    with the native libraries (e.g. {{{http://www.tagtraum.com/ffsampledsp/}FFSampledSP}}).
+    {{{https://en.wikipedia.org/wiki/Java_Native_Interface}JNI}} projects wishing to interface
+    with the native libraries (e.g. {{{https://www.tagtraum.com/ffsampledsp/}FFSampledSP}}).
     Codecs with known patent problems are {{{#Configuration}disabled}}
     (but can be {{{./developer.html}enabled}}).
     However, this obviously is no guarantee.
@@ -25,7 +25,7 @@ Introduction
 How to use
 
     To access the native libraries and sources, add something like this to the dependencies
-    section of your {{{http://maven.apache.org/pom.html#What_is_the_POM}pom}}:
+    section of your {{{https://maven.apache.org/pom.html#What_is_the_POM}pom}}:
 
 ---
 <dependency>
@@ -57,7 +57,7 @@ Requirements
 
 License
 
-    {{{http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt}LGPL 2.1}}
+    {{{https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt}LGPL 2.1}}
 
 FFmpeg Sources
 
