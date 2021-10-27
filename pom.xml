@@ -65,7 +65,7 @@
         <dependency>
             <groupId>org.apache.ant</groupId>
             <artifactId>ant</artifactId>
-            <version>1.9.9</version>
+            <version>1.10.11</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -205,7 +205,7 @@
         <!-- thread count for parallel multi-platform builds -->
         <threadcount>4</threadcount>
         
-        <bzip2.version>1.0.6</bzip2.version>
+        <bzip2.version>1.0.8</bzip2.version>
         <zlib.version>1.2.11</zlib.version>
         <ffmpeg.version>4.0.6</ffmpeg.version>
 

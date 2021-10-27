@@ -150,7 +150,7 @@
                                 <!-- bzip2 -->
 
                                 <!-- download fresh tar ball from sourceware.org -->
-                                <get src="https://sourceware.org/pub/bzip2/bzip2-latest.tar.gz" dest="${project.build.directory}/bzip2.tar.gz" usetimestamp="true" verbose="true" ignoreerrors="true" />
+                                <get src="https://sourceware.org/pub/bzip2/bzip2-${bzip2.version}.tar.gz" dest="${project.build.directory}/bzip2.tar.gz" usetimestamp="true" verbose="true" ignoreerrors="true" />
 
                                 <gunzip src="${project.build.directory}/bzip2.tar.gz" />
                                 <untar src="${project.build.directory}/bzip2.tar" dest="${project.build.directory}/bzip2" />
