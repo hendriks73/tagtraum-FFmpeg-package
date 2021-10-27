@@ -32,7 +32,6 @@ How to use
     <groupId>com.tagtraum</groupId>
     <artifactId>ffmpeg-x86_64-macos</artifactId>
     <!-- <artifactId>ffmpeg-x86_64-win</artifactId> -->
-    <!-- <artifactId>ffmpeg-i386-macos</artifactId> -->
     <!-- <artifactId>ffmpeg-i386-win</artifactId> -->
     <version>${projectversion}</version>
     <type>pom</type>

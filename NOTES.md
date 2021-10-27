@@ -3,7 +3,8 @@
 - 4.0.6
     - Release for FFmpeg 4.0.6.
     - Housekeeping (e.g. changed links to HTTPS where possible)
-    - Updated source for bzip2 
+    - Updated source for bzip2
+    - Removed obsolete ffmpeg-i386-macos (32bit macOS)
 
 
 - 4.0.0

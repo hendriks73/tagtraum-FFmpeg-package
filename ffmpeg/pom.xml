@@ -121,18 +121,6 @@
                                         <property name="path" value="${mingw.x86_64.path}:${env.PATH}" />
                                     </ant>
 
-                                    <!-- 32bit macos -->
-                                    <ant antfile="${project.basedir}/build-zlib.xml" inheritRefs="true">
-                                        <property name="arch" value="i386" />
-                                        <property name="host" value="macos" />
-                                        <property name="mingw.crossprefix" value="" />
-                                        <property name="makefile" value="Makefile" />
-                                        <property name="target" value="" />
-                                        <property name="path" value="${env.PATH}" />
-                                        <property name="configure" value="true" />
-                                        <property name="cc" value="${ccompiler} -m32" />
-                                    </ant>
-
                                     <!-- 64bit macos -->
                                     <ant antfile="${project.basedir}/build-zlib.xml" inheritRefs="true">
                                         <property name="arch" value="x86_64" />
@@ -174,15 +162,6 @@
                                         <property name="mingw.crossprefix" value="${mingw.x86_64.crossprefix}" />
                                         <property name="cc" value="${ccompiler}" />
                                         <property name="path" value="${mingw.x86_64.path}:${env.PATH}" />
-                                    </ant>
-
-                                    <!-- 32bit macos -->
-                                    <ant antfile="${project.basedir}/build-bzip2.xml" inheritRefs="true">
-                                        <property name="arch" value="i386" />
-                                        <property name="host" value="macos" />
-                                        <property name="mingw.crossprefix" value="" />
-                                        <property name="cc" value="${ccompiler} -arch i386" />
-                                        <property name="path" value="${env.PATH}" />
                                     </ant>
 
                                     <!-- 64bit macos -->
@@ -235,16 +214,6 @@
                                         <property name="ffmpeg.configure" value="${ffmpeg.configure}" />
                                     </ant>
 
-                                    <!-- 32bit macos -->
-                                    <ant antfile="${project.basedir}/build-ffmpeg.xml" inheritRefs="true">
-                                        <property name="arch" value="i386" />
-                                        <property name="host" value="macos" />
-                                        <property name="target.os" value="darwin" />
-                                        <property name="cc" value="${ccompiler} -m32" />
-                                        <property name="configure.options.additional" value="--enable-shared --enable-static --extra-cflags='-mmacosx-version-min=10.8'" />
-                                        <property name="path" value="${env.PATH}" />
-                                        <property name="ffmpeg.configure" value="${ffmpeg.configure}" />
-                                    </ant>
                                 </parallel>
 
 
@@ -310,11 +279,6 @@
                                     <file>${project.build.directory}/ffmpeg-sources-x86_64-macos.tar.bz2</file>
                                     <type>tar.bz2</type>
                                     <classifier>sources-x86_64-macos</classifier>
-                                </artifact>
-                                <artifact>
-                                    <file>${project.build.directory}/ffmpeg-sources-i386-macos.tar.bz2</file>
-                                    <type>tar.bz2</type>
-                                    <classifier>sources-i386-macos</classifier>
                                 </artifact>
                                 <artifact>
                                     <file>${project.build.directory}/ffmpeg-sources-x86_64-win.tar.bz2</file>

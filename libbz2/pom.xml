@@ -117,18 +117,6 @@ bzip2/libbzip2 version 1.0.x of 6 September 2010</comments>
 
                                 <!-- macos -->
                                 <artifact>
-                                    <file>${project.build.directory}/lib-i386-macos/${project.artifactId}.a</file>
-                                    <type>a</type>
-                                    <classifier>i386-macos</classifier>
-                                </artifact>
-<!--
-                                <artifact>
-                                    <file>${project.build.directory}/lib-i386-macos/${project.artifactId}.dylib</file>
-                                    <type>dylib</type>
-                                    <classifier>i386-macos</classifier>
-                                </artifact>
--->
-                                <artifact>
                                     <file>${project.build.directory}/lib-x86_64-macos/${project.artifactId}.a</file>
                                     <type>a</type>
                                     <classifier>x86_64-macos</classifier>

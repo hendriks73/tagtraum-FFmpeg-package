@@ -55,7 +55,6 @@
         <module>libz</module>
         <module>libbz2</module>
 
-        <module>ffmpeg-i386-macos</module>
         <module>ffmpeg-x86_64-macos</module>
         <module>ffmpeg-i386-win</module>
         <module>ffmpeg-x86_64-win</module>
