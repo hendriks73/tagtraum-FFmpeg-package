@@ -4,7 +4,7 @@
         <maven>3.0.5</maven>
     </prerequisites>
     <groupId>com.tagtraum</groupId>
-    <version>4.0.0</version>
+    <version>4.0.6</version>
     <artifactId>ffmpeg-package</artifactId>
     <packaging>pom</packaging>
     <name>tagtraum FFmpeg package</name>
@@ -207,7 +207,7 @@
         
         <bzip2.version>1.0.6</bzip2.version>
         <zlib.version>1.2.11</zlib.version>
-        <ffmpeg.version>4.0</ffmpeg.version>
+        <ffmpeg.version>4.0.6</ffmpeg.version>
 
         <!-- aliases, because of http://maven.apache.org/plugins/maven-site-plugin/examples/creating-content.html#Filtering -->
         <project.version>${project.version}</project.version>
