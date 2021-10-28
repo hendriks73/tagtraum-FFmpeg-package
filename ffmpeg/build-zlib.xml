@@ -30,13 +30,15 @@
             <env key="CC" value="${cc}"/>
             <arg line="configure --archs=&quot;-arch ${configure.arch}&quot;"/>
         </exec>
+        <loadfile property="configure.log" srcFile="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}/configure.log" />
+        <echo message="${configure.log}" />
     </target>
 
     <target name="zlib" depends="unpack,configure">
         <!-- make -->
         <exec dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"
               executable="${make}"
-              failonerror="true">
+              failonerror="false">
             <env key="PATH" path="${path}"/>
             <arg line="-f${makefile} PREFIX=${mingw.crossprefix} ${target}"/>
         </exec>
