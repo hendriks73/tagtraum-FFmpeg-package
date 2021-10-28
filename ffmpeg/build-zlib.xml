@@ -20,7 +20,7 @@
         <jar destfile="${project.build.directory}/libz-sources-${arch}-${host}.jar" basedir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"/>
     </target>
 
-    <target name="configure" if:true="configure" depends="unpack">
+    <target name="configure" if="${configure}" depends="unpack">
         <!-- configure with or without configure.arch -->
         <exec dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"
               executable="${sh}"

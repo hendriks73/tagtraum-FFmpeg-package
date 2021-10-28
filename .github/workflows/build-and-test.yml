@@ -22,6 +22,9 @@ jobs:
         arch: [ x64, aarch64 ]
 
     steps:
+      - name: Install Tools
+        run: |
+          brew install yasm
       - uses: actions/checkout@v2
       - name: Set up Java
         uses: actions/setup-java@v1

@@ -139,9 +139,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Install Tools
-        run: |
-          apt-get -y install yasm
 
       - id: install-secret-key
         name: Install gpg secret key
