@@ -67,6 +67,10 @@ jobs:
           install: mingw-w64-${{ matrix.env }}-toolchain
           path-type: inherit
 
+      - name: Install Tools
+        run: |
+          pacman --noconfirm -S mingw-w64-${{ matrix.env }}-yasm
+
       - uses: actions/checkout@v2
 
       - name: Set up Java

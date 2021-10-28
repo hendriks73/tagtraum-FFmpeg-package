@@ -28,6 +28,10 @@ jobs:
           install: mingw-w64-x86_64-toolchain
           path-type: inherit
 
+      - name: Install Tools
+        run: |
+          pacman --noconfirm -S mingw-w64-x86_64-yasm
+
       - id: install-secret-key
         name: Install gpg secret key
         run: |
@@ -85,6 +89,10 @@ jobs:
           msystem: mingw32
           install: mingw-w64-i686-toolchain
           path-type: inherit
+
+      - name: Install Tools
+        run: |
+          pacman --noconfirm -S mingw-w64-i686-yasm
 
       - id: install-secret-key
         name: Install gpg secret key
