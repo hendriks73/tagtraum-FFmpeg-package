@@ -322,6 +322,7 @@
                 <ccompiler>gcc</ccompiler>
                 <configure>false</configure>
                 <target.os>linux</target.os>
+                <configure.options.additional>--enable-static</configure.options.additional>
             </properties>
         </profile>
 

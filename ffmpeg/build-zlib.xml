@@ -25,7 +25,7 @@
         <!-- configure with or without configure.arch -->
         <exec dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"
               executable="${sh}"
-              failonerror="false"
+              failonerror="true"
               if:true="configure.arch">
             <env key="PATH" path="${path}"/>
             <env key="CC" value="${cc}"/>
@@ -34,7 +34,7 @@
 
         <exec dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"
               executable="${sh}"
-              failonerror="false"
+              failonerror="true"
               unless:true="configure.arch">
             <env key="PATH" path="${path}"/>
             <env key="CC" value="${cc}"/>
