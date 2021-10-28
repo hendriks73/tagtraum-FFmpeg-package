@@ -234,6 +234,7 @@
                 <host>win</host>
                 <prefix/>
                 <make>make</make>
+                <sh>sh</sh>
                 <makefile>win32/Makefile.gcc</makefile>
                 <ccompiler>gcc</ccompiler>
                 <configure>false</configure>
@@ -255,6 +256,7 @@
                 <host>win</host>
                 <prefix/>
                 <make>make</make>
+                <sh>sh</sh>
                 <makefile>win32/Makefile.gcc</makefile>
                 <ccompiler>gcc</ccompiler>
                 <configure>false</configure>
