@@ -233,6 +233,7 @@
                 <configure.arch>i686</configure.arch>
                 <host>win</host>
                 <prefix/>
+                <make>make</make>
                 <makefile>win32/Makefile.gcc</makefile>
                 <ccompiler>gcc</ccompiler>
                 <configure>false</configure>
@@ -253,6 +254,7 @@
                 <configure.arch>x86_64</configure.arch>
                 <host>win</host>
                 <prefix/>
+                <make>make</make>
                 <makefile>win32/Makefile.gcc</makefile>
                 <ccompiler>gcc</ccompiler>
                 <configure>false</configure>
