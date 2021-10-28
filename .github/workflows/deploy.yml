@@ -30,7 +30,7 @@ jobs:
 
       - name: Install Tools
         run: |
-          pacman --noconfirm -S mingw-w64-x86_64-yasm
+          pacman --noconfirm -S mingw-w64-x86_64-yasm make
 
       - id: install-secret-key
         name: Install gpg secret key
@@ -92,7 +92,7 @@ jobs:
 
       - name: Install Tools
         run: |
-          pacman --noconfirm -S mingw-w64-i686-yasm
+          pacman --noconfirm -S mingw-w64-i686-yasm make
 
       - id: install-secret-key
         name: Install gpg secret key
