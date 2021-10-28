@@ -139,6 +139,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Install Tools
+        run: |
+          apt-get -y install yasm
 
       - id: install-secret-key
         name: Install gpg secret key
@@ -187,6 +190,9 @@ jobs:
     runs-on: macos-10.15
 
     steps:
+      - name: Install Tools
+        run: |
+          brew install yasm
       - id: install-secret-key
         name: Install gpg secret key
         run: |
@@ -237,6 +243,9 @@ jobs:
     runs-on: macos-10.15
 
     steps:
+      - name: Install Tools
+        run: |
+          brew install yasm
       - id: install-secret-key
         name: Install gpg secret key
         run: |
