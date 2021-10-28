@@ -1,4 +1,4 @@
-<project default="zlib">
+<project default="zlib" xmlns:if="ant:if" xmlns:unless="ant:unless">
 
 
     <target name="unpack">
@@ -22,14 +22,25 @@
     </target>
 
     <target name="configure" if="configure" depends="unpack">
-        <!-- configure -->
+        <!-- configure with or without configure.arch -->
         <exec dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"
               executable="${sh}"
-              failonerror="false">
+              failonerror="false"
+              if:true="configure.arch">
             <env key="PATH" path="${path}"/>
             <env key="CC" value="${cc}"/>
             <arg line="configure --archs=&quot;-arch ${configure.arch}&quot;"/>
         </exec>
+
+        <exec dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"
+              executable="${sh}"
+              failonerror="false"
+              unless:true="configure.arch">
+            <env key="PATH" path="${path}"/>
+            <env key="CC" value="${cc}"/>
+            <arg line="configure"/>
+        </exec>
+
         <loadfile property="configure.log" srcFile="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}/configure.log" />
         <echo message="${configure.log}" />
     </target>

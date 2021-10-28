@@ -315,7 +315,7 @@
             </modules>
             <properties>
                 <arch>x86_64</arch>
-                <configure.arch>x86_64</configure.arch>
+                <configure.arch>false</configure.arch>
                 <host>unix</host>
                 <prefix/>
                 <makefile>Makefile</makefile>
