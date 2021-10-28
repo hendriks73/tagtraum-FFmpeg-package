@@ -232,7 +232,7 @@
                 <arch>i386</arch>
                 <configure.arch>i686</configure.arch>
                 <host>win</host>
-                <prefix/>
+                <prefix>i686-w64-mingw32-</prefix>
                 <make>make</make>
                 <sh>sh</sh>
                 <makefile>win32/Makefile.gcc</makefile>
@@ -254,7 +254,7 @@
                 <arch>x86_64</arch>
                 <configure.arch>x86_64</configure.arch>
                 <host>win</host>
-                <prefix/>
+                <prefix>x86_64-w64-mingw32-</prefix>
                 <make>make</make>
                 <sh>sh</sh>
                 <makefile>win32/Makefile.gcc</makefile>
