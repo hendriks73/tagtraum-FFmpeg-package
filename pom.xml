@@ -232,14 +232,15 @@
                 <arch>i386</arch>
                 <configure.arch>i686</configure.arch>
                 <host>win</host>
-                <prefix>i686-w64-mingw32-</prefix>
+                <!-- <prefix>i686-w64-mingw32-</prefix> -->
+                <prefix/>
                 <make>make</make>
                 <sh>sh</sh>
                 <makefile>win32/Makefile.gcc</makefile>
                 <ccompiler>gcc</ccompiler>
                 <configure>false</configure>
                 <target.os>mingw32</target.os>
-                <configure.options.additional>--cross-prefix=${prefix} --enable-static</configure.options.additional>
+                <configure.options.additional>--enable-static</configure.options.additional>
             </properties>
         </profile>
 
@@ -254,14 +255,15 @@
                 <arch>x86_64</arch>
                 <configure.arch>x86_64</configure.arch>
                 <host>win</host>
-                <prefix>x86_64-w64-mingw32-</prefix>
+                <!-- <prefix>x86_64-w64-mingw32-</prefix> -->
+                <prefix/>
                 <make>make</make>
                 <sh>sh</sh>
                 <makefile>win32/Makefile.gcc</makefile>
                 <ccompiler>gcc</ccompiler>
                 <configure>false</configure>
                 <target.os>mingw32</target.os>
-                <configure.options.additional>--cross-prefix=${prefix} --enable-static</configure.options.additional>
+                <configure.options.additional>--enable-static</configure.options.additional>
             </properties>
         </profile>
 
