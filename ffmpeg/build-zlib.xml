@@ -25,7 +25,7 @@
         <!-- configure -->
         <exec dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"
               executable="${sh}"
-              failonerror="true">
+              failonerror="false">
             <env key="PATH" path="${path}"/>
             <env key="CC" value="${cc}"/>
             <arg line="configure --archs=&quot;-arch ${configure.arch}&quot;"/>
@@ -38,7 +38,7 @@
         <!-- make -->
         <exec dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"
               executable="${make}"
-              failonerror="false">
+              failonerror="true">
             <env key="PATH" path="${path}"/>
             <arg line="-f${makefile} PREFIX=${mingw.crossprefix} ${target}"/>
         </exec>
