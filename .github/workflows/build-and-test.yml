@@ -38,7 +38,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Build/test code with Maven
-        run: mvn --activate-profiles compile,platform-macos-${{ matrix.arch }} --batch-mode install --file pom.xml
+        run: mvn --activate-profiles compile,platform-mac-${{ matrix.arch }} --batch-mode install --file pom.xml
 
 
   windows-build:
