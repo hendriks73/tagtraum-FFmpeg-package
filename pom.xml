@@ -46,19 +46,16 @@
         </developer>
     </developers>
 
+    <!--
     <modules>
-        <module>ffmpeg</module>
         <module>libavutil</module>
         <module>libavcodec</module>
         <module>libavformat</module>
         <module>libswresample</module>
         <module>libz</module>
         <module>libbz2</module>
-
-        <module>ffmpeg-x86_64-macos</module>
-        <module>ffmpeg-i386-win</module>
-        <module>ffmpeg-x86_64-win</module>
     </modules>
+    -->
 
     <dependencies>
         <dependency>
@@ -194,16 +191,10 @@
 
     <properties>
         <ffmpeg.configure>--enable-small --disable-programs --disable-doc --disable-avfilter --disable-postproc --disable-swscale --disable-avdevice --disable-filters --disable-decoder=flash*,truemotion*,tmv,eacmv,eamad,eatgq,eatgv,eatqi,flic,h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo,msvideo*,vp*,aic,amv,asv*,aura,aura2,avr*,c93,clearvideo,cinepak,cljr,cllc,cpia,dirac,hevc,rtp*,srtp,vc1,swf,indeo*,v2*,v3*,v4* --disable-demuxer=h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo,vp*,aic,amv,asv*,aura,aura2,avr*,c93,clearvideo,cinepak,cljr,cllc,cpia,dirac,hevc,rtp*,srtp,vc1,swf,flic,flv,segafilm,v2*,v3*,v4*,tmv,filmstrip --disable-encoders --enable-encoder=pcm* --disable-parser=h2*,vc1,vp*,dirac,hevc,rv* --disable-protocol=rt*,srt*,gopher,ftp --disable-muxers --disable-indevs --disable-outdevs --disable-iconv --disable-dxva2</ffmpeg.configure>
-        <mingw.i386.path>/opt/local/i686-w64-mingw32/bin</mingw.i386.path>
-        <mingw.i386.crossprefix>i686-w64-mingw32-</mingw.i386.crossprefix>
-        <mingw.x86_64.path>/opt/local/x86_64-w64-mingw32/bin</mingw.x86_64.path>
-        <mingw.x86_64.crossprefix>x86_64-w64-mingw32-</mingw.x86_64.crossprefix>
         <make>/usr/bin/make</make>
         <sh>/bin/sh</sh>
         <ccompiler>gcc</ccompiler>
-        <!-- thread count for parallel multi-platform builds -->
-        <threadcount>4</threadcount>
-        
+
         <bzip2.version>1.0.8</bzip2.version>
         <zlib.version>1.2.11</zlib.version>
         <ffmpeg.version>4.0.6</ffmpeg.version>
@@ -219,6 +210,119 @@
     </properties>
 
     <profiles>
+
+        <!-- include the build/compile step through module ffmpeg -->
+        <profile>
+            <id>compile</id>
+            <modules>
+                <module>ffmpeg</module>
+            </modules>
+        </profile>
+
+        <!-- Windows-specific Config 32 bit-->
+        <profile>
+            <!-- must be explicitly activated! -->
+            <id>platform-win-x86</id>
+            <modules>
+                <module>ffmpeg-i386-win</module>
+            </modules>
+            <properties>
+                <arch>i386</arch>
+                <configure.arch>i686</configure.arch>
+                <host>win</host>
+                <prefix/>
+                <makefile>win32/Makefile.gcc</makefile>
+                <ccompiler>gcc</ccompiler>
+                <configure>false</configure>
+                <target.os>mingw32</target.os>
+                <configure.options.additional>--cross-prefix=${prefix} --enable-static</configure.options.additional>
+            </properties>
+        </profile>
+
+        <!-- Windows-specific Config 64 bit-->
+        <profile>
+            <!-- must be explicitly activated! -->
+            <id>platform-win-x64</id>
+            <modules>
+                <module>ffmpeg-x86_64-win</module>
+            </modules>
+            <properties>
+                <arch>x86_64</arch>
+                <configure.arch>x86_64</configure.arch>
+                <host>win</host>
+                <prefix/>
+                <makefile>win32/Makefile.gcc</makefile>
+                <ccompiler>gcc</ccompiler>
+                <configure>false</configure>
+                <target.os>mingw32</target.os>
+                <configure.options.additional>--cross-prefix=${prefix} --enable-static</configure.options.additional>
+            </properties>
+        </profile>
+
+        <!-- Mac-x86_64-specific Config -->
+        <profile>
+            <id>platform-mac-x64</id>
+            <!-- must be explicitly activated! -->
+            <modules>
+                <module>ffmpeg-x86_64-macos</module>
+            </modules>
+            <properties>
+                <arch>x86_64</arch>
+                <configure.arch>x86_64</configure.arch>
+                <host>macos</host>
+                <prefix/>
+                <makefile>Makefile</makefile>
+                <ccompiler>gcc -arch ${arch} -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/</ccompiler>
+                <configure>true</configure>
+                <target.os>darwin</target.os>
+                <configure.options.additional>--enable-static --extra-cflags='-mmacosx-version-min=10.8'</configure.options.additional>
+            </properties>
+        </profile>
+
+        <!-- Mac-aarch64-specific Config -->
+        <profile>
+            <id>platform-mac-aarch64</id>
+            <!-- must be explicitly activated! -->
+            <modules>
+                <module>ffmpeg-aarch64-macos</module>
+            </modules>
+            <properties>
+                <arch>aarch64</arch>
+                <host>macos</host>
+                <configure.arch>arm64</configure.arch>
+                <prefix/>
+                <makefile>Makefile</makefile>
+                <ccompiler>gcc -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/</ccompiler>
+                <configure>true</configure>
+                <target.os>darwin</target.os>
+                <configure.options.additional>--enable-cross-compile --enable-static --extra-cflags='-mmacosx-version-min=11.0'</configure.options.additional>
+            </properties>
+        </profile>
+
+        <!-- Linux-specific Config -->
+        <profile>
+            <id>platform-linux-x64</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <name>!mac os x</name>
+                </os>
+            </activation>
+            <modules>
+                <module>ffmpeg-x86_64-unix</module>
+            </modules>
+            <properties>
+                <arch>x86_64</arch>
+                <configure.arch>x86_64</configure.arch>
+                <host>unix</host>
+                <prefix/>
+                <makefile>Makefile</makefile>
+                <ccompiler>gcc</ccompiler>
+                <configure>false</configure>
+                <target.os>linux</target.os>
+            </properties>
+        </profile>
+
         <profile>
             <id>release</id>
             <activation>

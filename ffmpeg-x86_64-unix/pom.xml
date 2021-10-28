@@ -6,29 +6,11 @@
         <version>4.0.6</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>libswresample</artifactId>
-    <packaging>pom</packaging>
-    <name>libswresample</name>
+    <artifactId>ffmpeg-x86_64-unix</artifactId>
+    <packaging>jar</packaging>
+    <name>ffmpeg-x86_64-unix</name>
     <description>
-        The libswresample library performs highly optimized audio resampling, rematrixing and sample format
-        conversion operations.
-
-        Specifically, this library performs the following conversions:
-
-        Resampling: is the process of changing the audio rate, for example from an high sample rate of 44100Hz to
-        8000Hz. Audio conversion from high to low sample rate is a lossy process. Several resampling options and
-        algorithms are available.
-
-        Format conversion: is the process of converting the type of samples, for example from 16-bit signed
-        samples to unsigned 8-bit or float samples. It also handles packing conversion, when passing from packed
-        layout (all samples belonging to distinct channels interleaved in the same buffer), to planar layout
-        (all samples belonging to the same channel stored in a dedicated buffer or "plane").
-
-        Rematrixing: is the process of changing the channel layout, for example from stereo to mono. When the
-        input channels cannot be mapped to the output streams, the process is lossy, since it involves different
-        gain factors and mixing.
-
-        Various other audio conversions (e.g. stretching and padding) are enabled through dedicated options.
+        Static libraries for 64 bit Unix/Linux.
     </description>
 
     <url>https://ffmpeg.org/</url>
@@ -73,11 +55,10 @@
         <connection>scm:git:git://source.ffmpeg.org/ffmpeg.git</connection>
         <developerConnection>scm:git:git://source.ffmpeg.org/ffmpeg.git</developerConnection>
         <url>http://git.videolan.org/?p=ffmpeg.git</url>
-      <tag>HEAD</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <build>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -90,10 +71,21 @@
                                 <property name="project.build.directory" value="${project.build.directory}" />
                                 <property name="project.basedir" value="${project.basedir}" />
                                 <property name="project.artifactId" value="${project.artifactId}" />
+                                <property name="arch" value="${arch}" />
+                                <property name="host" value="${host}" />
+
+                                <!-- create classes dir -->
+                                <mkdir dir="${project.build.directory}/classes/"/>
 
                                 <!-- copy libs -->
+                                <copy toDir="${project.build.directory}/classes/">
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/lib-${arch}-${host}/" />
+                                </copy>
+                                <!-- copy sources -->
                                 <copy toDir="${project.build.directory}">
-                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="lib-*/${project.artifactId}*"/>
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="libz-sources-${arch}-${host}.jar"/>
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="bzip2-sources-${arch}-${host}.jar"/>
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="ffmpeg-sources-${arch}-${host}.tar.bz2"/>
                                 </copy>
                             </target>
                         </configuration>
@@ -116,48 +108,26 @@
                         </goals>
                         <configuration>
                             <artifacts>
-
-                                <!-- macos -->
                                 <artifact>
-                                    <file>${project.build.directory}/lib-x86_64-macos/${project.artifactId}.a</file>
-                                    <type>a</type>
-                                    <classifier>x86_64-macos</classifier>
+                                    <file>${project.build.directory}/ffmpeg-sources-${arch}-${host}.tar.bz2</file>
+                                    <type>tar.bz2</type>
+                                    <classifier>ffmpeg-sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/lib-x86_64-macos/${project.artifactId}.dylib</file>
-                                    <type>dylib</type>
-                                    <classifier>x86_64-macos</classifier>
-                                </artifact>
-
-                                <!-- win -->
-                                <artifact>
-                                    <file>${project.build.directory}/lib-i386-win/${project.artifactId}.a</file>
-                                    <type>a</type>
-                                    <classifier>i386-win</classifier>
+                                    <file>${project.build.directory}/libz-sources-${arch}-${host}.jar</file>
+                                    <type>jar</type>
+                                    <classifier>libz-sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/lib-i386-win/${project.artifactId}.dll</file>
-                                    <type>dll</type>
-                                    <classifier>i386-win</classifier>
+                                    <file>${project.build.directory}/bzip2-sources-${arch}-${host}.jar</file>
+                                    <type>jar</type>
+                                    <classifier>bzip2-sources</classifier>
                                 </artifact>
-                                <artifact>
-                                    <file>${project.build.directory}/lib-x86_64-win/${project.artifactId}.a</file>
-                                    <type>a</type>
-                                    <classifier>x86_64-win</classifier>
-                                </artifact>
-                                <artifact>
-                                    <file>${project.build.directory}/lib-x86_64-win/${project.artifactId}.dll</file>
-                                    <type>dll</type>
-                                    <classifier>x86_64-win</classifier>
-                                </artifact>
-
                             </artifacts>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
-
     </build>
 </project>

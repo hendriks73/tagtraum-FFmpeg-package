@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <name>FFmpeg</name>
     <description>
-        Downloads and builds FFmpeg libraries for both 32 and 64 bit including the zlib and bzip2 compression libraries.
+        Downloads and builds FFmpeg libraries including the zlib and bzip2 compression libraries.
         Configuration:
         ./configure ${ffmpeg.configure}
     </description>
@@ -77,7 +77,14 @@
 
                                 <property name="make" value="${make}" />
                                 <property name="sh" value="${sh}" />
-                                <property name="threadcount" value="${threadcount}" />
+
+                                <property name="arch" value="${arch}" />
+                                <property name="host" value="${host}" />
+                                <property name="prefix" value="${prefix}" />
+                                <property name="makefile" value="${makefile}" />
+                                <property name="configure" value="${configure}" />
+                                <property name="ccompiler" value="${ccompiler}" />
+                                <property name="target.os" value="${target.os}" />
 
                                 <!-- zlib -->
 
@@ -98,42 +105,19 @@
 
                                 <jar destfile="${project.build.directory}/libz-sources.jar" basedir="${project.build.directory}/zlib/zlib-${zlib.version}" />
 
-                                <echo>=== Starting multi-platform parallel build of zlib. For debugging, use command line flag -Dthreadcount=1. Current threadcount = ${threadcount} ===</echo>
-                                <parallel threadCount="${threadcount}" failonany="true">
-    
-                                    <!-- 32bit windows -->
-                                    <ant antfile="${project.basedir}/build-zlib.xml" inheritRefs="true">
-                                        <property name="arch" value="i386" />
-                                        <property name="host" value="win" />
-                                        <property name="mingw.crossprefix" value="${mingw.i386.crossprefix}" />
-                                        <property name="makefile" value="win32/Makefile.gcc" />
-                                        <property name="target" value="" />
-                                        <property name="path" value="${mingw.i386.path}:${env.PATH}" />
-                                    </ant>
+                                <echo>=== Starting build of zlib ===</echo>
 
-                                    <!-- 64bit windows -->
-                                    <ant antfile="${project.basedir}/build-zlib.xml" inheritRefs="true">
-                                        <property name="arch" value="x86_64" />
-                                        <property name="host" value="win" />
-                                        <property name="mingw.crossprefix" value="${mingw.x86_64.crossprefix}" />
-                                        <property name="makefile" value="win32/Makefile.gcc" />
-                                        <property name="target" value="" />
-                                        <property name="path" value="${mingw.x86_64.path}:${env.PATH}" />
-                                    </ant>
-
-                                    <!-- 64bit macos -->
-                                    <ant antfile="${project.basedir}/build-zlib.xml" inheritRefs="true">
-                                        <property name="arch" value="x86_64" />
-                                        <property name="host" value="macos" />
-                                        <property name="mingw.crossprefix" value="" />
-                                        <property name="makefile" value="Makefile" />
-                                        <property name="target" value="" />
-                                        <property name="path" value="${env.PATH}" />
-                                        <property name="configure" value="true" />
-                                        <property name="cc" value="${ccompiler}" />
-                                    </ant>
-                                    
-                                </parallel>
+                                <ant antfile="${project.basedir}/build-zlib.xml" inheritRefs="true">
+                                    <property name="arch" value="${arch}" />
+                                    <property name="configure.arch" value="${configure.arch}" />
+                                    <property name="host" value="${host}" />
+                                    <property name="mingw.crossprefix" value="${prefix}" />
+                                    <property name="makefile" value="${makefile}" />
+                                    <property name="target" value="" />
+                                    <property name="path" value="${env.PATH}" />
+                                    <property name="configure" value="${configure}" />
+                                    <property name="cc" value="${ccompiler}" />
+                                </ant>
 
                                 <!-- bzip2 -->
 
@@ -144,35 +128,16 @@
                                 <untar src="${project.build.directory}/bzip2.tar" dest="${project.build.directory}/bzip2" />
                                 <jar destfile="${project.build.directory}/libbz2-sources.jar" basedir="${project.build.directory}/bzip2/bzip2-${bzip2.version}" />
 
-                                <echo>=== Starting multi-platform parallel build of bzip2. For debugging, use command line flag -Dthreadcount=1. Current threadcount = ${threadcount} ===</echo>
-                                <parallel threadCount="${threadcount}" failonany="true">
-                                    <!-- 32bit windows -->
-                                    <ant antfile="${project.basedir}/build-bzip2.xml" inheritRefs="true">
-                                        <property name="arch" value="i386" />
-                                        <property name="host" value="win" />
-                                        <property name="mingw.crossprefix" value="${mingw.i386.crossprefix}" />
-                                        <property name="cc" value="${ccompiler}" />
-                                        <property name="path" value="${mingw.i386.path}:${env.PATH}" />
-                                    </ant>
+                                <echo>=== Starting build of bzip2 ===</echo>
 
-                                    <!-- 64bit windows -->
-                                    <ant antfile="${project.basedir}/build-bzip2.xml" inheritRefs="true">
-                                        <property name="arch" value="x86_64" />
-                                        <property name="host" value="win" />
-                                        <property name="mingw.crossprefix" value="${mingw.x86_64.crossprefix}" />
-                                        <property name="cc" value="${ccompiler}" />
-                                        <property name="path" value="${mingw.x86_64.path}:${env.PATH}" />
-                                    </ant>
-
-                                    <!-- 64bit macos -->
-                                    <ant antfile="${project.basedir}/build-bzip2.xml" inheritRefs="true">
-                                        <property name="arch" value="x86_64" />
-                                        <property name="host" value="macos" />
-                                        <property name="mingw.crossprefix" value="" />
-                                        <property name="cc" value="${ccompiler} -arch x86_64" />
-                                        <property name="path" value="${env.PATH}" />
-                                    </ant>
-                                </parallel>
+                                <ant antfile="${project.basedir}/build-bzip2.xml" inheritRefs="true">
+                                    <property name="arch" value="${arch}" />
+                                    <property name="configure.arch" value="${configure.arch}" />
+                                    <property name="host" value="${host}" />
+                                    <property name="mingw.crossprefix" value="${prefix}" />
+                                    <property name="cc" value="${ccompiler}" />
+                                    <property name="path" value="${env.PATH}" />
+                                </ant>
 
                                 <!-- FFmpeg -->
 
@@ -187,73 +152,18 @@
                                      basedir="${project.build.directory}/ffmpeg/ffmpeg-${ffmpeg.version}"
                                      compression="bzip2" />
 
-                                <echo>=== Starting multi-platform parallel build of FFmpeg. For debugging, use command line flag -Dthreadcount=1. Current threadcount = ${threadcount} ===</echo>
+                                <echo>=== Starting build of FFmpeg ===</echo>
 
-                                <!-- for some obscure reason we cannot build both the static and the dynamic lib at the same time for windows -->
-                                <parallel threadCount="${threadcount}" failonany="true">
-                                    <!-- WINDOWS SHARED -->
-                                    <!-- 32bit windows -->
-                                    <ant antfile="${project.basedir}/build-ffmpeg.xml" inheritRefs="true">
-                                        <property name="arch" value="i386" />
-                                        <property name="host" value="win" />
-                                        <property name="target.os" value="mingw32" />
-                                        <property name="cc" value="${mingw.i386.crossprefix}${ccompiler}" />
-                                        <property name="configure.options.additional" value="--cross-prefix=${mingw.i386.crossprefix} --enable-shared" />
-                                        <property name="path" value="${mingw.i386.path}:${env.PATH}" />
-                                        <property name="ffmpeg.configure" value="${ffmpeg.configure}" />
-                                    </ant>
-
-                                    <!-- 64bit windows -->
-                                    <ant antfile="${project.basedir}/build-ffmpeg.xml" inheritRefs="true">
-                                        <property name="arch" value="x86_64" />
-                                        <property name="host" value="win" />
-                                        <property name="target.os" value="mingw32" />
-                                        <property name="cc" value="${mingw.x86_64.crossprefix}${ccompiler}" />
-                                        <property name="configure.options.additional" value="--cross-prefix=${mingw.x86_64.crossprefix} --enable-shared" />
-                                        <property name="path" value="${mingw.x86_64.path}:${env.PATH}" />
-                                        <property name="ffmpeg.configure" value="${ffmpeg.configure}" />
-                                    </ant>
-
-                                </parallel>
-
-
-                                <parallel threadCount="${threadcount}" failonany="true">
-
-                                    <!-- WINDOWS STATIC -->
-                                    <!-- 32bit windows -->
-                                    <ant antfile="${project.basedir}/build-ffmpeg.xml" inheritRefs="true">
-                                        <property name="arch" value="i386" />
-                                        <property name="host" value="win" />
-                                        <property name="target.os" value="mingw32" />
-                                        <property name="cc" value="${mingw.i386.crossprefix}${ccompiler}" />
-                                        <property name="configure.options.additional" value="--cross-prefix=${mingw.i386.crossprefix} --enable-static" />
-                                        <property name="path" value="${mingw.i386.path}:${env.PATH}" />
-                                        <property name="ffmpeg.configure" value="${ffmpeg.configure}" />
-                                    </ant>
-
-                                    <!-- 64bit windows -->
-                                    <ant antfile="${project.basedir}/build-ffmpeg.xml" inheritRefs="true">
-                                        <property name="arch" value="x86_64" />
-                                        <property name="host" value="win" />
-                                        <property name="target.os" value="mingw32" />
-                                        <property name="cc" value="${mingw.x86_64.crossprefix}${ccompiler}" />
-                                        <property name="configure.options.additional" value="--cross-prefix=${mingw.x86_64.crossprefix} --enable-static" />
-                                        <property name="path" value="${mingw.x86_64.path}:${env.PATH}" />
-                                        <property name="ffmpeg.configure" value="${ffmpeg.configure}" />
-                                    </ant>
-
-                                    <!-- 64bit macos -->
-                                    <ant antfile="${project.basedir}/build-ffmpeg.xml" inheritRefs="true">
-                                        <property name="arch" value="x86_64" />
-                                        <property name="host" value="macos" />
-                                        <property name="target.os" value="darwin" />
-                                        <property name="cc" value="${ccompiler}" />
-                                        <property name="configure.options.additional" value="--enable-shared --enable-static --extra-cflags='-mmacosx-version-min=10.8'" />
-                                        <property name="path" value="${env.PATH}" />
-                                        <property name="ffmpeg.configure" value="${ffmpeg.configure}" />
-                                    </ant>
-                                </parallel>
-
+                                <ant antfile="${project.basedir}/build-ffmpeg.xml" inheritRefs="true">
+                                    <property name="arch" value="${arch}" />
+                                    <property name="configure.arch" value="${configure.arch}" />
+                                    <property name="host" value="${host}" />
+                                    <property name="target.os" value="${target.os}" />
+                                    <property name="cc" value="${ccompiler}" />
+                                    <property name="configure.options.additional" value="${configure.options.additional}" />
+                                    <property name="path" value="${env.PATH}" />
+                                    <property name="ffmpeg.configure" value="${ffmpeg.configure}" />
+                                </ant>
                             </target>
                         </configuration>
                         <phase>compile</phase>
@@ -276,24 +186,9 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/ffmpeg-sources-x86_64-macos.tar.bz2</file>
+                                    <file>${project.build.directory}/ffmpeg-sources-${arch}-${host}.tar.bz2</file>
                                     <type>tar.bz2</type>
-                                    <classifier>sources-x86_64-macos</classifier>
-                                </artifact>
-                                <artifact>
-                                    <file>${project.build.directory}/ffmpeg-sources-x86_64-win.tar.bz2</file>
-                                    <type>tar.bz2</type>
-                                    <classifier>sources-x86_64-win</classifier>
-                                </artifact>
-                                <artifact>
-                                    <file>${project.build.directory}/ffmpeg-sources-i386-win.tar.bz2</file>
-                                    <type>tar.bz2</type>
-                                    <classifier>sources-i386-win</classifier>
-                                </artifact>
-                                <artifact>
-                                    <file>${project.build.directory}/ffmpeg-sources.tar.bz2</file>
-                                    <type>tar.bz2</type>
-                                    <classifier>sources</classifier>
+                                    <classifier>sources-${arch}-${host}</classifier>
                                 </artifact>
                             </artifacts>
                         </configuration>

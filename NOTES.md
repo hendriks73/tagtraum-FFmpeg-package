@@ -5,6 +5,9 @@
     - Housekeeping (e.g. changed links to HTTPS where possible)
     - Updated source for bzip2
     - Removed obsolete ffmpeg-i386-macos (32bit macOS)
+    - Completely re-organized build and packaging
+    - Added Linux x64 build
+    - Moved to GitHub actions to automate build
 
 
 - 4.0.0

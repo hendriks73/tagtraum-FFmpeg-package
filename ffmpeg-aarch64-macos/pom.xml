@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.tagtraum</groupId>
@@ -7,14 +6,11 @@
         <version>4.0.6</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>libavcodec</artifactId>
-    <packaging>pom</packaging>
-    <name>libavcodec</name>
+    <artifactId>ffmpeg-aarch64-macos</artifactId>
+    <packaging>jar</packaging>
+    <name>ffmpeg-aarch64-macos</name>
     <description>
-        The libavcodec library provides a generic encoding/decoding framework and contains multiple decoders
-        and encoders for audio, video and subtitle streams, and several bitstream filters.
-        The shared architecture provides various services ranging from bit stream I/O to DSP optimizations, and makes
-        it suitable for implementing robust and fast codecs as well as for experimentation.
+        Static libraries for ARM 64 bit macOS.
     </description>
 
     <url>https://ffmpeg.org/</url>
@@ -75,10 +71,21 @@
                                 <property name="project.build.directory" value="${project.build.directory}" />
                                 <property name="project.basedir" value="${project.basedir}" />
                                 <property name="project.artifactId" value="${project.artifactId}" />
+                                <property name="arch" value="${arch}" />
+                                <property name="host" value="${host}" />
+
+                                <!-- create classes dir -->
+                                <mkdir dir="${project.build.directory}/classes/"/>
 
                                 <!-- copy libs -->
+                                <copy toDir="${project.build.directory}/classes/">
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/lib-${arch}-${host}/" />
+                                </copy>
+                                <!-- copy sources -->
                                 <copy toDir="${project.build.directory}">
-                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="lib-*/${project.artifactId}*"/>
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="libz-sources-${arch}-${host}.jar"/>
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="bzip2-sources-${arch}-${host}.jar"/>
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="ffmpeg-sources-${arch}-${host}.tar.bz2"/>
                                 </copy>
                             </target>
                         </configuration>
@@ -101,48 +108,26 @@
                         </goals>
                         <configuration>
                             <artifacts>
-
-                                <!-- macos -->
                                 <artifact>
-                                    <file>${project.build.directory}/lib-x86_64-macos/${project.artifactId}.a</file>
-                                    <type>a</type>
-                                    <classifier>x86_64-macos</classifier>
+                                    <file>${project.build.directory}/ffmpeg-sources-${arch}-${host}.tar.bz2</file>
+                                    <type>tar.bz2</type>
+                                    <classifier>ffmpeg-sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/lib-x86_64-macos/${project.artifactId}.dylib</file>
-                                    <type>dylib</type>
-                                    <classifier>x86_64-macos</classifier>
-                                </artifact>
-
-                                <!-- win -->
-                                <artifact>
-                                    <file>${project.build.directory}/lib-i386-win/${project.artifactId}.a</file>
-                                    <type>a</type>
-                                    <classifier>i386-win</classifier>
+                                    <file>${project.build.directory}/libz-sources-${arch}-${host}.jar</file>
+                                    <type>jar</type>
+                                    <classifier>libz-sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/lib-i386-win/${project.artifactId}.dll</file>
-                                    <type>dll</type>
-                                    <classifier>i386-win</classifier>
+                                    <file>${project.build.directory}/bzip2-sources-${arch}-${host}.jar</file>
+                                    <type>jar</type>
+                                    <classifier>bzip2-sources</classifier>
                                 </artifact>
-                                <artifact>
-                                    <file>${project.build.directory}/lib-x86_64-win/${project.artifactId}.a</file>
-                                    <type>a</type>
-                                    <classifier>x86_64-win</classifier>
-                                </artifact>
-                                <artifact>
-                                    <file>${project.build.directory}/lib-x86_64-win/${project.artifactId}.dll</file>
-                                    <type>dll</type>
-                                    <classifier>x86_64-win</classifier>
-                                </artifact>
-
                             </artifacts>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
-
     </build>
 </project>

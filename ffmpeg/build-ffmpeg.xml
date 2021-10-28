@@ -11,12 +11,12 @@
         <chmod perm="ugo+rx" dir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${ffmpeg.version}/compat/windows/" includes="**/*"/>
 
         <!-- configure -->
-        <echo>./configure ${ffmpeg.configure} --target-os=${target.os} --arch=${arch} --cc=&quot;${cc}&quot; ${configure.options.additional}</echo>
+        <echo>./configure ${ffmpeg.configure} --target-os=${target.os} --arch=${configure.arch} --cc=&quot;${cc}&quot; ${configure.options.additional}</echo>
         <exec dir="${project.build.directory}/ffmpeg-${arch}-${host}/ffmpeg-${ffmpeg.version}"
               executable="${sh}"
               failonerror="true">
             <env key="PATH" path="${path}"/>
-            <arg line="configure ${ffmpeg.configure} --target-os=${target.os} --arch=${arch} --cc=&quot;${cc}&quot; ${configure.options.additional}"/>
+            <arg line="configure ${ffmpeg.configure} --target-os=${target.os} --arch=${configure.arch} --cc=&quot;${cc}&quot; ${configure.options.additional}"/>
         </exec>
         <!-- build source jar to attach as artifact later on -->
         <tar destfile="${project.build.directory}/ffmpeg-sources-${arch}-${host}.tar.bz2"

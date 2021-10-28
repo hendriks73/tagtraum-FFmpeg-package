@@ -7,10 +7,10 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>ffmpeg-x86_64-macos</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <name>ffmpeg-x86_64-macos</name>
     <description>
-        Static libraries for 64 bit macOS.
+        Static libraries for x86 64 bit macOS.
     </description>
 
     <url>https://ffmpeg.org/</url>
@@ -58,55 +58,76 @@
         <tag>HEAD</tag>
     </scm>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.tagtraum</groupId>
-            <artifactId>libavformat</artifactId>
-            <version>${project.version}</version>
-            <type>a</type>
-            <classifier>x86_64-macos</classifier>
-        </dependency>
-        <dependency>
-            <groupId>com.tagtraum</groupId>
-            <artifactId>libavcodec</artifactId>
-            <version>${project.version}</version>
-            <type>a</type>
-            <classifier>x86_64-macos</classifier>
-        </dependency>
-        <dependency>
-            <groupId>com.tagtraum</groupId>
-            <artifactId>libavutil</artifactId>
-            <version>${project.version}</version>
-            <type>a</type>
-            <classifier>x86_64-macos</classifier>
-        </dependency>
-        <dependency>
-            <groupId>com.tagtraum</groupId>
-            <artifactId>libswresample</artifactId>
-            <version>${project.version}</version>
-            <type>a</type>
-            <classifier>x86_64-macos</classifier>
-        </dependency>
-        <dependency>
-            <groupId>com.tagtraum</groupId>
-            <artifactId>libz</artifactId>
-            <version>${project.version}</version>
-            <type>a</type>
-            <classifier>x86_64-macos</classifier>
-        </dependency>
-        <dependency>
-            <groupId>com.tagtraum</groupId>
-            <artifactId>libbz2</artifactId>
-            <version>${project.version}</version>
-            <type>a</type>
-            <classifier>x86_64-macos</classifier>
-        </dependency>
-        <dependency>
-            <groupId>com.tagtraum</groupId>
-            <artifactId>ffmpeg</artifactId>
-            <version>${project.version}</version>
-            <type>tar.bz2</type>
-            <classifier>sources-x86_64-macos</classifier>
-        </dependency>
-    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <target>
+                                <property environment="env" />
+                                <property name="project.build.directory" value="${project.build.directory}" />
+                                <property name="project.basedir" value="${project.basedir}" />
+                                <property name="project.artifactId" value="${project.artifactId}" />
+                                <property name="arch" value="${arch}" />
+                                <property name="host" value="${host}" />
+
+                                <!-- create classes dir -->
+                                <mkdir dir="${project.build.directory}/classes/"/>
+
+                                <!-- copy libs -->
+                                <copy toDir="${project.build.directory}/classes/">
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/lib-${arch}-${host}/" />
+                                </copy>
+                                <!-- copy sources -->
+                                <copy toDir="${project.build.directory}">
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="libz-sources-${arch}-${host}.jar"/>
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="bzip2-sources-${arch}-${host}.jar"/>
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="ffmpeg-sources-${arch}-${host}.tar.bz2"/>
+                                </copy>
+                            </target>
+                        </configuration>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/ffmpeg-sources-${arch}-${host}.tar.bz2</file>
+                                    <type>tar.bz2</type>
+                                    <classifier>ffmpeg-sources</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${project.build.directory}/libz-sources-${arch}-${host}.jar</file>
+                                    <type>jar</type>
+                                    <classifier>libz-sources</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${project.build.directory}/bzip2-sources-${arch}-${host}.jar</file>
+                                    <type>jar</type>
+                                    <classifier>bzip2-sources</classifier>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

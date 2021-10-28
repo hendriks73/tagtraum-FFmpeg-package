@@ -28,7 +28,7 @@
               failonerror="true">
             <env key="PATH" path="${path}"/>
             <env key="CC" value="${cc}"/>
-            <arg line="configure --archs=&quot;-arch ${arch}&quot;"/>
+            <arg line="configure --archs=&quot;-arch ${configure.arch}&quot;"/>
         </exec>
     </target>
 
