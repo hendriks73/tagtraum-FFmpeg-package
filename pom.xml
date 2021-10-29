@@ -224,7 +224,7 @@
         <!-- Windows-specific Config 32 bit-->
         <profile>
             <!-- must be explicitly activated! -->
-            <id>platform-win-x86</id>
+            <id>ffmpeg-i386-win</id>
             <modules>
                 <module>ffmpeg-i386-win</module>
             </modules>
@@ -247,7 +247,7 @@
         <!-- Windows-specific Config 64 bit-->
         <profile>
             <!-- must be explicitly activated! -->
-            <id>platform-win-x64</id>
+            <id>ffmpeg-x86_64-win</id>
             <modules>
                 <module>ffmpeg-x86_64-win</module>
             </modules>
@@ -269,7 +269,7 @@
 
         <!-- Mac-x86_64-specific Config -->
         <profile>
-            <id>platform-mac-x64</id>
+            <id>ffmpeg-x86_64-macos</id>
             <!-- must be explicitly activated! -->
             <modules>
                 <module>ffmpeg-x86_64-macos</module>
@@ -289,7 +289,7 @@
 
         <!-- Mac-aarch64-specific Config -->
         <profile>
-            <id>platform-mac-aarch64</id>
+            <id>ffmpeg-aarch64-macos</id>
             <!-- must be explicitly activated! -->
             <modules>
                 <module>ffmpeg-aarch64-macos</module>
@@ -309,7 +309,7 @@
 
         <!-- Linux-specific Config -->
         <profile>
-            <id>platform-linux-x64</id>
+            <id>ffmpeg-x86_64-unix</id>
             <activation>
                 <os>
                     <family>unix</family>
