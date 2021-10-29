@@ -13,13 +13,11 @@ Developer
 
     To build the <tagtraum FFmpeg package>, you need:
 
-        * git
+        * Maven
 
-        * Maven 3.0.5, {{https://maven.apache.org/}}
+        * A suitable GCC toolchain
 
-        * a MinGW-w64 crosscompiler, {{https://mingw-w64.sourceforge.net/}}, e.g. via {{{https://mingw-w64.org/doku.php/download/macports}MacPorts}}
-
-        * Apple Command Line Tools, available via {{https://developer.apple.com/}}, or XCode, {{https://developer.apple.com/xcode/}}
+        * YASM
 
         * a JDK (to run Maven)
 
@@ -29,40 +27,28 @@ Developer
 git clone git@github.com:hendriks73/tagtraum-FFmpeg-package.git tagtraum-ffmpeg-package
 +-------------------------------+
 
-    Then you still need to adjust some properties in the parent <<<pom.xml>>>.
-    Or.. simply override them using <<<-Dname=value>>> notation.
+    Once all pre-requisites are in place, you must invoke the *right* profile.
+    Automatic activation is *off* by default.
 
-    If you didn't add the <<<bin>>> folder of your crosscompilers to the <<<PATH>>>, you need
-    to set <<<-Dmingw.i386.path=...>>> and <<<-Dmingw.x86_64.path=...>>>
-
-    So all in all, something like the following might work for you, depending on where
-    you installed MinGW-w64:
+    To build the package for macOS (x86_64), run
 
 +-------------------------------+
-mvn -Dmingw.i386.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
-    -Dmingw.x86_64.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
-    clean install
+mvn --activate-profiles compile,ffmpeg-x86_64-macos install
 +-------------------------------+
 
-    In order to configure FFmpeg differently, simply specify the <<<ffmpeg.configure>>> property.
-    For example, to configure with all standard options, run:
+    The profile <<<compile>>> ensures that FFmpeg and other sources are downloaded and built.
+    <<<ffmpeg-x86_64-macos>>> packages the resulting static library files <<<*.a>>> into a jar
+    with the artifact name <<<ffmpeg-x86_64-macos>>> and group id <<<com.tagtraum>>>.
+
+    If you would like to change the FFmpeg configuration, add
 
 +-------------------------------+
-mvn -Dmingw.i386.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
-    -Dmingw.x86_64.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
-    -Dffmpeg.configure=--enable-static \
-    clean install
+"-Dffmpeg.configure=--enable-static --disable-programs ... "
 +-------------------------------+
 
-    Note that in order to specify multiple configuration options for <<<ffmpeg.configure>>>
-    you have to quote the <whole> parameter. E.g.:
+    Note that you need to add quotes around the entire <<<-D>>> parameter to allow for spaces
+    in the value part.
 
-+-------------------------------+
-mvn -Dmingw.i386.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
-    -Dmingw.x86_64.path=/Users/YOUR_ID/mingw/mingw-w32-i686/bin \
-    "-Dffmpeg.configure=--enable-static --disable-programs --disable-doc" \
-    clean install
-+-------------------------------+
 
     If you decide to release a custom built of this package via a public Maven repository,
     you <must> use a different Maven <<<groupId>>> and honor LGPL 2.1.

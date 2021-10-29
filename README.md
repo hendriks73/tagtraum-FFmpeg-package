@@ -6,7 +6,7 @@
 
 The *tagtraum FFmpeg package* is a binary release of some of the libraries released by
 the [FFmpeg](https://www.ffmpeg.org) project. Its purpose is to provide easy access
-to Windows and macOS binaries and sources for decoding audio via a
+to Windows, macOS, and Linux binaries and sources for decoding audio via a
 [Maven](https://maven.apache.org/) repository.
 
 Thus it serves as an upstream project for [Java JNI projects wishing to interface
@@ -23,23 +23,28 @@ This distribution comes with absolutely no support, warranty etc. you name it.
 
 ## Build
 
-Currently you can only build this library on OS X.
+Currently, this library is built automatically via [GitHub Actions](https://github.com/features/actions). 
 
-To do so, you also need:
+If you want to build it yourself, you'll need:
 
-- Maven 3.0.5, https://maven.apache.org/
-- a MinGW-w64 crosscompiler, https://mingw-w64.sourceforge.net/, e.g. via [MacPorts](https://mingw-w64.org/doku.php/download/macports)
-- Apple Command Line Tools, available via https://developer.apple.com/, or XCode, https://developer.apple.com/xcode/
+- [Maven](https://maven.apache.org/)
+- [Apple Command Line Tools](https://developer.apple.com/) or [Xcode](https://developer.apple.com/xcode/) for macOS
+- MSYS2 for Windows with a GCC toolchain (`mingw-w64-i686-toolchain` / `mingw-w64-x86_64-toolchain`)
+- [YASM](https://yasm.tortall.net/releases/Release1.3.0.html), available via `brew install yasm` (macOS), `pacman -S mingw-w64-x86_64-yasm` (msys2 for 64bit Windows), `pacman -S mingw-w64-i686-yasm` (msys2 for 64bit Windows, crosscompile for 32bit Windows) or whatever your Linux distro makes you do 
 - a JDK (to run Maven)
 
-Once you have all this, you need to adjust some properties in the parent `pom.xml`.
-Or.. simply override them using `-Dname=value` notation. E.g. to build with
-another version of zlib, add
+Once all pre-requisites are in place, you must invoke the *right* profile.
+Automatic activation is *off* by default.
 
-    -Dzlib.version=1.2.7
+To build the package for macOS (x86_64), run
 
-to your `mvn` call. If you didn't add the `bin` folder of your crosscompiler to the
-`PATH`, you might also want to set `-Dmingw.i386.path=...` and `-Dmingw.x86_64.path=...`
+```shell
+$ mvn --activate-profiles compile,ffmpeg-x86_64-macos install
+```
+
+The profile `compile` ensures that FFmpeg and other sources are downloaded and built.
+`ffmpeg-x86_64-macos` packages the resulting static library files `*.a` into a jar
+with the artifact name `ffmpeg-x86_64-macos` and group id `com.tagtraum`.
 
 If you would like to change the FFmpeg configuration, add
 

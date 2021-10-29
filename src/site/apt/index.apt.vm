@@ -34,7 +34,6 @@ How to use
     <!-- <artifactId>ffmpeg-x86_64-win</artifactId> -->
     <!-- <artifactId>ffmpeg-i386-win</artifactId> -->
     <version>${projectversion}</version>
-    <type>pom</type>
 </dependency>
 ---
 
@@ -51,8 +50,9 @@ How to use
 
 Requirements
 
-    Both 32 bit and 64 bit are supported on Windows and macOS.
-    tagtraum FFmpeg package requires OS X 10.8 or later.
+    Both 32 bit and 64 bit are supported on Windows.
+    aarch64 and x86_64 on macOS 10.8 or later.
+    x86_64 on Linux.
 
 License
 
