@@ -38,6 +38,7 @@
             <env key="PATH" path="${path}"/>
             <!-- allow parallel compilation -->
             <arg value="-j4"/>
+            <arg value="V=1"/>
         </exec>
 
         <!-- copy results -->

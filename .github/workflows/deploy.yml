@@ -30,7 +30,7 @@ jobs:
 
       - name: Install Tools
         run: |
-          pacman --noconfirm -S mingw-w64-x86_64-yasm make diffutils
+          pacman --noconfirm -S mingw-w64-x86_64-yasm
 
       - id: install-secret-key
         name: Install gpg secret key
@@ -92,7 +92,7 @@ jobs:
 
       - name: Install Tools
         run: |
-          pacman --noconfirm -S mingw-w64-i686-yasm make diffutils
+          pacman --noconfirm -S mingw-w64-i686-yasm
 
       - id: install-secret-key
         name: Install gpg secret key
@@ -105,7 +105,7 @@ jobs:
       - name: Set up publication to Maven Central
         uses: actions/setup-java@v1
         with:
-          java-version: 9
+          java-version: 17
           architecture: x64
           server-id: ossrh
           server-username: MAVEN_USERNAME
