@@ -1,7 +1,7 @@
 # NOTES.md
 
-- 4.0.6
-    - Release for FFmpeg 4.0.6.
+- 4.0.1
+    - Release for FFmpeg 4.0.1.
     - Housekeeping (e.g. changed links to HTTPS where possible)
     - Updated source for bzip2
     - Removed obsolete ffmpeg-i386-macos (32bit macOS)
