@@ -43,7 +43,7 @@ jobs:
       - name: Set up publication to Maven Central
         uses: actions/setup-java@v1
         with:
-          java-version: 17
+          java-version: 11
           architecture: x64
           server-id: ossrh
           server-username: MAVEN_USERNAME
@@ -105,7 +105,7 @@ jobs:
       - name: Set up publication to Maven Central
         uses: actions/setup-java@v1
         with:
-          java-version: 17
+          java-version: 11
           architecture: x64
           server-id: ossrh
           server-username: MAVEN_USERNAME
@@ -157,7 +157,7 @@ jobs:
       - name: Set up publication to Maven Central
         uses: actions/setup-java@v1
         with:
-          java-version: 17
+          java-version: 11
           architecture: x64
           server-id: ossrh
           server-username: MAVEN_USERNAME
@@ -209,7 +209,7 @@ jobs:
       - name: Set up publication to Maven Central
         uses: actions/setup-java@v1
         with:
-          java-version: 17
+          java-version: 11
           architecture: x64
           server-id: ossrh
           server-username: MAVEN_USERNAME
@@ -262,7 +262,7 @@ jobs:
       - name: Set up publication to Maven Central
         uses: actions/setup-java@v1
         with:
-          java-version: 17
+          java-version: 11
           architecture: x64
           server-id: ossrh
           server-username: MAVEN_USERNAME
