@@ -1,5 +1,11 @@
 # NOTES.md
 
+- 4.0.2
+    - Release for FFmpeg 4.0.2
+    - Only build static zlib
+    - Enable position independent code (--enable-pic)
+
+
 - 4.0.1
     - Release for FFmpeg 4.0.1.
     - Housekeeping (e.g. changed links to HTTPS where possible)
@@ -11,9 +17,9 @@
 
 
 - 4.0.0
-  - Changed versioning and naming schemes.
-  - Release for FFmpeg 4.0.0.
-  - Enabled multi-core compilation.
+  - Changed versioning and naming schemes
+  - Release for FFmpeg 4.0.0
+  - Enabled multi-core compilation
 
 
 - 1.13.1

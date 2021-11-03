@@ -28,7 +28,7 @@
               if:true="configure.arch">
             <env key="PATH" path="${path}"/>
             <env key="CC" value="${cc}"/>
-            <arg line="configure --archs=&quot;-arch ${configure.arch}&quot;"/>
+            <arg line="configure --static --archs=&quot;-arch ${configure.arch}&quot;"/>
         </exec>
 
         <exec dir="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}"
@@ -37,7 +37,7 @@
               unless:true="configure.arch">
             <env key="PATH" path="${path}"/>
             <env key="CC" value="${cc}"/>
-            <arg line="configure"/>
+            <arg line="configure --static"/>
         </exec>
 
         <loadfile property="configure.log" srcFile="${project.build.directory}/zlib-${arch}-${host}/zlib-${zlib.version}/configure.log" />
