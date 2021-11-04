@@ -203,7 +203,7 @@
     </issueManagement>
 
     <properties>
-        <ffmpeg.configure>--enable-pic --enable-small --disable-programs --disable-doc --disable-avfilter --disable-postproc --disable-swscale --disable-avdevice --disable-filters --disable-decoder=flash*,truemotion*,tmv,eacmv,eamad,eatgq,eatgv,eatqi,flic,h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo,msvideo*,vp*,aic,amv,asv*,aura,aura2,avr*,c93,clearvideo,cinepak,cljr,cllc,cpia,dirac,hevc,rtp*,srtp,vc1,swf,indeo*,v2*,v3*,v4* --disable-demuxer=h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo,vp*,aic,amv,asv*,aura,aura2,avr*,c93,clearvideo,cinepak,cljr,cllc,cpia,dirac,hevc,rtp*,srtp,vc1,swf,flic,flv,segafilm,v2*,v3*,v4*,tmv,filmstrip --disable-encoders --enable-encoder=pcm* --disable-parser=h2*,vc1,vp*,dirac,hevc,rv* --disable-protocol=rt*,srt*,gopher,ftp --disable-muxers --disable-indevs --disable-outdevs --disable-iconv --disable-dxva2</ffmpeg.configure>
+        <ffmpeg.configure>--enable-static --enable-pic --enable-small --disable-programs --disable-doc --disable-avfilter --disable-postproc --disable-swscale --disable-avdevice --disable-filters --disable-decoder=flash*,truemotion*,tmv,eacmv,eamad,eatgq,eatgv,eatqi,flic,h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo,msvideo*,vp*,aic,amv,asv*,aura,aura2,avr*,c93,clearvideo,cinepak,cljr,cllc,cpia,dirac,hevc,rtp*,srtp,vc1,swf,indeo*,v2*,v3*,v4* --disable-demuxer=h26*,msmpeg*,mpeg2*,mpeg4*,mpeg_vdpau,mpeg_xvmc,mpegvideo,vp*,aic,amv,asv*,aura,aura2,avr*,c93,clearvideo,cinepak,cljr,cllc,cpia,dirac,hevc,rtp*,srtp,vc1,swf,flic,flv,segafilm,v2*,v3*,v4*,tmv,filmstrip --disable-encoders --enable-encoder=pcm* --disable-parser=h2*,vc1,vp*,dirac,hevc,rv* --disable-protocol=rt*,srt*,gopher,ftp --disable-muxers --disable-indevs --disable-outdevs --disable-iconv --disable-dxva2</ffmpeg.configure>
         <make>/usr/bin/make</make>
         <sh>/bin/sh</sh>
         <ccompiler>gcc</ccompiler>
@@ -219,7 +219,7 @@
         <bzip2version>${bzip2.version}</bzip2version>
         <zlibversion>${zlib.version}</zlibversion>
         <ffmpegconfigure>${ffmpeg.configure}</ffmpegconfigure>
-
+        <configure.options.additional/>
     </properties>
 
     <profiles>
@@ -251,7 +251,6 @@
                 <ccompiler>gcc</ccompiler>
                 <configure>false</configure>
                 <target.os>mingw32</target.os>
-                <configure.options.additional>--enable-static</configure.options.additional>
             </properties>
         </profile>
 
@@ -274,7 +273,6 @@
                 <ccompiler>gcc</ccompiler>
                 <configure>false</configure>
                 <target.os>mingw32</target.os>
-                <configure.options.additional>--enable-static</configure.options.additional>
             </properties>
         </profile>
 
@@ -294,7 +292,7 @@
                 <ccompiler>gcc -arch ${arch} -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/</ccompiler>
                 <configure>true</configure>
                 <target.os>darwin</target.os>
-                <configure.options.additional>--enable-static --extra-cflags='-mmacosx-version-min=10.8'</configure.options.additional>
+                <configure.options.additional>--extra-cflags='-mmacosx-version-min=10.8'</configure.options.additional>
             </properties>
         </profile>
 
@@ -314,7 +312,7 @@
                 <ccompiler>gcc -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/</ccompiler>
                 <configure>true</configure>
                 <target.os>darwin</target.os>
-                <configure.options.additional>--enable-cross-compile --enable-static --extra-cflags='-mmacosx-version-min=11.0'</configure.options.additional>
+                <configure.options.additional>--enable-cross-compile --extra-cflags='-mmacosx-version-min=11.0'</configure.options.additional>
             </properties>
         </profile>
 
@@ -339,7 +337,6 @@
                 <ccompiler>gcc</ccompiler>
                 <configure>true</configure>
                 <target.os>linux</target.os>
-                <configure.options.additional>--enable-static</configure.options.additional>
             </properties>
         </profile>
 
