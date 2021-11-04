@@ -39,7 +39,6 @@
             <arg line="-f libbz2.a"/>
         </exec>
 
-        <!-- make dynamic is missing -->
     </target>
 
 </project>

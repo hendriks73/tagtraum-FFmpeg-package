@@ -6,8 +6,8 @@
 
 The *tagtraum FFmpeg package* is a binary release of some of the libraries released by
 the [FFmpeg](https://www.ffmpeg.org) project. Its purpose is to provide easy access
-to Windows, macOS, and Linux binaries and sources for decoding audio via a
-[Maven](https://maven.apache.org/) repository.
+to Windows, macOS, and Linux (currently Ubuntu) binaries and sources for decoding audio
+via a [Maven](https://maven.apache.org/) repository.
 
 Thus it serves as an upstream project for [Java JNI projects wishing to interface
 with the native libraries](https://www.tagtraum.com/ffsampledsp/).
@@ -54,6 +54,9 @@ Note that you need to add quotes around the entire `-D` parameter to allow for s
 in the value part.
 
 
-Enjoy,
+## Release Notes
 
--hendrik
+Please see [here](NOTES.md).
+
+
+Enjoy.

@@ -2,13 +2,14 @@
 
 - 4.0.3
     - Release for FFmpeg 4.0.3
-    - Added missing `libz.a` for unix built 
+    - Added missing `libz.a` for unix built
+    - Build unix maven artifact on ubuntu-18.04 (was ubuntu-20.04)
 
 
 - 4.0.2
     - Release for FFmpeg 4.0.2
     - Only build static zlib
-    - Enable position independent code (--enable-pic)
+    - Enable position independent code (`--enable-pic`)
 
 
 - 4.0.1
