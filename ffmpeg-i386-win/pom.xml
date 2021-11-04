@@ -79,7 +79,7 @@
 
                                 <!-- copy libs -->
                                 <copy toDir="${project.build.directory}/classes/">
-                                    <fileset dir="${project.basedir}/../ffmpeg/target/lib-${arch}-${host}/" />
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/lib-${arch}-${host}/" includes="**/*.a"/>
                                 </copy>
                                 <!-- copy sources -->
                                 <copy toDir="${project.build.directory}">
