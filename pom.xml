@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.tagtraum</groupId>
-    <version>4.0.2</version>
+    <version>4.0.3</version>
     <artifactId>ffmpeg-package</artifactId>
     <packaging>pom</packaging>
     <name>tagtraum FFmpeg package</name>
@@ -210,7 +210,7 @@
 
         <bzip2.version>1.0.8</bzip2.version>
         <zlib.version>1.2.11</zlib.version>
-        <ffmpeg.version>4.0.2</ffmpeg.version>
+        <ffmpeg.version>4.0.3</ffmpeg.version>
 
         <!-- aliases, because of http://maven.apache.org/plugins/maven-site-plugin/examples/creating-content.html#Filtering -->
         <project.version>${project.version}</project.version>
@@ -337,7 +337,7 @@
                 <prefix/>
                 <makefile>Makefile</makefile>
                 <ccompiler>gcc</ccompiler>
-                <configure>false</configure>
+                <configure>true</configure>
                 <target.os>linux</target.os>
                 <configure.options.additional>--enable-static</configure.options.additional>
             </properties>

@@ -1,5 +1,10 @@
 # NOTES.md
 
+- 4.0.3
+    - Release for FFmpeg 4.0.3
+    - Added missing `libz.a` for unix built 
+
+
 - 4.0.2
     - Release for FFmpeg 4.0.2
     - Only build static zlib
