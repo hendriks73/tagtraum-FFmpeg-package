@@ -31,6 +31,14 @@
             </fileset>
         </copy>
 
+        <!-- log architecture, just for verification -->
+        <exec dir="${project.build.directory}/lib-${arch}-${host}/"
+              executable="objdump"
+              failonerror="false">
+            <env key="PATH" path="${path}"/>
+            <arg line="-f libbz2.a"/>
+        </exec>
+
         <!-- make dynamic is missing -->
     </target>
 

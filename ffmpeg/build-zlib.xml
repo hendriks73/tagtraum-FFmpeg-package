@@ -69,6 +69,13 @@
             <globmapper from="*" to="libz.dll"/>
         </copy>
 
+        <!-- log architecture, just for verification -->
+        <exec dir="${project.build.directory}/lib-${arch}-${host}/"
+              executable="objdump"
+              failonerror="false">
+            <env key="PATH" path="${path}"/>
+            <arg line="-f libz.a"/>
+        </exec>
     </target>
 
 </project>
