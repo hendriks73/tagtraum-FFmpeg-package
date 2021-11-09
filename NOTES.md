@@ -1,5 +1,11 @@
 # NOTES.md
 
+- 4.0.4
+    - Release for FFmpeg 4.0.4
+    - Added automatic deployment to tagtraum site
+    - Updated reports, site, etc. plugins
+
+
 - 4.0.3
     - Release for FFmpeg 4.0.3
     - Added missing `libz.a` for unix built

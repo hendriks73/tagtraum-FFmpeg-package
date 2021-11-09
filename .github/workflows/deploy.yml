@@ -293,3 +293,22 @@ jobs:
             --activate-profiles release,ffmpeg-x86_64-macos \
             --file pom.xml  \
             deploy
+
+      - name: Set up publication to tagtraum
+        uses: actions/setup-java@v1
+        with:
+          java-version: 9
+          server-id: tagtraum-site
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+
+      - name: Publish to tagtraum
+        env:
+          MAVEN_USERNAME: ${{ secrets.TAGTRAUM_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.TAGTRAUM_PASSWORD }}
+        run: |
+          mvn --no-transfer-progress \
+            --batch-mode \
+            --activate-profiles compile,ffmpeg-x86_64-macos \
+            --file pom.xml  \
+            clean install site:site site:deploy
