@@ -20,6 +20,41 @@ This distribution comes with absolutely no support, warranty etc. you name it.
 
 *tagtraum FFmpeg package's* online home is at https://www.tagtraum.com/ffmpeg/
 
+## Usage
+
+To use this package, simply introduce a Maven dependency like this:
+
+```xml
+<dependency>
+    <groupId>com.tagtraum</groupId>
+    <artifactId>ffmpeg-x86_64-macos</artifactId>
+    <!-- <artifactId>ffmpeg-aarch64-macos</artifactId> -->
+    <!-- <artifactId>ffmpeg-x86_64-win</artifactId> -->
+    <!-- <artifactId>ffmpeg-i386-win</artifactId> -->
+    <!-- <artifactId>ffmpeg-x86_64-unix</artifactId> -->
+    <version>4.0.3</version>
+</dependency>
+```
+
+The dependency is a `.jar` file containing static libraries. To compile
+against them, you will need to first `unpack` the jar, for example using the
+[dependency:unpack](https://maven.apache.org/plugins/maven-dependency-plugin/usage.html#dependency:unpack).
+goal.
+
+Should you need sources to compile your native code against, use
+a dependency like this:
+
+```xml
+<dependency>
+    <groupId>com.tagtraum</groupId>
+    <artifactId>ffmpeg-x86_64-macos</artifactId>
+    <type>tar.bz2</type>
+    <classifier>ffmpeg-sources</classifier>
+    <scope>provided</scope>
+</dependency>
+```
+
+Again, you will need to `unpack` this to use it.
 
 ## Build
 
