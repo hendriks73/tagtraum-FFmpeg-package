@@ -31,22 +31,14 @@ How to use
 <dependency>
     <groupId>com.tagtraum</groupId>
     <artifactId>ffmpeg-x86_64-macos</artifactId>
+    <!-- <artifactId>ffmpeg-aarch64-macos</artifactId> -->
     <!-- <artifactId>ffmpeg-x86_64-win</artifactId> -->
     <!-- <artifactId>ffmpeg-i386-win</artifactId> -->
+    <!-- <artifactId>ffmpeg-x86_64-unix</artifactId> -->
     <version>${projectversion}</version>
 </dependency>
 ---
 
-   If Maven can't resolve this dependency, you might also want to add the following
-   repository to the repositories section of your pom:
-
----
-<repository>
-    <id>beatunes</id>
-    <name>beaTunes Repository</name>
-    <url>https://www.beatunes.com/repo/maven2</url>
-</repository>
----
 
 Requirements
 

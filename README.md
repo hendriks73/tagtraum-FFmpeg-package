@@ -32,7 +32,6 @@ To use this package, simply introduce a Maven dependency like this:
     <!-- <artifactId>ffmpeg-x86_64-win</artifactId> -->
     <!-- <artifactId>ffmpeg-i386-win</artifactId> -->
     <!-- <artifactId>ffmpeg-x86_64-unix</artifactId> -->
-    <version>4.0.3</version>
 </dependency>
 ```
 
