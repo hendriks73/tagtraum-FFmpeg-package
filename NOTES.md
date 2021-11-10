@@ -1,8 +1,12 @@
 # NOTES.md
 
+- 4.0.5
+  - Release for FFmpeg 4.0.5
+  - Fixed automatic deployment to tagtraum site
+
+
 - 4.0.4
     - Release for FFmpeg 4.0.4
-    - Added automatic deployment to tagtraum site
     - Updated reports, site, etc. plugins
 
 
