@@ -1,0 +1,133 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.tagtraum</groupId>
+        <artifactId>ffmpeg-package</artifactId>
+        <version>4.0.6</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>ffmpeg-aarch64-unix</artifactId>
+    <packaging>jar</packaging>
+    <name>ffmpeg-aarch64-unix</name>
+    <description>
+        Static libraries for 64 bit ARM Unix/Linux.
+    </description>
+
+    <url>https://ffmpeg.org/</url>
+    <organization>
+        <name>FFmpeg.org</name>
+        <url>https://ffmpeg.org/</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>ffmpeg</id>
+            <name>FFmpeg Team</name>
+            <email>ffmpeg-devel@ffmpeg.org</email>
+            <url>https://ffmpeg.org/mailman/listinfo/ffmpeg-devel/</url>
+            <organization>FFmpeg.org</organization>
+            <organizationUrl>https://ffmpeg.org/</organizationUrl>
+        </developer>
+    </developers>
+    <issueManagement>
+        <system>trac</system>
+        <url>https://ffmpeg.org/trac/ffmpeg</url>
+    </issueManagement>
+    <mailingLists>
+        <mailingList>
+            <name>Libav User</name>
+            <subscribe>libav-user-join@ffmpeg.org</subscribe>
+            <unsubscribe>libav-user-leave@ffmpeg.org</unsubscribe>
+            <post>libav-user@ffmpeg.org</post>
+            <archive>https://ffmpeg.org/pipermail/libav-user/</archive>
+            <otherArchives>
+                <otherArchive>http://libav-users.943685.n4.nabble.com</otherArchive>
+            </otherArchives>
+        </mailingList>
+        <mailingList>
+            <name>FFmpeg Devel</name>
+            <subscribe>ffmpeg-devel-join@ffmpeg.org</subscribe>
+            <unsubscribe>ffmpeg-devel-leave@ffmpeg.org</unsubscribe>
+            <post>ffmpeg-devel@ffmpeg.org</post>
+            <archive>https://ffmpeg.org/pipermail/ffmpeg-devel/</archive>
+        </mailingList>
+    </mailingLists>
+    <scm>
+        <connection>scm:git:git://source.ffmpeg.org/ffmpeg.git</connection>
+        <developerConnection>scm:git:git://source.ffmpeg.org/ffmpeg.git</developerConnection>
+        <url>http://git.videolan.org/?p=ffmpeg.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <target>
+                                <property environment="env" />
+                                <property name="project.build.directory" value="${project.build.directory}" />
+                                <property name="project.basedir" value="${project.basedir}" />
+                                <property name="project.artifactId" value="${project.artifactId}" />
+                                <property name="arch" value="${arch}" />
+                                <property name="host" value="${host}" />
+
+                                <!-- create classes dir -->
+                                <mkdir dir="${project.build.directory}/classes/"/>
+
+                                <!-- copy libs -->
+                                <copy toDir="${project.build.directory}/classes/">
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/lib-${arch}-${host}/" />
+                                </copy>
+                                <!-- copy sources -->
+                                <copy toDir="${project.build.directory}">
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="libz-sources-${arch}-${host}.jar"/>
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="bzip2-sources-${arch}-${host}.jar"/>
+                                    <fileset dir="${project.basedir}/../ffmpeg/target/" includes="ffmpeg-sources-${arch}-${host}.tar.bz2"/>
+                                </copy>
+                            </target>
+                        </configuration>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/ffmpeg-sources-${arch}-${host}.tar.bz2</file>
+                                    <type>tar.bz2</type>
+                                    <classifier>ffmpeg-sources</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${project.build.directory}/libz-sources-${arch}-${host}.jar</file>
+                                    <type>jar</type>
+                                    <classifier>libz-sources</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${project.build.directory}/bzip2-sources-${arch}-${host}.jar</file>
+                                    <type>jar</type>
+                                    <classifier>bzip2-sources</classifier>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
