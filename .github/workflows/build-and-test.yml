@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ macos-10.15, macos-latest ]
+        os: [ macos-12, macos-latest ]
         arch: [ x64, aarch64 ]
         include:
           - arch: x64
@@ -103,7 +103,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-18.04, ubuntu-latest ]
+        os: [ ubuntu-20.04, ubuntu-latest ]
         arch: [ x64 ]
         include:
           - arch: x64

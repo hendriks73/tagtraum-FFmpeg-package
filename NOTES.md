@@ -1,5 +1,9 @@
 # NOTES.md
 
+- 4.0.6 ?
+  - Updated GH actions build operating systems for macOS and Ubuntu 
+
+
 - 4.0.6
   - Release for FFmpeg 4.0.6
 
