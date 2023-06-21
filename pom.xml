@@ -211,7 +211,7 @@
         <ccompiler>gcc</ccompiler>
 
         <bzip2.version>1.0.8</bzip2.version>
-        <zlib.version>1.2.11</zlib.version>
+        <zlib.version>1.2.13</zlib.version>
         <ffmpeg.version>4.0.6</ffmpeg.version>
 
         <!-- aliases, because of http://maven.apache.org/plugins/maven-site-plugin/examples/creating-content.html#Filtering -->
@@ -318,7 +318,7 @@
             </properties>
         </profile>
 
-        <!-- Linux-specific Config -->
+        <!-- Linux-specific x86_64 Config -->
         <profile>
             <id>ffmpeg-x86_64-unix</id>
             <activation>
@@ -334,6 +334,30 @@
                 <arch>x86_64</arch>
                 <configure.arch>false</configure.arch>
                 <host>unix</host>
+                <prefix/>
+                <makefile>Makefile</makefile>
+                <ccompiler>gcc</ccompiler>
+                <configure>true</configure>
+                <target.os>linux</target.os>
+            </properties>
+        </profile>
+
+        <!-- Linux-specific aarch64 Config -->
+        <profile>
+            <id>ffmpeg-aarch64-unix</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <name>!mac os x</name>
+                </os>
+            </activation>
+            <modules>
+                <module>ffmpeg-aarch64-unix</module>
+            </modules>
+            <properties>
+                <arch>aarch64</arch>
+                <host>unix</host>
+                <configure.arch>arm64</configure.arch>
                 <prefix/>
                 <makefile>Makefile</makefile>
                 <ccompiler>gcc</ccompiler>
