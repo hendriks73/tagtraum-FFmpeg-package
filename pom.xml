@@ -321,12 +321,7 @@
         <!-- Linux-specific x86_64 Config -->
         <profile>
             <id>ffmpeg-x86_64-unix</id>
-            <activation>
-                <os>
-                    <family>unix</family>
-                    <name>!mac os x</name>
-                </os>
-            </activation>
+            <!-- must be explicitly activated! -->
             <modules>
                 <module>ffmpeg-x86_64-unix</module>
             </modules>
@@ -345,12 +340,7 @@
         <!-- Linux-specific aarch64 Config -->
         <profile>
             <id>ffmpeg-aarch64-unix</id>
-            <activation>
-                <os>
-                    <family>unix</family>
-                    <name>!mac os x</name>
-                </os>
-            </activation>
+            <!-- must be explicitly activated! -->
             <modules>
                 <module>ffmpeg-aarch64-unix</module>
             </modules>
