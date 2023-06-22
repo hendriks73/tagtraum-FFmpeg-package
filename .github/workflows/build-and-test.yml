@@ -98,20 +98,51 @@ jobs:
           mvn --activate-profiles compile,ffmpeg-${{ matrix.jarch }}-win --batch-mode install --file pom.xml
 
 
-  linux-build:
+  linux-build-x86:
 
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ ubuntu-20.04, ubuntu-latest ]
-        arch: [ x64, aarch64 ]
+        arch: [ x64 ]
         include:
           - arch: x64
             jarch: x86_64
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+
+      # cache maven repo for faster builds
+      - uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build/test code with Maven
+        run: mvn --activate-profiles compile,ffmpeg-${{ matrix.jarch }}-unix --batch-mode install --file pom.xml
+
+
+  linux-build-arm64:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04, ubuntu-latest ]
+        arch: [ aarch64 ]
+        include:
           - arch: aarch64
             jarch: aarch64
 
     steps:
+      - name: Set up toolchain
+        run: sudo apt-get install -y g++-aarch64-linux-gnu gcc-aarch64-linux-gnu
+
       - uses: actions/checkout@v2
       - name: Set up Java
         uses: actions/setup-java@v1
