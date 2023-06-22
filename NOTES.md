@@ -1,7 +1,9 @@
 # NOTES.md
 
-- 4.0.6 ?
-  - Updated GH actions build operating systems for macOS and Ubuntu 
+- 4.0.7
+  - Updated GH actions build operating systems for macOS and Ubuntu
+  - Added build for Unix/Linux aarch64/arm64
+  - Still using FFmpeg 4.0.6
 
 
 - 4.0.6
