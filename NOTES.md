@@ -1,5 +1,9 @@
 # NOTES.md
 
+- 4.0.9
+  - Disabled neon on arm64.
+
+
 - 4.0.8
   - Updated GH actions build operating systems for macOS and Ubuntu
   - Added build for Unix/Linux aarch64/arm64
