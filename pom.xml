@@ -350,7 +350,7 @@
                 <configure.arch>arm64</configure.arch>
                 <prefix/>
                 <makefile>Makefile</makefile>
-                <ccompiler>gcc</ccompiler>
+                <ccompiler>aarch64-linux-gnu-gcc</ccompiler>
                 <configure>true</configure>
                 <target.os>linux</target.os>
             </properties>
