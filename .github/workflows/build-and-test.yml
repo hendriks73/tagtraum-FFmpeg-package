@@ -141,7 +141,9 @@ jobs:
 
     steps:
       - name: Set up toolchain
-        run: sudo apt-get install -y g++-aarch64-linux-gnu gcc-aarch64-linux-gnu
+        run:
+          sudo apt-get update
+          sudo apt-get install -y g++-aarch64-linux-gnu gcc-aarch64-linux-gnu
 
       - uses: actions/checkout@v2
       - name: Set up Java
