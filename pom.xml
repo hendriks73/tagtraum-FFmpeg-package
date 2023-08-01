@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.tagtraum</groupId>
-    <version>4.0.10</version>
+    <version>4.0.11</version>
     <artifactId>ffmpeg-package</artifactId>
     <packaging>pom</packaging>
     <name>tagtraum FFmpeg package</name>
@@ -320,15 +320,15 @@
 
         <!-- Linux-specific x86_64 Config -->
         <profile>
-            <id>ffmpeg-x86_64-unix</id>
+            <id>ffmpeg-x86_64-linux</id>
             <!-- must be explicitly activated! -->
             <modules>
-                <module>ffmpeg-x86_64-unix</module>
+                <module>ffmpeg-x86_64-linux</module>
             </modules>
             <properties>
                 <arch>x86_64</arch>
                 <configure.arch>false</configure.arch>
-                <host>unix</host>
+                <host>linux</host>
                 <prefix/>
                 <makefile>Makefile</makefile>
                 <ccompiler>gcc</ccompiler>
@@ -339,14 +339,14 @@
 
         <!-- Linux-specific aarch64 Config -->
         <profile>
-            <id>ffmpeg-aarch64-unix</id>
+            <id>ffmpeg-aarch64-linux</id>
             <!-- must be explicitly activated! -->
             <modules>
-                <module>ffmpeg-aarch64-unix</module>
+                <module>ffmpeg-aarch64-linux</module>
             </modules>
             <properties>
                 <arch>aarch64</arch>
-                <host>unix</host>
+                <host>linux</host>
                 <configure.arch>arm64</configure.arch>
                 <prefix/>
                 <makefile>Makefile</makefile>
