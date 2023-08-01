@@ -3,14 +3,14 @@
     <parent>
         <groupId>com.tagtraum</groupId>
         <artifactId>ffmpeg-package</artifactId>
-        <version>4.0.9</version>
+        <version>4.0.11</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>ffmpeg-aarch64-unix</artifactId>
+    <artifactId>ffmpeg-x86_64-linux</artifactId>
     <packaging>jar</packaging>
-    <name>ffmpeg-aarch64-unix</name>
+    <name>ffmpeg-x86_64-linux</name>
     <description>
-        Static libraries for 64 bit ARM Unix/Linux.
+        Static libraries for 64 bit Linux.
     </description>
 
     <url>https://ffmpeg.org/</url>

@@ -1,6 +1,10 @@
 # NOTES.md
 
-- 4.0.9
+- 4.0.11
+  - Renamed "unix" to "linux".
+
+
+- 4.0.10
   - Disabled neon on arm64.
 
 

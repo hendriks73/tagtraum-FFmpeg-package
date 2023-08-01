@@ -31,7 +31,8 @@ To use this package, simply introduce a Maven dependency like this:
     <!-- <artifactId>ffmpeg-aarch64-macos</artifactId> -->
     <!-- <artifactId>ffmpeg-x86_64-win</artifactId> -->
     <!-- <artifactId>ffmpeg-i386-win</artifactId> -->
-    <!-- <artifactId>ffmpeg-x86_64-unix</artifactId> -->
+    <!-- <artifactId>ffmpeg-x86_64-linux</artifactId> -->
+    <!-- <artifactId>ffmpeg-aarch64-linux</artifactId> -->
 </dependency>
 ```
 
