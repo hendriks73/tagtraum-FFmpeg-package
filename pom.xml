@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.tagtraum</groupId>
-    <version>4.0.11</version>
+    <version>4.0.12</version>
     <artifactId>ffmpeg-package</artifactId>
     <packaging>pom</packaging>
     <name>tagtraum FFmpeg package</name>
@@ -10,7 +10,7 @@
         Codecs to have known patent problems are disabled (no guarantee).
         tagtraum industries is not the developer of FFmpeg or any of its libraries.
         It only assembled this particular package.
-        For more information on FFmpeg, please visit http://www.ffmpeg.org/
+        For more information on FFmpeg, please visit https://www.ffmpeg.org/
     </description>
     <url>https://www.tagtraum.com/ffmpeg</url>
     <inceptionYear>2013</inceptionYear>
