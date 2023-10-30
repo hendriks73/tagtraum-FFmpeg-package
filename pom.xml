@@ -334,6 +334,7 @@
                 <ccompiler>gcc</ccompiler>
                 <configure>true</configure>
                 <target.os>linux</target.os>
+                <configure.options.additional>--extra-libs='-static -L/usr/lib' --extra-cflags='--static' --disable-shared</configure.options.additional>
             </properties>
         </profile>
 
@@ -353,7 +354,7 @@
                 <ccompiler>aarch64-linux-gnu-gcc</ccompiler>
                 <configure>true</configure>
                 <target.os>linux</target.os>
-                <configure.options.additional>--enable-cross-compile --disable-neon</configure.options.additional>
+                <configure.options.additional>--enable-cross-compile --disable-neon --extra-libs='-static -L/usr/lib' --extra-cflags='--static' --disable-shared</configure.options.additional>
             </properties>
         </profile>
 
