@@ -79,8 +79,7 @@ jobs:
       - name: Install Tools
         run: |
           pacman -Syu
-          pacman --noconfirm -S mingw-w64-${{ matrix.env }}-yasm
-          pacman -S mingw-w64-i686-gcc mingw-w64-${{ matrix.env }}-binutils
+          pacman --noconfirm -S mingw-w64-${{ matrix.env }}-yasm mingw-w64-${{ matrix.env }}-gcc mingw-w64-${{ matrix.env }}-binutils
 
       - uses: actions/checkout@v2
 
