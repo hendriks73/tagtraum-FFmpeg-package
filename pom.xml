@@ -347,7 +347,7 @@
             <properties>
                 <arch>aarch64</arch>
                 <host>linux</host>
-                <configure.arch>arm64</configure.arch>
+                <configure.arch>aarch64</configure.arch>
                 <prefix/>
                 <makefile>Makefile</makefile>
                 <ccompiler>gcc</ccompiler>
