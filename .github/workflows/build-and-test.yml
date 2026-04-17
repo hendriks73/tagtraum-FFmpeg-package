@@ -77,11 +77,6 @@ jobs:
           install: mingw-w64-${{ matrix.env }}-toolchain mingw-w64-${{ matrix.env }}-yasm mingw-w64-${{ matrix.env }}-gcc mingw-w64-${{ matrix.env }}-binutils
           path-type: inherit
 
-      # Install/update Tools
-      - run: pacman --noconfirm -Syu
-      - run: pacman --noconfirm -Su
-      - run: pacman --noconfirm -S mingw-w64-${{ matrix.env }}-yasm mingw-w64-${{ matrix.env }}-gcc mingw-w64-${{ matrix.env }}-binutils
-
       - uses: actions/checkout@v2
 
       - name: Set up Java
