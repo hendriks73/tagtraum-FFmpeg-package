@@ -118,9 +118,10 @@ jobs:
             jarch: aarch64
 
     steps:
-      - name: Set up cross compile toolchain
+      - name: Set up compression libs
         run: |
           sudo apt-get update
+          sudo apt-get install -y libbz2-dev zlib1g-dev
 
       - uses: actions/checkout@v6
       - name: Set up Java
@@ -153,9 +154,10 @@ jobs:
             jarch: aarch64
 
     steps:
-      - name: Set up cross compile toolchain
+      - name: Set up compression libs
         run: |
           sudo apt-get update
+          sudo apt-get install -y libbz2-dev zlib1g-dev
 
       - uses: actions/checkout@v6
       - name: Set up Java
