@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ macos-12, macos-latest ]
+        os: [ macos-15, macos-latest ]
         arch: [ x64, aarch64 ]
         include:
           - arch: x64
@@ -29,15 +29,17 @@ jobs:
       - name: Install Tools
         run: |
           brew install yasm
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - name: Set up Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 17
           architecture: x64
+          distribution: zulu
+          cache: maven
 
       # cache maven repo for faster builds
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -50,7 +52,7 @@ jobs:
 
   windows-build:
 
-    runs-on: windows-2019
+    runs-on: windows-latest
     strategy:
       matrix:
         arch: [ x64, x86 ]
@@ -59,6 +61,7 @@ jobs:
             jarch: x86_64
             sys: mingw64
             env: x86_64
+
           - arch: x86
             jarch: i386
             sys: mingw32
@@ -80,12 +83,15 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Set up Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 17
+          architecture: ${{ matrix.arch }}
+          distribution: zulu
+          cache: maven
 
       # cache maven repo for faster builds
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -103,7 +109,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-20.04, ubuntu-latest ]
+        os: [ ubuntu-22.04, ubuntu-latest ]
         arch: [ x64, aarch64 ]
         include:
           - arch: x64
@@ -115,16 +121,53 @@ jobs:
       - name: Set up cross compile toolchain
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++-aarch64-linux-gnu gcc-aarch64-linux-gnu
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - name: Set up Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 17
+          distribution: zulu
+          cache: maven
 
       # cache maven repo for faster builds
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build/test code with Maven
+        run: mvn --activate-profiles compile,ffmpeg-${{ matrix.jarch }}-linux --batch-mode install --file pom.xml
+
+  linux-arm-build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-24.04-arm ]
+        arch: [ aarch64 ]
+        include:
+          - arch: aarch64
+            jarch: aarch64
+
+    steps:
+      - name: Set up cross compile toolchain
+        run: |
+          sudo apt-get update
+
+      - uses: actions/checkout@v6
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: 17
+          distribution: zulu
+          architecture: arm64
+          cache: maven
+
+      # cache maven repo for faster builds
+      - uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
