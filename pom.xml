@@ -294,7 +294,7 @@
                 <ccompiler>gcc -arch ${arch} -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/</ccompiler>
                 <configure>true</configure>
                 <target.os>darwin</target.os>
-                <configure.options.additional>--extra-cflags='-mmacosx-version-min=10.8'</configure.options.additional>
+                <configure.options.additional>--extra-cflags='-mmacosx-version-min=10.8' --extra-cflags="-Wno-error=incompatible-function-pointer-types"</configure.options.additional>
             </properties>
         </profile>
 
