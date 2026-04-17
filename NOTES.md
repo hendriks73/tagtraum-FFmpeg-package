@@ -1,7 +1,8 @@
 # NOTES.md
 
 - 4.0.12
-  - Minor doc fixes. 
+  - Minor doc fixes
+  - Moved to zlib 1.3.2
 
 
 - 4.0.11
