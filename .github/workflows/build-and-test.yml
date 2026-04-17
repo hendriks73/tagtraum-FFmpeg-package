@@ -110,12 +110,10 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-22.04, ubuntu-latest ]
-        arch: [ x64, aarch64 ]
+        arch: [ x64 ]
         include:
           - arch: x64
             jarch: x86_64
-          - arch: aarch64
-            jarch: aarch64
 
     steps:
       - name: Set up compression libs
