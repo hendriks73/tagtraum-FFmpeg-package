@@ -28,6 +28,7 @@ jobs:
     steps:
       - name: Install Tools
         run: |
+          brew update && brew upgrade -q
           brew install yasm
       - uses: actions/checkout@v6
       - name: Set up Java

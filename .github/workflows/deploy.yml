@@ -259,6 +259,7 @@ jobs:
     steps:
       - name: Install Tools
         run: |
+          brew update && brew upgrade -q
           brew install yasm
       - id: install-secret-key
         name: Install gpg secret key
