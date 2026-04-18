@@ -88,6 +88,7 @@ jobs:
         with:
           msystem: mingw32
           install: mingw-w64-i686-toolchain
+          update: true
           path-type: inherit
 
       - name: Install Tools
