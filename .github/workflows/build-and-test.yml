@@ -107,10 +107,9 @@ jobs:
 
   linux-build:
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ ubuntu-22.04, ubuntu-latest ]
         arch: [ x64 ]
         include:
           - arch: x64
