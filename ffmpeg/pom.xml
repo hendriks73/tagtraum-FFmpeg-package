@@ -88,26 +88,26 @@
 
                                 <!-- zlib -->
 
-                                <!-- download fresh tar ball, retry up to 3 times on failure -->
+                                <!-- download and extract, retry up to 3 times on failure -->
                                 <retry retrycount="3">
                                     <sequential>
                                         <delete file="${project.build.directory}/zlib.tar" quiet="true"/>
+                                        <delete dir="${project.build.directory}/zlib" quiet="true"/>
                                         <sleep seconds="2"/>
                                         <get src="https://zlib.net/zlib-${zlib.version}.tar.gz" dest="${project.build.directory}/zlib.tar" usetimestamp="true" verbose="true" />
+                                        <!-- For reasons that are beyond me, this is already gunzipped -->
+                                        <!-- <gunzip src="${project.build.directory}/zlib.tar.gz" /> -->
+                                        <mkdir dir="${project.build.directory}/zlib"/>
+                                        <!-- the following line does not work with v1.2.11 -->
+                                        <!-- <untar src="${project.build.directory}/zlib.tar" dest="${project.build.directory}/zlib" /> -->
+                                        <exec executable="tar" failonerror="true">
+                                            <arg value="-xf"/>
+                                            <arg file="${project.build.directory}/zlib.tar"/>
+                                            <arg value="-C"/>
+                                            <arg file="${project.build.directory}/zlib"/>
+                                        </exec>
                                     </sequential>
                                 </retry>
-
-                                <!-- For reasons that are beyond me, this is already gunzipped -->
-                                <!-- <gunzip src="${project.build.directory}/zlib.tar.gz" /> -->
-                                <mkdir dir="${project.build.directory}/zlib"/>
-                                <!-- the following line does not work with v1.2.11 -->
-                                <!-- <untar src="${project.build.directory}/zlib.tar" dest="${project.build.directory}/zlib" /> -->
-                                <exec executable="tar" failonerror="true">
-                                    <arg value="-xf"/>
-                                    <arg file="${project.build.directory}/zlib.tar"/>
-                                    <arg value="-C"/>
-                                    <arg file="${project.build.directory}/zlib"/>
-                                </exec>
 
                                 <jar destfile="${project.build.directory}/libz-sources.jar" basedir="${project.build.directory}/zlib/zlib-${zlib.version}" />
 
@@ -127,17 +127,18 @@
 
                                 <!-- bzip2 -->
 
-                                <!-- download fresh tar ball from sourceware.org, retry up to 3 times on failure -->
+                                <!-- download and extract, retry up to 3 times on failure -->
                                 <retry retrycount="3">
                                     <sequential>
                                         <delete file="${project.build.directory}/bzip2.tar.gz" quiet="true"/>
+                                        <delete file="${project.build.directory}/bzip2.tar" quiet="true"/>
+                                        <delete dir="${project.build.directory}/bzip2" quiet="true"/>
                                         <sleep seconds="2"/>
                                         <get src="https://sourceware.org/pub/bzip2/bzip2-${bzip2.version}.tar.gz" dest="${project.build.directory}/bzip2.tar.gz" usetimestamp="true" verbose="true" />
+                                        <gunzip src="${project.build.directory}/bzip2.tar.gz" />
+                                        <untar src="${project.build.directory}/bzip2.tar" dest="${project.build.directory}/bzip2" />
                                     </sequential>
                                 </retry>
-
-                                <gunzip src="${project.build.directory}/bzip2.tar.gz" />
-                                <untar src="${project.build.directory}/bzip2.tar" dest="${project.build.directory}/bzip2" />
                                 <jar destfile="${project.build.directory}/libbz2-sources.jar" basedir="${project.build.directory}/bzip2/bzip2-${bzip2.version}" />
 
                                 <echo>=== Starting build of bzip2 ===</echo>
@@ -153,17 +154,18 @@
 
                                 <!-- FFmpeg -->
 
-                                <!-- download fresh tar ball from ffmpeg.org, retry up to 3 times on failure -->
+                                <!-- download and extract, retry up to 3 times on failure -->
                                 <retry retrycount="3">
                                     <sequential>
                                         <delete file="${project.build.directory}/ffmpeg.tar.gz" quiet="true"/>
+                                        <delete file="${project.build.directory}/ffmpeg.tar" quiet="true"/>
+                                        <delete dir="${project.build.directory}/ffmpeg" quiet="true"/>
                                         <sleep seconds="2"/>
                                         <get src="https://www.ffmpeg.org/releases/ffmpeg-${ffmpeg.version}.tar.gz" dest="${project.build.directory}/ffmpeg.tar.gz" usetimestamp="true" verbose="true" />
+                                        <gunzip src="${project.build.directory}/ffmpeg.tar.gz" />
+                                        <untar src="${project.build.directory}/ffmpeg.tar" dest="${project.build.directory}/ffmpeg" />
                                     </sequential>
                                 </retry>
-
-                                <gunzip src="${project.build.directory}/ffmpeg.tar.gz" />
-                                <untar src="${project.build.directory}/ffmpeg.tar" dest="${project.build.directory}/ffmpeg" />
 
                                 <!-- raw sources we attach later -->
                                 <tar destfile="${project.build.directory}/ffmpeg-sources.tar.bz2"
