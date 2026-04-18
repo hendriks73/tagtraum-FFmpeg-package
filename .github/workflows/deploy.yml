@@ -17,7 +17,7 @@ jobs:
 
   windows-x64-build:
 
-    runs-on: windows-2019
+    runs-on: windows-latest
     defaults:
       run:
         shell: msys2 {0}
@@ -45,9 +45,9 @@ jobs:
         with:
           java-version: 11
           architecture: x64
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
 # use cache to transport artifacts to the next job
       - uses: actions/cache@v5
@@ -64,8 +64,8 @@ jobs:
       - id: publish-native-lib-to-central
         name: Publish to Central Repository
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
@@ -107,9 +107,9 @@ jobs:
         with:
           java-version: 11
           architecture: x64
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
       # use cache to transport artifacts to the next job
       - uses: actions/cache@v5
@@ -127,8 +127,8 @@ jobs:
       - id: publish-native-lib-to-central
         name: Publish to Central Repository
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
@@ -154,14 +154,19 @@ jobs:
           cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
           gpg --list-secret-keys --keyid-format LONG
 
+      - name: Set up compression libs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libbz2-dev zlib1g-dev
+
       - name: Set up publication to Maven Central
         uses: actions/setup-java@v5
         with:
           java-version: 11
           architecture: x64
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
 # use cache to transport artifacts to the next job
       - uses: actions/cache@v5
@@ -177,8 +182,8 @@ jobs:
       - id: publish-native-lib-to-central
         name: Publish to Central Repository
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
@@ -193,15 +198,15 @@ jobs:
 
   linux-aarch64-build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04-arm
 
     steps:
       - uses: actions/checkout@v6
 
-      - name: Set up cross compile toolchain
+      - name: Set up compression libs
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++-aarch64-linux-gnu gcc-aarch64-linux-gnu
+          sudo apt-get install -y libbz2-dev zlib1g-dev
 
       - id: install-secret-key
         name: Install gpg secret key
@@ -214,9 +219,9 @@ jobs:
         with:
           java-version: 11
           architecture: x64
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
       # use cache to transport artifacts to the next job
       - uses: actions/cache@v5
@@ -232,8 +237,8 @@ jobs:
       - id: publish-native-lib-to-central
         name: Publish to Central Repository
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
@@ -267,9 +272,9 @@ jobs:
         with:
           java-version: 11
           architecture: x64
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
       # use cache to transport (in this case read) artifacts from prior
       - uses: actions/cache@v5
@@ -285,8 +290,8 @@ jobs:
       - id: publish-native-lib-to-central
         name: Publish to Central Repository
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
@@ -320,9 +325,9 @@ jobs:
         with:
           java-version: 11
           architecture: x64
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
 # use cache to transport (in this case read) artifacts from prior
       - uses: actions/cache@v5
@@ -338,8 +343,8 @@ jobs:
       - id: publish-native-lib-to-central
         name: Publish to Central Repository
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
