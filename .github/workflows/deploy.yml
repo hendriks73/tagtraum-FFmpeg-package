@@ -30,7 +30,7 @@ jobs:
 
       - name: Install Tools
         run: |
-          pacman --noconfirm -S mingw-w64-x86_64-yasm
+          pacman --noconfirm -S mingw-w64-x86_64-nasm
 
       - id: install-secret-key
         name: Install gpg secret key
@@ -93,7 +93,7 @@ jobs:
 
       - name: Install Tools
         run: |
-          pacman --noconfirm -S mingw-w64-i686-yasm
+          pacman --noconfirm -S mingw-w64-i686-nasm
 
       - id: install-secret-key
         name: Install gpg secret key
@@ -260,7 +260,7 @@ jobs:
       - name: Install Tools
         run: |
           brew update && brew upgrade -q
-          brew install yasm
+          brew install nasm
       - id: install-secret-key
         name: Install gpg secret key
         run: |
@@ -313,7 +313,7 @@ jobs:
     steps:
       - name: Install Tools
         run: |
-          brew install yasm
+          brew install nasm
       - id: install-secret-key
         name: Install gpg secret key
         run: |
