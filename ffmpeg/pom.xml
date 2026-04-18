@@ -88,8 +88,14 @@
 
                                 <!-- zlib -->
 
-                                <!-- download fresh tar ball  -->
-                                <get src="https://zlib.net/zlib-${zlib.version}.tar.gz" dest="${project.build.directory}/zlib.tar" usetimestamp="true" verbose="true" ignoreerrors="true" />
+                                <!-- download fresh tar ball, retry up to 3 times on failure -->
+                                <retry retrycount="3">
+                                    <sequential>
+                                        <delete file="${project.build.directory}/zlib.tar" quiet="true"/>
+                                        <sleep seconds="2"/>
+                                        <get src="https://zlib.net/zlib-${zlib.version}.tar.gz" dest="${project.build.directory}/zlib.tar" usetimestamp="true" verbose="true" />
+                                    </sequential>
+                                </retry>
 
                                 <!-- For reasons that are beyond me, this is already gunzipped -->
                                 <!-- <gunzip src="${project.build.directory}/zlib.tar.gz" /> -->
@@ -121,8 +127,14 @@
 
                                 <!-- bzip2 -->
 
-                                <!-- download fresh tar ball from sourceware.org -->
-                                <get src="https://sourceware.org/pub/bzip2/bzip2-${bzip2.version}.tar.gz" dest="${project.build.directory}/bzip2.tar.gz" usetimestamp="true" verbose="true" ignoreerrors="true" />
+                                <!-- download fresh tar ball from sourceware.org, retry up to 3 times on failure -->
+                                <retry retrycount="3">
+                                    <sequential>
+                                        <delete file="${project.build.directory}/bzip2.tar.gz" quiet="true"/>
+                                        <sleep seconds="2"/>
+                                        <get src="https://sourceware.org/pub/bzip2/bzip2-${bzip2.version}.tar.gz" dest="${project.build.directory}/bzip2.tar.gz" usetimestamp="true" verbose="true" />
+                                    </sequential>
+                                </retry>
 
                                 <gunzip src="${project.build.directory}/bzip2.tar.gz" />
                                 <untar src="${project.build.directory}/bzip2.tar" dest="${project.build.directory}/bzip2" />
@@ -141,8 +153,14 @@
 
                                 <!-- FFmpeg -->
 
-                                <!-- download fresh tar ball from ffmpeg.org -->
-                                <get src="https://www.ffmpeg.org/releases/ffmpeg-${ffmpeg.version}.tar.gz" dest="${project.build.directory}/ffmpeg.tar.gz" usetimestamp="true" verbose="true" ignoreerrors="true" />
+                                <!-- download fresh tar ball from ffmpeg.org, retry up to 3 times on failure -->
+                                <retry retrycount="3">
+                                    <sequential>
+                                        <delete file="${project.build.directory}/ffmpeg.tar.gz" quiet="true"/>
+                                        <sleep seconds="2"/>
+                                        <get src="https://www.ffmpeg.org/releases/ffmpeg-${ffmpeg.version}.tar.gz" dest="${project.build.directory}/ffmpeg.tar.gz" usetimestamp="true" verbose="true" />
+                                    </sequential>
+                                </retry>
 
                                 <gunzip src="${project.build.directory}/ffmpeg.tar.gz" />
                                 <untar src="${project.build.directory}/ffmpeg.tar" dest="${project.build.directory}/ffmpeg" />
