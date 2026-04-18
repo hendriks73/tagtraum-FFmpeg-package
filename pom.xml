@@ -32,10 +32,10 @@
         <developer>
             <id>hendrik</id>
             <name>Hendrik Schreiber</name>
-            <email>hs@tagtraum.com</email>
-            <url>https://www.tagtraum.com/</url>
-            <organization>tagtraum industries incorporated</organization>
-            <organizationUrl>https://www.tagtraum.com/</organizationUrl>
+            <email>hs@jalulo.eu</email>
+            <url>https://jalulo.eu/</url>
+            <organization>Jalulo UG (haftungsbeschränkt)</organization>
+            <organizationUrl>https://jalulo.eu/</organizationUrl>
             <roles>
                 <role>assembler</role>
             </roles>
@@ -81,42 +81,42 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.6.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-antrun-plugin</artifactId>
-                    <version>1.8</version>
+                    <version>3.2.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.9.1</version>
+                    <version>3.21.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>3.1.2</version>
+                    <version>3.9.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.5.3</version>
+                    <version>3.3.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>3.2.8</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.sonatype.plugins</groupId>
-                    <artifactId>nexus-staging-maven-plugin</artifactId>
-                    <version>1.6.8</version>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>0.10.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.6.2</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -178,14 +178,6 @@
     </build>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
         <site>
             <id>tagtraum-site</id>
             <url>sftp://ssh.strato.de/ffmpeg/</url>
@@ -205,6 +197,7 @@
     </issueManagement>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <ffmpeg.configure>--enable-static --enable-pic --enable-small --disable-programs --disable-doc --disable-avfilter --disable-swscale --disable-avdevice --disable-filters --disable-decoders --enable-decoder=aac*,ac3,ac3_fixed,adpcm*,alac,als,amr*,ape,aptx*,atrac*,bmp,cook,dca,eac3,flac,g722,g723_1,g726*,g729,gif,gsm*,ilbc,mace*,mjpeg,mjpegb,mlp,mp1*,mp2*,mp3*,mpc7,mpc8,opus,pcm*,png,qcelp,ra_288,ralf,s302m,sipr,speex,tak,tiff,truehd,tta,vorbis,wma*,wavpack --disable-demuxers --enable-demuxer=aac,ac3,aiff,alaw,amr,ape,aptx,aptx_hd,asf,au,caf,dts,eac3,flac,gsm,hls,iff,image2,matroska,mjpeg,mlp,mov,mp3,mpc,mpc8,mulaw,ogg,rm,tak,tta,truehd,wav,wv,xwma --disable-encoders --enable-encoder=pcm* --disable-parsers --enable-parser=aac,aac_latm,ac3,dca,flac,g729,gsm,mlp,mpegaudio,opus,tak,vorbis,xma --disable-protocols --enable-protocol=crypto,data,fd,file,http,https,md5,pipe,tcp,tls,udp --disable-hwaccels --disable-muxers --disable-indevs --disable-outdevs --disable-iconv</ffmpeg.configure>
         <make>/usr/bin/make</make>
         <sh>/bin/sh</sh>
@@ -369,6 +362,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.2.8</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -386,14 +380,13 @@
                         </configuration>
                     </plugin>
                     <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.10.0</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                            <stagingProgressTimeoutMinutes>30</stagingProgressTimeoutMinutes>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
                         </configuration>
                     </plugin>
                 </plugins>
