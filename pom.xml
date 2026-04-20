@@ -202,10 +202,13 @@
         <make>/usr/bin/make</make>
         <sh>/bin/sh</sh>
         <ccompiler>gcc</ccompiler>
+        <arch.inspector>objdump</arch.inspector>
+        <arch.inspector.args>-f</arch.inspector.args>
 
         <bzip2.version>1.0.8</bzip2.version>
         <zlib.version>1.3.2</zlib.version>
         <ffmpeg.version>8.1</ffmpeg.version>
+        <macosx.version.min>11.0</macosx.version.min>
 
         <!-- aliases, because of http://maven.apache.org/plugins/maven-site-plugin/examples/creating-content.html#Filtering -->
         <project.version>${project.version}</project.version>
@@ -284,10 +287,12 @@
                 <host>macos</host>
                 <prefix/>
                 <makefile>Makefile</makefile>
-                <ccompiler>gcc -arch ${arch} -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/</ccompiler>
+                <ccompiler>gcc -arch ${arch} -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/ -mmacosx-version-min=${macosx.version.min}</ccompiler>
                 <configure>true</configure>
                 <target.os>darwin</target.os>
-                <configure.options.additional>--extra-cflags='-mmacosx-version-min=10.8' --extra-cflags="-Wno-error=incompatible-function-pointer-types"</configure.options.additional>
+                <configure.options.additional>--extra-cflags='-mmacosx-version-min=${macosx.version.min}' --extra-cflags="-Wno-error=incompatible-function-pointer-types"</configure.options.additional>
+                <arch.inspector>lipo</arch.inspector>
+                <arch.inspector.args>-info</arch.inspector.args>
             </properties>
         </profile>
 
@@ -304,10 +309,12 @@
                 <configure.arch>arm64</configure.arch>
                 <prefix/>
                 <makefile>Makefile</makefile>
-                <ccompiler>gcc -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/</ccompiler>
+                <ccompiler>gcc -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/ -mmacosx-version-min=${macosx.version.min}</ccompiler>
                 <configure>true</configure>
                 <target.os>darwin</target.os>
-                <configure.options.additional>--enable-cross-compile --extra-cflags='-mmacosx-version-min=11.0'</configure.options.additional>
+                <configure.options.additional>--enable-cross-compile --extra-cflags='-mmacosx-version-min=${macosx.version.min}'</configure.options.additional>
+                <arch.inspector>lipo</arch.inspector>
+                <arch.inspector.args>-info</arch.inspector.args>
             </properties>
         </profile>
 
