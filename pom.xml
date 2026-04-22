@@ -218,6 +218,7 @@
         <zlibversion>${zlib.version}</zlibversion>
         <ffmpegconfigure>${ffmpeg.configure}</ffmpegconfigure>
         <configure.options.additional/>
+        <central.autoPublish>true</central.autoPublish>
     </properties>
 
     <profiles>
@@ -393,7 +394,7 @@
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>central</publishingServerId>
-                            <autoPublish>true</autoPublish>
+                            <autoPublish>${central.autoPublish}</autoPublish>
                         </configuration>
                     </plugin>
                 </plugins>
