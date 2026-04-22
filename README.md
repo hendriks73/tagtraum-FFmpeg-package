@@ -64,8 +64,9 @@ If you want to build it yourself, you'll need:
 
 - [Maven](https://maven.apache.org/)
 - [Apple Command Line Tools](https://developer.apple.com/) or [Xcode](https://developer.apple.com/xcode/) for macOS
+- [NASM](https://www.nasm.us/), available via `brew install nasm` (macOS)
 - MSYS2 for Windows with a GCC toolchain (`mingw-w64-i686-toolchain` / `mingw-w64-x86_64-toolchain`)
-- [YASM](https://yasm.tortall.net/releases/Release1.3.0.html), available via `brew install yasm` (macOS), `pacman -S mingw-w64-x86_64-yasm` (msys2 for 64bit Windows), `pacman -S mingw-w64-i686-yasm` (msys2 for 64bit Windows, crosscompile for 32bit Windows) or whatever your Linux distro makes you do 
+- `libbz2-dev` and `zlib1g-dev` for Linux (e.g. `sudo apt-get install libbz2-dev zlib1g-dev`)
 - a JDK (to run Maven)
 
 Once all pre-requisites are in place, you must invoke the *right* profile.
@@ -75,6 +76,12 @@ To build the package for macOS (x86_64), run
 
 ```shell
 $ mvn --activate-profiles compile,ffmpeg-x86_64-macos install
+```
+
+To build for macOS (aarch64), run
+
+```shell
+$ mvn --activate-profiles compile,ffmpeg-aarch64-macos install
 ```
 
 The profile `compile` ensures that FFmpeg and other sources are downloaded and built.
