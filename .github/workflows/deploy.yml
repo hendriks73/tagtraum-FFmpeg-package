@@ -11,13 +11,18 @@ on:
   push:
     branches:
       - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
 
 
 jobs:
 
   windows-x64-build:
 
-    runs-on: windows-2019
+    runs-on: windows-latest
     defaults:
       run:
         shell: msys2 {0}
@@ -26,11 +31,8 @@ jobs:
         with:
           msystem: mingw64
           install: mingw-w64-x86_64-toolchain
+          update: true
           path-type: inherit
-
-      - name: Install Tools
-        run: |
-          pacman --noconfirm -S mingw-w64-x86_64-yasm
 
       - id: install-secret-key
         name: Install gpg secret key
@@ -38,19 +40,21 @@ jobs:
           cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
           gpg --list-secret-keys --keyid-format LONG
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
       - name: Set up publication to Maven Central
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 11
+          distribution: zulu
           architecture: x64
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          cache: maven
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
 # use cache to transport artifacts to the next job
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -64,8 +68,8 @@ jobs:
       - id: publish-native-lib-to-central
         name: Publish to Central Repository
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
@@ -73,13 +77,14 @@ jobs:
             --no-transfer-progress \
             --batch-mode \
             -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} \
+            -Dcentral.autoPublish=${{ github.ref == 'refs/heads/main' && 'true' || 'false' }} \
             --activate-profiles release,ffmpeg-x86_64-win \
             --file pom.xml \
             deploy
 
   windows-x86-build:
 
-    runs-on: windows-2019
+    runs-on: windows-latest
     defaults:
       run:
         shell: msys2 {0}
@@ -88,11 +93,8 @@ jobs:
         with:
           msystem: mingw32
           install: mingw-w64-i686-toolchain
+          update: true
           path-type: inherit
-
-      - name: Install Tools
-        run: |
-          pacman --noconfirm -S mingw-w64-i686-yasm
 
       - id: install-secret-key
         name: Install gpg secret key
@@ -100,19 +102,21 @@ jobs:
           cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
           gpg --list-secret-keys --keyid-format LONG
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
       - name: Set up publication to Maven Central
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 11
-          architecture: x64
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          distribution: zulu
+          architecture: x86
+          cache: maven
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
       # use cache to transport artifacts to the next job
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -127,8 +131,8 @@ jobs:
       - id: publish-native-lib-to-central
         name: Publish to Central Repository
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
@@ -136,6 +140,7 @@ jobs:
             --no-transfer-progress \
             --batch-mode \
             -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} \
+            -Dcentral.autoPublish=${{ github.ref == 'refs/heads/main' && 'true' || 'false' }} \
             --activate-profiles release,ffmpeg-i386-win \
             --file pom.xml \
             deploy
@@ -143,10 +148,10 @@ jobs:
 
   linux-x64-build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
       - id: install-secret-key
         name: Install gpg secret key
@@ -154,17 +159,24 @@ jobs:
           cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
           gpg --list-secret-keys --keyid-format LONG
 
+      - name: Set up compression libs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libbz2-dev zlib1g-dev
+
       - name: Set up publication to Maven Central
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 11
+          distribution: zulu
           architecture: x64
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          cache: maven
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
 # use cache to transport artifacts to the next job
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -177,8 +189,8 @@ jobs:
       - id: publish-native-lib-to-central
         name: Publish to Central Repository
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
@@ -186,6 +198,7 @@ jobs:
             --no-transfer-progress \
             --batch-mode \
             -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} \
+            -Dcentral.autoPublish=${{ github.ref == 'refs/heads/main' && 'true' || 'false' }} \
             --activate-profiles release,ffmpeg-x86_64-linux \
             --file pom.xml  \
             deploy
@@ -193,15 +206,15 @@ jobs:
 
   linux-aarch64-build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04-arm
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
-      - name: Set up cross compile toolchain
+      - name: Set up compression libs
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++-aarch64-linux-gnu gcc-aarch64-linux-gnu
+          sudo apt-get install -y libbz2-dev zlib1g-dev
 
       - id: install-secret-key
         name: Install gpg secret key
@@ -210,16 +223,18 @@ jobs:
           gpg --list-secret-keys --keyid-format LONG
 
       - name: Set up publication to Maven Central
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 11
-          architecture: x64
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          distribution: zulu
+          architecture: arm64
+          cache: maven
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
       # use cache to transport artifacts to the next job
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -232,8 +247,8 @@ jobs:
       - id: publish-native-lib-to-central
         name: Publish to Central Repository
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
@@ -241,6 +256,7 @@ jobs:
             --no-transfer-progress \
             --batch-mode \
             -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} \
+            -Dcentral.autoPublish=${{ github.ref == 'refs/heads/main' && 'true' || 'false' }} \
             --activate-profiles release,ffmpeg-aarch64-linux \
             --file pom.xml  \
             deploy
@@ -248,31 +264,34 @@ jobs:
 
   macos-aarch64-build:
 
-    runs-on: macos-12
+    runs-on: macos-latest
 
     steps:
       - name: Install Tools
         run: |
-          brew install yasm
+          brew update && brew upgrade -q
+          brew install nasm
       - id: install-secret-key
         name: Install gpg secret key
         run: |
           cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
           gpg --list-secret-keys --keyid-format LONG
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
       - name: Set up publication to Maven Central
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 11
-          architecture: x64
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          architecture: aarch64
+          distribution: zulu
+          cache: maven
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
       # use cache to transport (in this case read) artifacts from prior
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -285,8 +304,8 @@ jobs:
       - id: publish-native-lib-to-central
         name: Publish to Central Repository
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
@@ -294,6 +313,7 @@ jobs:
             --no-transfer-progress \
             --batch-mode \
             -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} \
+            -Dcentral.autoPublish=${{ github.ref == 'refs/heads/main' && 'true' || 'false' }} \
             --activate-profiles release,ffmpeg-aarch64-macos \
             --file pom.xml  \
             deploy
@@ -301,31 +321,32 @@ jobs:
 
   macos-x64-build:
 
-    runs-on: macos-12
+    runs-on: macos-15-intel
 
     steps:
       - name: Install Tools
         run: |
-          brew install yasm
+          brew install nasm
       - id: install-secret-key
         name: Install gpg secret key
         run: |
           cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
           gpg --list-secret-keys --keyid-format LONG
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
       - name: Set up publication to Maven Central
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 11
           architecture: x64
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          distribution: zulu
+          server-id: central
+          server-username: SONATYPE_USERNAME
+          server-password: SONATYPE_PASSWORD
 
 # use cache to transport (in this case read) artifacts from prior
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -338,27 +359,30 @@ jobs:
       - id: publish-native-lib-to-central
         name: Publish to Central Repository
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
           mvn \
             --no-transfer-progress \
             --batch-mode \
             -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} \
+            -Dcentral.autoPublish=${{ github.ref == 'refs/heads/main' && 'true' || 'false' }} \
             --activate-profiles release,ffmpeg-x86_64-macos \
             --file pom.xml  \
             deploy
 
       - name: Set up publication to tagtraum
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 9
           server-id: tagtraum-site
+          distribution: zulu
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
 
       - name: Publish to tagtraum
+        if: github.ref == 'refs/heads/main'
         env:
           MAVEN_USERNAME: ${{ secrets.TAGTRAUM_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.TAGTRAUM_PASSWORD }}

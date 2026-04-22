@@ -71,10 +71,10 @@
 
         <!-- log architecture, just for verification -->
         <exec dir="${project.build.directory}/lib-${arch}-${host}/"
-              executable="objdump"
+              executable="${arch.inspector}"
               failonerror="false">
             <env key="PATH" path="${path}"/>
-            <arg line="-f libz.a"/>
+            <arg line="${arch.inspector.args} libz.a"/>
         </exec>
     </target>
 

@@ -15,10 +15,9 @@ jobs:
 
   macos-build:
 
-    runs-on: ${{ matrix.os }}
+    runs-on: macos-latest
     strategy:
       matrix:
-        os: [ macos-12, macos-latest ]
         arch: [ x64, aarch64 ]
         include:
           - arch: x64
@@ -28,16 +27,19 @@ jobs:
     steps:
       - name: Install Tools
         run: |
-          brew install yasm
-      - uses: actions/checkout@v2
+          brew update && brew upgrade -q
+          brew install nasm
+      - uses: actions/checkout@v6
       - name: Set up Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 17
           architecture: x64
+          distribution: zulu
+          cache: maven
 
       # cache maven repo for faster builds
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -50,7 +52,7 @@ jobs:
 
   windows-build:
 
-    runs-on: windows-2019
+    runs-on: windows-latest
     strategy:
       matrix:
         arch: [ x64, x86 ]
@@ -59,33 +61,38 @@ jobs:
             jarch: x86_64
             sys: mingw64
             env: x86_64
+            repo: mingw64
+
           - arch: x86
             jarch: i386
             sys: mingw32
             env: i686
+            repo: mingw32
+
     defaults:
       run:
         shell: msys2 {0}
+
     steps:
       - uses: msys2/setup-msys2@v2
         with:
           msystem: ${{ matrix.sys }}
           install: mingw-w64-${{ matrix.env }}-toolchain
+          update: true
           path-type: inherit
 
-      - name: Install Tools
-        run: |
-          pacman --noconfirm -S mingw-w64-${{ matrix.env }}-yasm
-
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
       - name: Set up Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 17
+          architecture: ${{ matrix.arch }}
+          distribution: zulu
+          cache: maven
 
       # cache maven repo for faster builds
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -100,31 +107,67 @@ jobs:
 
   linux-build:
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ ubuntu-20.04, ubuntu-latest ]
-        arch: [ x64, aarch64 ]
+        arch: [ x64 ]
         include:
           - arch: x64
             jarch: x86_64
+
+    steps:
+      - name: Set up compression libs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libbz2-dev zlib1g-dev
+
+      - uses: actions/checkout@v6
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: 17
+          distribution: zulu
+          cache: maven
+
+      # cache maven repo for faster builds
+      - uses: actions/cache@v5
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build/test code with Maven
+        run: mvn --activate-profiles compile,ffmpeg-${{ matrix.jarch }}-linux --batch-mode install --file pom.xml
+
+  linux-arm-build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-24.04-arm ]
+        arch: [ aarch64 ]
+        include:
           - arch: aarch64
             jarch: aarch64
 
     steps:
-      - name: Set up cross compile toolchain
+      - name: Set up compression libs
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++-aarch64-linux-gnu gcc-aarch64-linux-gnu
+          sudo apt-get install -y libbz2-dev zlib1g-dev
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - name: Set up Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: 17
+          distribution: zulu
+          architecture: arm64
+          cache: maven
 
       # cache maven repo for faster builds
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}

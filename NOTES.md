@@ -1,7 +1,9 @@
 # NOTES.md
 
-- 4.0.12
-  - Minor doc fixes. 
+- 8.1.0
+  - Release for FFmpeg 8.1
+  - Minor doc fixes
+  - Moved to zlib 1.3.2
 
 
 - 4.0.11
