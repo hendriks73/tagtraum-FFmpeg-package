@@ -284,6 +284,7 @@ jobs:
         with:
           java-version: 11
           architecture: aarch64
+          distribution: zulu
           cache: maven
           server-id: central
           server-username: SONATYPE_USERNAME
@@ -339,6 +340,7 @@ jobs:
         with:
           java-version: 11
           architecture: x64
+          distribution: zulu
           server-id: central
           server-username: SONATYPE_USERNAME
           server-password: SONATYPE_PASSWORD
@@ -375,6 +377,7 @@ jobs:
         with:
           java-version: 9
           server-id: tagtraum-site
+          distribution: zulu
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
 
