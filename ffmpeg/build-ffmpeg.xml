@@ -39,6 +39,7 @@
             <!-- allow parallel compilation -->
             <arg value="-j4"/>
             <arg value="V=1"/>
+            <arg value="RESPONSE_FILES=no"/>
         </exec>
 
         <!-- copy results -->

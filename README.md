@@ -1,5 +1,5 @@
 [![LGPL 2.1](https://img.shields.io/badge/License-LGPL_2.1-blue.svg)](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.tagtraum/ffmpeg-package/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.tagtraum/ffmpeg-package)
+[![Maven Central](https://img.shields.io/maven-central/v/com.tagtraum/ffmpeg-package)](https://central.sonatype.com/artifact/com.tagtraum/ffmpeg-package)
 [![Build and Test](https://github.com/hendriks73/tagtraum-FFmpeg-package/workflows/Build%20and%20Test/badge.svg)](https://github.com/hendriks73/tagtraum-FFmpeg-package/actions)
 
 # tagtraum FFmpeg package
@@ -64,8 +64,9 @@ If you want to build it yourself, you'll need:
 
 - [Maven](https://maven.apache.org/)
 - [Apple Command Line Tools](https://developer.apple.com/) or [Xcode](https://developer.apple.com/xcode/) for macOS
+- [NASM](https://www.nasm.us/), available via `brew install nasm` (macOS)
 - MSYS2 for Windows with a GCC toolchain (`mingw-w64-i686-toolchain` / `mingw-w64-x86_64-toolchain`)
-- [YASM](https://yasm.tortall.net/releases/Release1.3.0.html), available via `brew install yasm` (macOS), `pacman -S mingw-w64-x86_64-yasm` (msys2 for 64bit Windows), `pacman -S mingw-w64-i686-yasm` (msys2 for 64bit Windows, crosscompile for 32bit Windows) or whatever your Linux distro makes you do 
+- `libbz2-dev` and `zlib1g-dev` for Linux (e.g. `sudo apt-get install libbz2-dev zlib1g-dev`)
 - a JDK (to run Maven)
 
 Once all pre-requisites are in place, you must invoke the *right* profile.
@@ -75,6 +76,12 @@ To build the package for macOS (x86_64), run
 
 ```shell
 $ mvn --activate-profiles compile,ffmpeg-x86_64-macos install
+```
+
+To build for macOS (aarch64), run
+
+```shell
+$ mvn --activate-profiles compile,ffmpeg-aarch64-macos install
 ```
 
 The profile `compile` ensures that FFmpeg and other sources are downloaded and built.

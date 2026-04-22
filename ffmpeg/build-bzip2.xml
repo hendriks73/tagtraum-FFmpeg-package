@@ -33,10 +33,10 @@
 
         <!-- log architecture, just for verification -->
         <exec dir="${project.build.directory}/lib-${arch}-${host}/"
-              executable="objdump"
+              executable="${arch.inspector}"
               failonerror="false">
             <env key="PATH" path="${path}"/>
-            <arg line="-f libbz2.a"/>
+            <arg line="${arch.inspector.args} libbz2.a"/>
         </exec>
 
     </target>
