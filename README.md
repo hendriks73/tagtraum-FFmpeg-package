@@ -1,5 +1,5 @@
 [![LGPL 2.1](https://img.shields.io/badge/License-LGPL_2.1-blue.svg)](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.tagtraum/ffmpeg-package/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.tagtraum/ffmpeg-package)
+[![Maven Central](https://img.shields.io/maven-central/v/com.tagtraum/ffmpeg-package)](https://central.sonatype.com/artifact/com.tagtraum/ffmpeg-package)
 [![Build and Test](https://github.com/hendriks73/tagtraum-FFmpeg-package/workflows/Build%20and%20Test/badge.svg)](https://github.com/hendriks73/tagtraum-FFmpeg-package/actions)
 
 # tagtraum FFmpeg package
