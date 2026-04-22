@@ -15,9 +15,11 @@ Developer
 
         * Maven
 
-        * A suitable GCC toolchain
+        * A suitable GCC toolchain (Apple Command Line Tools or Xcode for macOS; MSYS2 with <<<mingw-w64-i686-toolchain>>> / <<<mingw-w64-x86_64-toolchain>>> for Windows)
 
-        * YASM
+        * NASM (macOS: <<<brew install nasm>>>)
+
+        * <<<libbz2-dev>>> and <<<zlib1g-dev>>> for Linux (e.g. <<<sudo apt-get install libbz2-dev zlib1g-dev>>>)
 
         * a JDK (to run Maven)
 
@@ -34,6 +36,12 @@ git clone git@github.com:hendriks73/tagtraum-FFmpeg-package.git tagtraum-ffmpeg-
 
 +-------------------------------+
 mvn --activate-profiles compile,ffmpeg-x86_64-macos install
++-------------------------------+
+
+    To build the package for macOS (aarch64), run
+
++-------------------------------+
+mvn --activate-profiles compile,ffmpeg-aarch64-macos install
 +-------------------------------+
 
     The profile <<<compile>>> ensures that FFmpeg and other sources are downloaded and built.

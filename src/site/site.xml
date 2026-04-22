@@ -4,7 +4,7 @@
     <skin>
         <groupId>org.apache.maven.skins</groupId>
         <artifactId>maven-fluido-skin</artifactId>
-        <version>2.0.0</version>
+        <version>2.1.0</version>
     </skin>
     <custom>
         <fluidoSkin>
@@ -20,14 +20,14 @@
         <name>tagtraum FFmpeg package</name>
         <href>https://www.tagtraum.com/ffmpeg</href>
         <src>./images/ffmpeg-banner.png</src>
-        <width>400</width>
-        <height>120</height>
+        <width>400px</width>
+        <height>120px</height>
     </bannerLeft>
     <bannerRight>
         <href>https://www.tagtraum.com/</href>
         <src>./images/tagtraum-banner.png</src>
-        <width>90</width>
-        <height>60</height>
+        <width>90px</width>
+        <height>60px</height>
     </bannerRight>
     <body>
         <head>

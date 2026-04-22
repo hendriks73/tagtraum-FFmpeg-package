@@ -9,7 +9,7 @@ Introduction
 
     The <tagtraum FFmpeg package> is a binary release of some of the libraries released by
     the {{{https://www.ffmpeg.org/}FFmpeg\u2122}} project. Its purpose is to provide easy access
-    to Windows and macOS binaries and
+    to Windows, macOS, and Linux binaries and
     {{{https://www.beatunes.com/repo/maven2/com/tagtraum/ffmpeg/ffmpeg/${ffmpegversion}/}sources}}
     for decoding audio via a
     {{{https://maven.apache.org/}Maven}} repository.
@@ -20,7 +20,6 @@ Introduction
     (but can be {{{./developer.html}enabled}}).
     However, this obviously is no guarantee.
     Also, as the focus lies on decoding audio, most encoders are {{{#Configuration}disabled}}.
-    Note that as of version 1.12.0, mp3 has been enabled as decoder by default.
 
 How to use
 
@@ -34,7 +33,8 @@ How to use
     <!-- <artifactId>ffmpeg-aarch64-macos</artifactId> -->
     <!-- <artifactId>ffmpeg-x86_64-win</artifactId> -->
     <!-- <artifactId>ffmpeg-i386-win</artifactId> -->
-    <!-- <artifactId>ffmpeg-x86_64-unix</artifactId> -->
+    <!-- <artifactId>ffmpeg-x86_64-linux</artifactId> -->
+    <!-- <artifactId>ffmpeg-aarch64-linux</artifactId> -->
     <version>${projectversion}</version>
 </dependency>
 ---
@@ -43,8 +43,8 @@ How to use
 Requirements
 
     Both 32 bit and 64 bit are supported on Windows.
-    aarch64 and x86_64 on macOS 10.8 or later.
-    x86_64 on Linux.
+    aarch64 and x86_64 on macOS 11.0 or later.
+    aarch64 and x86_64 on Linux.
 
 License
 
